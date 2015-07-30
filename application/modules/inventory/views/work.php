@@ -357,24 +357,19 @@ $this->load->view('dashboard/header');
                                     </h3>
                                 </div>
                             </div>
-
-
                             <br>
                             <div class="row">
                                 <div class="col-lg-12">
-
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12">
-
                                     <div class="portlet box blue">
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <?php echo $this->lang->line('dashboard_location_worklist'); ?>
                                             </div>
-
                                         </div>
                                         <div class="portlet-body">
                                             <?php
@@ -389,59 +384,13 @@ $this->load->view('dashboard/header');
                                                         </a>
                                                     </div>
                                                 </div>
-                                            <?php } ?>
-                                            <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-                                                <thead>
-                                                    <tr>
-                                                        <th><?php echo $this->lang->line('dashboard_location_name'); ?></th>
-                                                        <th><?php echo $this->lang->line('contractor'); ?></th>
-                                                        <th><?php echo $this->lang->line('table_building'); ?></th>
-                                                        <th><?php echo $this->lang->line('table_floor'); ?></th>
-                                                        <th><?php echo $this->lang->line('table_office'); ?></th>
-                                                        <?php
-                                                        if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
-                                                            ?>
-                                                        <th><?php echo $this->lang->line('dashboard_location_action'); ?></th>
-                                                        <?php } ?>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <?php foreach ($works as $work) {
-                                                        ?>
-                                                        <tr>
-                                                            <td><?php echo wordwrap($work['jobname'], 40, "<br>\n"); ?></td>
-                                                            <td><?php echo wordwrap($work['contractor'], 23, "<br>\n"); ?></td>
-                                                            <td><?php echo wordwrap($work['building'], 23, "<br>\n"); ?></td>
-                                                            <td><?php echo wordwrap($work['floor'], 23, "<br>\n"); ?></td>
-                                                            <td><?php echo wordwrap($work['office'], 23, "<br>\n"); ?></td>
-                                                            <?php
-                                                            if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
-                                                                ?>
-                                                            <td>
-                                                            <?php $work_id = $work['id']; ?>
-                                                                <a href="" class="work_edit" data-id="<?php echo $work['id']; ?>">
-                                                                    <button type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line("table_edit"); ?></button>
-                                                                </a>
-                                                            <?php if ($this->session->userdata('role') == 'admin') { ?>
-                                                                <a href="" class="work_delete" data-id="<?php echo $work['id']; ?>">
-                                                                    <button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line("table_delete"); ?></button>
-                                                                </a>
-                                                            <?php } ?>
-                                                                <a href="#" data-toggle="modal" class="img_upload" data-id="<?php echo $work_id; ?>" title="img Upload">
-                                                                    <button type="button" class="btn btn-success btn-xs"><?php echo $this->lang->line('upload'); ?></button>
-                                                                </a>
-                                                                <a href="#" data-toggle="modal" class="log_view" data-id="<?php echo $work_id; ?>" title="logs">
-                                                                    <button type="button" class="btn btn-primary btn-xs"><?php echo $this->lang->line('view_log'); ?></button>
-                                                                </a>
-                                                            </td>
-                                                        <?php } ?>
-
-                                                        </tr>
-                                                        <?php } ?>
-
-                                                </tbody>
-                                            </table>
+                                            <?php } 
+                                            
+                                            ?>
+                                            <!--WORK LIST-->
+                                            <div id="users_list">
+                                                <?php $this->load->view('inventory/work_list');?>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- END EXAMPLE TABLE PORTLET-->
@@ -506,248 +455,248 @@ $this->load->view('dashboard/header');
 <!--datepicker end -->
 <!--linux files-->
 <script>
-                                                jQuery(document).ready(function() {
-                                                    App.init();
-                                                    $('#sample_editable_1').dataTable(
-                                                            {
-                                                                "aLengthMenu": [
-                                                                    [5, 15, 20, -1],
-                                                                    [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
-                                                                ],
-                                                                // set the initial value
-                                                                "iDisplayLength": 5,
-                                                                "sPaginationType": "bootstrap",
-                                                                "oLanguage": {
-                                                                    "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
-                                                                },
-                                                                "aoColumnDefs": [{
-                                                                        'bSortable': false,
-                                                                        'aTargets': [0]
-                                                                    }
-                                                                ]
-                                                            }
-                                                    );
-$('#datepicker_edit_from').datepicker();
- $('#datepicker_edit_to').datepicker();  
-                                                    //search and pagination language conversion end
-                                                    //populate floors on building select
-                                                    $(document).on("change", ".building-select", function(){
-                                                        if ($(this).val() !== '')
-                                                        {
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>inventory/get_content',
-                                                                type: 'POST',
-                                                                data: {
-                                                                    'main_cat': 'buildings',
-                                                                    'data': $(this).val()
-                                                                },
-                                                                //dataType:'json',
-                                                                success: function(data) {
-                                                                    $(".floor-select").html(data);
-                                                                    $(".office-select").html('<option value="">-select-</option>');
-                                                                },
-                                                                error: function(request, error)
-                                                                {
-                                                                    alert("Request: " + JSON.stringify(request));
-                                                                }
-                                                            });
-                                                        }
+    jQuery(document).ready(function() {
+        App.init();
+        $('#sample_editable_1').dataTable(
+                {
+                    "aLengthMenu": [
+                        [5, 15, 20, -1],
+                        [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+                    ],
+                    // set the initial value
+                    "iDisplayLength": 5,
+                    "sPaginationType": "bootstrap",
+                    "oLanguage": {
+                        "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
+                    },
+                    "aoColumnDefs": [{
+                            'bSortable': false,
+                            'aTargets': [0]
+                        }
+                    ]
+                }
+        );
+        $('#datepicker_edit_from').datepicker();
+        $('#datepicker_edit_to').datepicker();  
+        //search and pagination language conversion end
+        //populate floors on building select
+        $(document).on("change", ".building-select", function(){
+            if ($(this).val() !== '')
+            {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>inventory/get_content',
+                    type: 'POST',
+                    data: {
+                        'main_cat': 'buildings',
+                        'data': $(this).val()
+                    },
+                    //dataType:'json',
+                    success: function(data) {
+                        $(".floor-select").html(data);
+                        $(".office-select").html('<option value="">-select-</option>');
+                    },
+                    error: function(request, error)
+                    {
+                        alert("Request: " + JSON.stringify(request));
+                    }
+                });
+            }
 
-                                                    });
+        });
 
-                                                    //populate office on floor select
-                                                     $(document).on("change", ".floor-select", function(){
-                                                       if ($(this).val() !== '')
-                                                        {
-                                                        $.ajax({
-                                                            url: '<?php echo base_url(); ?>inventory/get_content',
-                                                            type: 'POST',
-                                                            data: {
-                                                                'main_cat': 'office',
-                                                                'data': $(this).val()
-                                                            },
-                                                            //dataType:'json',
-                                                            success: function(data) {
-                                                                $(".office-select").html(data);
-                                                            },
-                                                            error: function(request, error)
-                                                            {
-                                                                alert("Request: " + JSON.stringify(request));
-                                                            }
-                                                        });
-                                                        }
+        //populate office on floor select
+         $(document).on("change", ".floor-select", function(){
+           if ($(this).val() !== '')
+            {
+            $.ajax({
+                url: '<?php echo base_url(); ?>inventory/get_content',
+                type: 'POST',
+                data: {
+                    'main_cat': 'office',
+                    'data': $(this).val()
+                },
+                //dataType:'json',
+                success: function(data) {
+                    $(".office-select").html(data);
+                },
+                error: function(request, error)
+                {
+                    alert("Request: " + JSON.stringify(request));
+                }
+            });
+            }
 
-                                                    });
-
-
-                                                    $('.work_delete').click(function(e) {
-                                                        e.preventDefault();
-                                                        var work_id = $(this).attr('data-id');
-                                                        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este obra?") == false) {
-                                                            return;
-                                                        }
-                                                        var element = this;
-                                                        $.ajax({
-                                                            url: "<?php echo base_url(); ?>inventory/delete_work",
-                                                            type: "POST",
-                                                            data: {"work_id": work_id},
-                                                            success: function(data)
-                                                            {
-                                                                $(element).parents('tr')[0].remove();
-
-                                                                return false;
-                                                            },
-                                                            error: function()
-                                                            {
-                                                                console.log('error');
-                                                                return false;
-                                                            },
-                                                        });
-
-                                                    });
-
-                                                    //delete user end
-
-                                                    $('#datepicker_from').datepicker();
-                                                    $('#datepicker_to').datepicker();
-
-                                                    //inventory image upload
-                                                    $(".img_upload").click(function() {
-                                                        inventory_id = $(this).attr('data-id');
-                                                        $("#inventory_id").val(inventory_id);
-                                                        $("#img_upload_modal").modal('show');
-                                                    });
-                                                    $(".log_view").click(function() {
-                                                        inventory_id = $(this).attr('data-id');
-                                                        $.ajax({
-                                                            url: "<?php echo base_url(); ?>inventory/get_inventory_logs",
-                                                            type: "POST",
-                                                            data: {"inventory_id": inventory_id},
-                                                            success: function(data)
-                                                            {
-                                                                console.log(data);
-                                                                $("#log_info").html(data);
-                                                            }
-                                                        })
+        });
 
 
-                                                        $("#inventory_id").val(inventory_id);
-                                                        $("#log_details_modal").modal('show');
-                                                    });
-                                                    //inventory image upload end
+        $('.work_delete').click(function(e) {
+            e.preventDefault();
+            var work_id = $(this).attr('data-id');
+            if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este obra?") == false) {
+                return;
+            }
+            var element = this;
+            $.ajax({
+                url: "<?php echo base_url(); ?>inventory/delete_work",
+                type: "POST",
+                data: {"work_id": work_id},
+                success: function(data)
+                {
+                    $(element).parents('tr')[0].remove();
+
+                    return false;
+                },
+                error: function()
+                {
+                    console.log('error');
+                    return false;
+                },
+            });
+
+        });
+
+        //delete user end
+
+        $('#datepicker_from').datepicker();
+        $('#datepicker_to').datepicker();
+
+        //inventory image upload
+        $(".img_upload").click(function() {
+            inventory_id = $(this).attr('data-id');
+            $("#inventory_id").val(inventory_id);
+            $("#img_upload_modal").modal('show');
+        });
+        $(".log_view").click(function() {
+            inventory_id = $(this).attr('data-id');
+            $.ajax({
+                url: "<?php echo base_url(); ?>inventory/get_inventory_logs",
+                type: "POST",
+                data: {"inventory_id": inventory_id},
+                success: function(data)
+                {
+                    console.log(data);
+                    $("#log_info").html(data);
+                }
+            })
+
+
+            $("#inventory_id").val(inventory_id);
+            $("#log_details_modal").modal('show');
+        });
+        //inventory image upload end
 //                
 
-                                                });
+    });
 
 
-                                                function validateworkForm() {
+    function validateworkForm() {
 
 
-                                                    if ($('#works_building').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#jobname').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_jobname"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($("#engineername").val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_engineername"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#datepicker_from').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_datepicker_from"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#datepicker_to').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_datepicker_to"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else
-                                                    {
-                                                        $('#error').hide();
-                                                        return true;
-                                                    }
-
-
-
-                                                }
-
-                                                //validate work edit form
-                                                function validateworkEditForm() {
-
-
-                                                    if ($('#work_edit_building').val() === '')
-                                                    {
-                                                        $('#work_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                        $('#work_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#work_edit_jobname').val() === '')
-                                                    {
-                                                        $('#work_edit_error').html('<?php echo $this->lang->line("error_jobname"); ?>');
-                                                        $('#work_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($("#work_edit_engineername").val() === '')
-                                                    {
-                                                        $('#work_edit_error').html('<?php echo $this->lang->line("error_engineername"); ?>');
-                                                        $('#work_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#datepicker_edit_from').val() === '')
-                                                    {
-                                                        $('#work_edit_error').html('<?php echo $this->lang->line("error_datepicker_from"); ?>');
-                                                        $('#work_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#datepicker_edit_to').val() === '')
-                                                    {
-                                                        $('#work_edit_error').html('<?php echo $this->lang->line("error_datepicker_to"); ?>');
-                                                        $('#work_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else
-                                                    {
-                                                        $('#work_edit_error').hide();
-                                                        return true;
-                                                    }
+        if ($('#works_building').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#jobname').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_jobname"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($("#engineername").val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_engineername"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#datepicker_from').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_datepicker_from"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#datepicker_to').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_datepicker_to"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else
+        {
+            $('#error').hide();
+            return true;
+        }
 
 
 
-                                                }
+    }
 
-                                                //validate  upload form
-                                                function validateUploadForm() {
-                                                    if ($('#inventory_img').val() === '')
-                                                    {
-                                                        $('#upload_error').html("<?php echo $this->lang->line('error_file_upload'); ?>");
-                                                        $('#upload_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#inventory_img_description').val() === '')
-                                                    {
-                                                        $('#upload_error').html("<?php echo $this->lang->line('error_description'); ?>");
-                                                        $('#upload_error').show();
-                                                        return false;
-                                                    }
+    //validate work edit form
+    function validateworkEditForm() {
 
-                                                    else
-                                                    {
-                                                        $('#upload_error').hide();
-                                                        return true;
-                                                    }
-                                                }
+
+        if ($('#work_edit_building').val() === '')
+        {
+            $('#work_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#work_edit_error').show();
+            return false;
+        }
+        else if ($('#work_edit_jobname').val() === '')
+        {
+            $('#work_edit_error').html('<?php echo $this->lang->line("error_jobname"); ?>');
+            $('#work_edit_error').show();
+            return false;
+        }
+        else if ($("#work_edit_engineername").val() === '')
+        {
+            $('#work_edit_error').html('<?php echo $this->lang->line("error_engineername"); ?>');
+            $('#work_edit_error').show();
+            return false;
+        }
+        else if ($('#datepicker_edit_from').val() === '')
+        {
+            $('#work_edit_error').html('<?php echo $this->lang->line("error_datepicker_from"); ?>');
+            $('#work_edit_error').show();
+            return false;
+        }
+        else if ($('#datepicker_edit_to').val() === '')
+        {
+            $('#work_edit_error').html('<?php echo $this->lang->line("error_datepicker_to"); ?>');
+            $('#work_edit_error').show();
+            return false;
+        }
+        else
+        {
+            $('#work_edit_error').hide();
+            return true;
+        }
+
+
+
+    }
+
+    //validate  upload form
+    function validateUploadForm() {
+        if ($('#inventory_img').val() === '')
+        {
+            $('#upload_error').html("<?php echo $this->lang->line('error_file_upload'); ?>");
+            $('#upload_error').show();
+            return false;
+        }
+        else if ($('#inventory_img_description').val() === '')
+        {
+            $('#upload_error').html("<?php echo $this->lang->line('error_description'); ?>");
+            $('#upload_error').show();
+            return false;
+        }
+
+        else
+        {
+            $('#upload_error').hide();
+            return true;
+        }
+    }
                                                 //edit work
                                                 //floor edit
                                                /* $(".work_edit").click(function() {
@@ -811,13 +760,15 @@ search.keyup(function() {
         $('#amount_awarded').val('');
     }
 });
-
-//$(".work_edit").click(function() {
-    $('.work_edit').click(function(e) {
+/*
+$('.work_edit').click(function(e) {
             e.preventDefault();
             alert("No disponible");
         });
-    /*var work_id = $(this).attr('data-id');
+*/
+$(".work_edit").click(function() {
+    
+    var work_id = $(this).attr('data-id');
     $.ajax({
         url: "<?php echo base_url(); ?>inventory/get_work_info",
         type: "POST",
@@ -833,8 +784,8 @@ search.keyup(function() {
             return false;
         },
     });
-    return false;*/
-//});
+    return false;
+});
 </script>
 </body>
 </html>
