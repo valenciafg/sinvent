@@ -118,33 +118,28 @@ class Inventory extends MX_Controller {
 //               $this->load->view('inventory_view', $data);
     }
       
-       public  function get_work_info()
-        {
-        //echo"get_work_info";
-          $work_id = $this->input->post('work_id');
+       public  function get_work_info(){        
+        $work_id = $this->input->post('work_id');
         
         $this->load->model('inventory/inventory_model');
         $this->load->model('location/location_model');
         $this->load->model('layers/layer_model');
+        $this->load->model('agreements/agreements_model');
+        
         $data['page'] = 'inventory_works';
         $data['get_work']=$this->inventory_model->get_all_inventory_work_edit($work_id);
         $data['get_work'] = $data['get_work'][0]; 
+
         $data['buildings'] = $this->location_model->get_all_buildings();
-//        echo $data['get_work']['building_id'];
-//        exit;
         $data['first_floor'] = $this->inventory_model->get_building_floor($data['get_work']['building_id']);
-//        print_r($data['first_floor']);
-//        exit;
         $data['first_office'] = $this->inventory_model->get_floor_office($data['get_work']['floor_id']);
+
         $data['good_articles'] = $this->inventory_model->get_all_inventory_article();
-        
-//        print_r($data['get_work']);
-//        exit;
-       
-        //$data['layers'] = $this->layer_model->get_all_layers();
-        //$data['first_sublayer'] = $this->inventory_model->get_initial_sublayer();
-       
-  $this->load->view('work_edit',$data);
+
+        $data['agreement'] = $this->agreements_model->get_agreement_info($data['get_work']['agreement_id']);
+        $data['agreement'] = $data['agreement'][0];
+
+        $this->load->view('work_edit',$data);
     }
      
        public  function get_location_info ($good_location_id)

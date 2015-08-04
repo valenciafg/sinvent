@@ -135,52 +135,72 @@ ALTER TABLE groups OWNER TO postgres;
 
 COMMENT ON TABLE groups IS 'user groups';
 
+--
+--
+--
+CREATE TABLE measuring
+(
+  id serial NOT NULL,
+  description character varying(30),
+  CONSTRAINT measuring_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE measuring
+  OWNER TO postgres;
 
+
+INSERT INTO measuring (description) VALUES ('Litro/s');
+INSERT INTO measuring (description) VALUES ('Kilogramo/s');
+INSERT INTO measuring (description) VALUES ('Unidad/es');
+INSERT INTO measuring (description) VALUES ('Metro/s');
+INSERT INTO measuring (description) VALUES ('Gramo/s');
+INSERT INTO measuring (description) VALUES ('Decena/s');
+INSERT INTO measuring (description) VALUES ('Caja/s');
+INSERT INTO measuring (description) VALUES ('Saco/s');
 --
 -- Name: inventory_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE inventory_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE inventory_id_seq OWNER TO postgres;
-
---
--- Name: inventory; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE inventory (
-    id integer DEFAULT nextval('inventory_id_seq'::regclass) NOT NULL,
-    building_id integer,
-    floor_id integer,
-    office_id integer,
-    jobname character varying(255),
-    engineername character varying(255),
-    "from" character varying(255),
-    "to" character varying(255),
-    brand character varying(255),
-    model character varying(255),
-    serial character varying(255),
-    description character varying(255),
-    divestiture character varying(255),
-    date_added timestamp without time zone DEFAULT now(),
-    type character varying(255),
-    sub_type character varying(255)
+CREATE TABLE inventory
+(
+  id serial NOT NULL,
+  building_id integer,
+  floor_id integer,
+  office_id integer,
+  jobname character varying(255),
+  engineername character varying(255),
+  "from" character varying(255),
+  "to" character varying(255),
+  brand character varying(255),
+  model character varying(255),
+  serial character varying(255),
+  description character varying(255),
+  divestiture character varying(255),
+  date_added timestamp without time zone DEFAULT now(),
+  category integer,
+  subcategory integer,
+  type character varying(255),
+  sub_type character varying(255),
+  quantity real DEFAULT 0,
+  quantity_id integer,
+  amount_awarded real,
+  amount_per_run real,
+  physical_progress real,
+  financial_progress real,
+  agreement_id integer,
+  CONSTRAINT inventory_quantity_id_fkey FOREIGN KEY (quantity_id)
+      REFERENCES measuring (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
 );
-
-
-ALTER TABLE inventory OWNER TO postgres;
-
---
--- Name: TABLE inventory; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TABLE inventory IS 'main inventory table';
+ALTER TABLE inventory
+  OWNER TO postgres;
+COMMENT ON TABLE inventory
+  IS 'main inventory table';
 
 
 --
@@ -295,6 +315,142 @@ ALTER TABLE roles_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
+--
+--
+--
+CREATE TABLE agreements
+(
+  contractor character varying(500),
+  amount_awarded real,
+  amount_per_run real,
+  physical_progress real,
+  financial_progress real,
+  name character varying(500),
+  id serial NOT NULL,
+  CONSTRAINT agreements_pkey PRIMARY KEY (id)
+)WITH (OIDS=FALSE);
+
+ALTER TABLE agreements OWNER TO postgres;
+--
+--
+--
+CREATE TABLE categories
+(
+  id serial NOT NULL,
+  name character varying(50),
+  CONSTRAINT categories_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE categories
+  OWNER TO postgres;
+
+INSERT INTO categories (name) VALUES ('Desincorporación');
+INSERT INTO categories (name) VALUES ('Reparación');
+INSERT INTO categories (name) VALUES ('Stock Operativo');
+INSERT INTO categories (name) VALUES ('Asignado');
+INSERT INTO categories (name) VALUES ('Custodia');
+--
+--
+--
+CREATE TABLE subcategories
+(
+  id serial NOT NULL,
+  name character varying(50),
+  CONSTRAINT subcategories_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE subcategories
+  OWNER TO postgres;
+
+INSERT INTO subcategories (id,name) VALUES(1,'Mobiliario');
+INSERT INTO subcategories (id,name) VALUES(2,'Maquinaria/Equipos');
+INSERT INTO subcategories (id,name) VALUES(3,'Equipos');
+INSERT INTO subcategories (id,name) VALUES(4,'Herramientas');
+INSERT INTO subcategories (id,name) VALUES(7,'Insumos');
+INSERT INTO subcategories (id,name) VALUES(8,'EPP');
+INSERT INTO subcategories (id,name) VALUES(9,'Materiales');
+INSERT INTO subcategories (id,name) VALUES(10,'Temporal');
+INSERT INTO subcategories (id,name) VALUES(11,'Permanente');
+--
+--
+--
+CREATE TABLE categories_subcategories
+(
+  id_categories integer NOT NULL,
+  id_subcategories integer NOT NULL,
+  CONSTRAINT categories_subcategories_pkey PRIMARY KEY (id_categories, id_subcategories),
+  CONSTRAINT categories_subcategories_id_categories_fkey FOREIGN KEY (id_categories)
+      REFERENCES categories (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT categories_subcategories_id_subcategories_fkey FOREIGN KEY (id_subcategories)
+      REFERENCES subcategories (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE categories_subcategories
+  OWNER TO postgres;
+
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (1,1);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (1,2);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (2,1);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (2,3);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (3,1);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (3,2);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (3,4);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (3,7);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (3,8);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (3,9);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (4,10);
+INSERT INTO categories_subcategories (id_categories,id_subcategories) VALUES (4,11);
+--
+--
+--
+CREATE TABLE works
+(
+  id serial NOT NULL,
+  name character varying(500),
+  since date,
+  until date,
+  agreement_id integer,
+  type integer,
+  subtype integer,
+  clasification integer,
+  date_added timestamp without time zone DEFAULT now(),
+  CONSTRAINT works_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE works
+  OWNER TO postgres;
+--
+--
+--
+CREATE TABLE processes
+(
+  id serial NOT NULL,
+  name character varying(100),
+  CONSTRAINT processes_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE processes
+  OWNER TO postgres;
+
+INSERT INTO processes (name) VALUES ('Limpieza');
+INSERT INTO processes (name) VALUES ('Reparación');
+INSERT INTO processes (name) VALUES ('Ejecución');
+INSERT INTO processes (name) VALUES ('Herramientas');
+INSERT INTO processes (name) VALUES ('Contrucción');
+INSERT INTO processes (name) VALUES ('Reconstrucción');
+
 
 
 --

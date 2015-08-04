@@ -1,4 +1,4 @@
-<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+<table class="table table-striped table-hover table-bordered" id="example">
     <thead>
         <tr>
             <th><?php echo $this->lang->line('dashboard_location_name'); ?></th>

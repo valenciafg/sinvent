@@ -7,17 +7,14 @@
   Todos los derechos reservados 2015
   </copyright>
  * ************************* */
-$this->load->view('dashboard/header');
-?>
+$this->load->view('dashboard/header');?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-<?php $this->load->view('dashboard/left_menu'); ?>
-
+            <?php $this->load->view('dashboard/left_menu'); ?>
             <div class="col-md-10 col-sm-9 col-lg-10">
                 <br>
                 <div class="page-container">
-
                     <!-- BEGIN CONTENT -->
                     <div class="page-content-wrapper">
                         <div class="page-content">
@@ -400,9 +397,9 @@ $this->load->view('dashboard/header');
                         </div>
                     </div>
                     <!-- END CONTENT -->
-                </div>
-                
+                </div>                
                 <!--user edit modal end-->
+
                 <!--work edit modal start-->
                 <div class="modal fade" id="work_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -412,9 +409,8 @@ $this->load->view('dashboard/header');
                                 <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('edit_service'); ?></h4>
                             </div>
                             <div id="work_edit_form" class="modal-body">
-                                <?php $this->load->view("work_edit"); ?>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -424,39 +420,50 @@ $this->load->view('dashboard/header');
     </div>
 </div>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-
 <!--search scripts-->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
-<!--search scripts-->
-<!--search css-->
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.css"/>
-
-<!--search css-->
-<!--extra js-->
-
-
-
-<!--extra js-->
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-<!--linux files-->
-
-
-<!--search scripts-->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
-<script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
+<!--datatables scripts-->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/js/dataTables.bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/js/datatables.responsive.js"></script>
 <!--datepicker-->
-<script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<!--datepicker end -->
-<!--linux files-->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/datepicker.css"/>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
 <script>
     jQuery(document).ready(function() {
-        App.init();
+        var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone : 480
+    };
+    var tableElement = $('#example');
+    tableElement.dataTable({
+        autoWidth        : false,
+        language: {
+            url: "<?php echo base_url(); ?>assets/plugins/datatables/js/lang/Spanish.json"
+        },
+        aLengthMenu: [
+                [5, 15, 20, -1],
+                [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+            ],
+        iDisplayLength: 5,
+        preDrawCallback: function () {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback    : function (nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback   : function (oSettings) {
+            responsiveHelper.respond();
+        }
+    });
+        /*App.init();
         $('#sample_editable_1').dataTable(
                 {
                     "aLengthMenu": [
@@ -475,9 +482,7 @@ $this->load->view('dashboard/header');
                         }
                     ]
                 }
-        );
-        $('#datepicker_edit_from').datepicker();
-        $('#datepicker_edit_to').datepicker();  
+        );    */    
         //search and pagination language conversion end
         //populate floors on building select
         $(document).on("change", ".building-select", function(){
@@ -557,8 +562,17 @@ $this->load->view('dashboard/header');
 
         //delete user end
 
-        $('#datepicker_from').datepicker();
-        $('#datepicker_to').datepicker();
+        $('#datepicker_from').datepicker({
+            format: 'dd/mm/yyyy',
+            //startView: 'year',
+            isRTL: false,
+            language: 'es'});
+        $('#datepicker_to').datepicker({
+            format: 'dd/mm/yyyy',
+            //startView: 'year',
+            isRTL: false,
+            language: 'es'
+        });
 
         //inventory image upload
         $(".img_upload").click(function() {
@@ -697,32 +711,6 @@ $this->load->view('dashboard/header');
             return true;
         }
     }
-                                                //edit work
-                                                //floor edit
-                                               /* $(".work_edit").click(function() {
-                                                    var work_id = $(this).attr('data-id');
-                                                    $.ajax({
-                                                        url: "<?php echo base_url(); ?>inventory/get_work_info",
-                                                        type: "POST",
-                                                        data: {"work_id": work_id},
-                                                        success: function(data)
-                                                        {
-                                                            console.log(data);
-                                                            $('#work_edit_form').html(data);
-                                                            $('#work_edit_modal').modal('show');
-                                                            return false;
-                                                        },
-                                                        error: function()
-                                                        {
-                                                            console.log('error');
-                                                            return false;
-                                                        },
-                                                    });
-                                                    return false;
-
-                                                });*/
-    
-                                                //validate upload form end
 var search = $("#contract_number");
 search.keyup(function() {
     if (search.val() != '') {
@@ -760,12 +748,7 @@ search.keyup(function() {
         $('#amount_awarded').val('');
     }
 });
-/*
-$('.work_edit').click(function(e) {
-            e.preventDefault();
-            alert("No disponible");
-        });
-*/
+
 $(".work_edit").click(function() {
     
     var work_id = $(this).attr('data-id');
