@@ -57,8 +57,8 @@ class Agreements extends MX_Controller {
         $this->load->view('agreements/agreements_edit',$data);
     }
     public function get_agreement_info_json() {        
-        $agreement_id = $this->input->post('agreement_id');
-        $data['agreement'] = $this->agreements_model->get_agreement_info($agreement_id);
+        $agreement_number = $this->input->post('agreement_number');
+        $data['agreement'] = $this->agreements_model->get_agreement_info_by_number($agreement_number);
         $data['agreement'] = $data['agreement'][0];
         //$this->load->view('agreements/agreements_edit',$data);
         echo json_encode($data['agreement']);

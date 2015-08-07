@@ -563,17 +563,25 @@ $this->load->view('dashboard/header');?>
         //delete user end
 
         $('#datepicker_from').datepicker({
+            autoclose: true,
             format: 'dd/mm/yyyy',
-            //startView: 'year',
-            isRTL: false,
-            language: 'es'});
-        $('#datepicker_to').datepicker({
-            format: 'dd/mm/yyyy',
-            //startView: 'year',
             isRTL: false,
             language: 'es'
         });
-
+        $('#datepicker_to').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy',        
+            startDate: $('#datepicker_from').val(),
+            isRTL: false,
+            language: 'es'
+        });
+        $('.datepicker_from').datepicker()
+        .on('changeDate', function(e){
+            console.log($('#datepicker_from').val());
+            var startDate = new Date();        
+            $('#datepicker_to').datepicker('update', $('#datepicker_from').val());                 
+            $('#datepicker_to').datepicker('setStartDate', $('#datepicker_from').val());                 
+        });
         //inventory image upload
         $(".img_upload").click(function() {
             inventory_id = $(this).attr('data-id');
@@ -718,7 +726,7 @@ search.keyup(function() {
             url: "<?php echo base_url(); ?>agreements/get_agreement_info_json",
             type: "POST",
             dataType:'json',
-            data: {"agreement_id": search.val()},
+            data: {"agreement_number": search.val()},
             success : function(response){ 
                 console.log(response); 
                 if(response){

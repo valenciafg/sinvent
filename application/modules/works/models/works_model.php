@@ -24,7 +24,7 @@ class Works_model extends CI_Model {
         ->join('buildings as t2', 't1.type = t2.id', 'LEFT')
         ->join('floors as t3', 't1.subtype = t3.id', 'LEFT')
         ->join('office as t4', 't1.clasification = t4.id', 'LEFT')
-        ->join('agreements as t5', 't1.agreement_id = t5.id', 'LEFT')
+        ->join('agreements as t5', 't1.agreement_id = t5.agreement_number', 'LEFT')
         ->get();
         //$query = $this->db->get('works');
         return $query->result_array();

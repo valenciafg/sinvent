@@ -221,11 +221,13 @@
 <script type="text/javascript">
 $(document).ready(function () {
     $('#datepicker_edit_from').datepicker({
+        autoclose: true,
         format: 'dd/mm/yyyy',
         isRTL: false,
         language: 'es'
     });
     $('#datepicker_edit_to').datepicker({
+        autoclose: true,
         format: 'dd/mm/yyyy',        
         startDate: $('#datepicker_edit_from').val(),
         isRTL: false,
@@ -246,19 +248,21 @@ $(document).ready(function () {
                 url: "<?php echo base_url(); ?>agreements/get_agreement_info_json",
                 type: "POST",
                 dataType:'json',
-                data: {"agreement_id": search.val()},
+                data: {"agreement_number": search.val()},
                 success : function(response){ 
                     console.log(response); 
                     if(response){
                         $('#edit_physical_progress').val(response['physical_progress']);
                         $('#edit_financial_progress').val(response['financial_progress']);
                         $('#edit_engineername').val(response['contractor']);
+                        $('#edit_agreement_name').val(response['name']);
                         $('#edit_amount_per_run').val(response['amount_per_run']);
                         $('#edit_amount_awarded').val(response['amount_awarded']);
                     }else{
                         $('#edit_physical_progress').val('Ingrese un número de contrato válido');
                         $('#edit_financial_progress').val('Ingrese un número de contrato válido');
                         $('#edit_engineername').val('Ingrese un número de contrato válido');
+                        $('#edit_agreement_name').val('Ingrese un número de contrato válido');
                         $('#edit_amount_per_run').val('Ingrese un número de contrato válido');
                         $('#edit_amount_awarded').val('Ingrese un número de contrato válido');
                     }
@@ -268,6 +272,7 @@ $(document).ready(function () {
                     $('#edit_physical_progress').val('Ingrese un número de contrato válido');
                     $('#edit_financial_progress').val('Ingrese un número de contrato válido');
                     $('#edit_engineername').val('Ingrese un número de contrato válido');
+                    $('#edit_agreement_name').val('Ingrese un número de contrato válido');
                     $('#edit_amount_per_run').val('Ingrese un número de contrato válido');
                     $('#edit_amount_awarded').val('Ingrese un número de contrato válido');
                     return false;
@@ -277,6 +282,7 @@ $(document).ready(function () {
             $('#edit_physical_progress').val('');
             $('#edit_financial_progress').val('');
             $('#edit_engineername').val('');
+            $('#edit_agreement_name').val('');
             $('#edit_amount_per_run').val('');
             $('#edit_amount_awarded').val('');
         }

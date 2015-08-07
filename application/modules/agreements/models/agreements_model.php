@@ -32,6 +32,12 @@ class Agreements_model extends CI_Model {
         $query = $this->db->get('agreements');
         return $query->result_array();
     }
+    public function get_agreement_info_by_number($agreement_number){
+        $this->db->select('*');
+        $this->db->where('agreement_number', $agreement_number);
+        $query = $this->db->get('agreements');
+        return $query->result_array();
+    }
     public function delete_agreement($id){
         $this->db->where('id', $id);
         $this->db->delete('agreements');

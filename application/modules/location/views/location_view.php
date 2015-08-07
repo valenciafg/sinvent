@@ -349,7 +349,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                                     ?>
                                                                                     <td>
                                                                                      <a href="" class="building_edit" data-id="<?php echo $building['id'];?>">
-                                                                                     <button><?php echo $this->lang->line('table_edit'); ?></button>
+                                                                                     <button  type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line('table_edit'); ?></button>
                                                                                      </a>
                                                                                         
 <!--                                                                                        <a href="<?php echo base_url() . 'location/building/edit/' . $building['id']; ?>"><button><?php echo $this->lang->line('table_edit'); ?></button></a>-->
@@ -357,7 +357,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                                     <?php
                                                                                     if ($this->session->userdata('role') == 'admin') {
                                                                                         ?>       
-                                                                                        <a class="building_item_delete" data-id="<?php echo $building['id']; ?>" href="javascript:;"><button><?php echo $this->lang->line('table_delete'); ?></button></a>
+                                                                                        <a class="building_item_delete" data-id="<?php echo $building['id']; ?>" href="javascript:;"><button  type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line('table_delete'); ?></button></a>
                                                                                         <?php } ?>
                                                                                     </td>
                                                                                 <?php } ?>
@@ -444,14 +444,14 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                                     ?>
                                                                                     <td>
                                                                                         <a href="" class="floor_edit" data-id="<?php echo $buildings_floors['floor_id'];?>">
-                                                                                            <button><?php echo $this->lang->line("table_edit"); ?></button>
+                                                                                            <button type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line("table_edit"); ?></button>
                                                                                     </a>
                                                                                     
                                                                                     <?php
                                                                                     if ($this->session->userdata('role') == 'admin') {
                                                                                         ?>
                                                                                        
-                                                                                        <a class="floor_delete" data-id="<?php echo $buildings_floors['floor_id']; ?>" href="javascript:;"><button><?php echo $this->lang->line('table_delete'); ?></button></a>
+                                                                                        <a class="floor_delete" data-id="<?php echo $buildings_floors['floor_id']; ?>" href="javascript:;"><button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line('table_delete'); ?></button></a>
                                                                                         
                                                                                         <?php
                                                                                     } ?>
@@ -546,7 +546,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                                     ?>
                                                                                     <td>
                                                                                     <a href="" class="office_edit" data-id="<?php echo $office_details['office_id'];?>">
-                                                                                        <button> <?php echo $this->lang->line("table_edit"); ?></button>
+                                                                                        <button type="button" class="btn btn-warning btn-xs"> <?php echo $this->lang->line("table_edit"); ?></button>
                                                                                     </a>                                                                                    
                                                                                     
                                                                                     
@@ -555,7 +555,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                                         ?>
                                                                                         
                                                                                             <a class="office_delete" data-id="<?php echo $office_details['office_id']; ?>" href="javascript:;">
-                                                                                                <button><?php echo $this->lang->line('table_delete'); ?></button>
+                                                                                                <button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line('table_delete'); ?></button>
                                                                                             </a>
                                                                                        
                                                                                         <?php

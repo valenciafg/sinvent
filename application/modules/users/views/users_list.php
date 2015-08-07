@@ -53,11 +53,11 @@ Todos los derechos reservados 2015
                                                 </td>-->
                                                 <td>
                                                     <a href="" class="user_edit" data-id="<?php echo $user['id'];?>">
-                                                     <button><?php echo $this->lang->line("table_edit"); ?></button>
+                                                     <button type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line("table_edit"); ?></button>
                                                     </a>
                                                 
                                                     <a class="user_delete" data-id="<?php echo $user['id'];?>" href="#">
-                                                       <button><?php echo $this->lang->line("table_delete"); ?></button>
+                                                       <button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line("table_delete"); ?></button>
                                                         </a>
                                                 </td>
                                             </tr>

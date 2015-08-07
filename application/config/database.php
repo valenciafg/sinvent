@@ -37,7 +37,7 @@
 // The following values will probably need to be changed.
 $db['default']['username'] = "postgres";
 $db['default']['password'] = "victor";
-$db['default']['database'] = "prueba4";
+$db['default']['database'] = "inventory_db";
 
 // The following values can probably stay the same.
 $db['default']['hostname'] = "localhost";

@@ -177,12 +177,12 @@ $this->load->view('dashboard/header'); ?>
                                                                     </td>
                                                                     <td>
                                                                         <a href="" class="group_edit" data-id="<?php echo $group['id']; ?>">
-                                                                            <button><?php echo $this->lang->line('table_edit'); ?></button>
+                                                                            <button type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line('table_edit'); ?></button>
                                                                             </a>
                                                                    
 
                                                                         <a class="group_delete" data-id="<?php echo $group['id']; ?>" href="#">
-                                                                            <button><?php echo $this->lang->line('table_delete'); ?></button>
+                                                                            <button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line('table_delete'); ?></button>
                                                                             </a>
                                                                     </td>
 

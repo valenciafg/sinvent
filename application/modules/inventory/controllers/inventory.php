@@ -136,7 +136,7 @@ class Inventory extends MX_Controller {
 
         $data['good_articles'] = $this->inventory_model->get_all_inventory_article();
 
-        $data['agreement'] = $this->agreements_model->get_agreement_info($data['get_work']['agreement_id']);
+        $data['agreement'] = $this->agreements_model->get_agreement_info_by_number($data['get_work']['agreement_id']);
         $data['agreement'] = $data['agreement'][0];
 
         $this->load->view('work_edit',$data);
@@ -372,24 +372,22 @@ function add_location() {
          $work_id = $this->input->post('work_id');
         //$sub_cat='article';   
         $type = 'works';
-        $sub_cat = '';
           $data = array(
             'type' => $type,
-            'sub_type' => $sub_cat,
             'building_id' => (int)$this->input->post('works_building'),
             'floor_id' => (int)$this->input->post('works_floor'),
             'office_id' => (int)$this->input->post('works_office'),
-            'jobname' => $this->input->post('jobname'),
-            'engineername' => $this->input->post('engineername'),
-            'from' => $this->input->post('from'),
-            'to' => $this->input->post('to'),
-            'amount_awarded' =>$this->input->post('amount_awarded'),
+            'jobname' => $this->input->post('work_edit_jobname'),
+            //'engineername' => $this->input->post('engineername'),
+            'from' => $this->input->post('datepicker_edit_from'),
+            'to' => $this->input->post('datepicker_edit_to'),
+            /*'amount_awarded' =>$this->input->post('amount_awarded'),
             'amount_per_run' => $this->input->post('amount_per_run'),
             'physical_progress' => $this->input->post('physical_progress'),
-            'financial_progress' => $this->input->post('financial_progress')
-            
+            'financial_progress' => $this->input->post('financial_progress'),*/
+            'agreement_id' => $this->input->post('edit_contract_number')
         );
-                      $this->inventory_model->edit_work($work_id,$data);
+        $this->inventory_model->edit_work($work_id,$data);
         redirect('inventory/works');
     }
     function get_layer_items()

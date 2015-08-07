@@ -651,7 +651,7 @@ $this->load->view('dashboard/header'); ?>
                                                   ?>
                                                      <td>
                                                   <?php $good_articles_id=$good_article['id'];?>
-                                                      <a href="#" data-toggle="modal" class="log_view" data-id="<?php echo $good_article['id']; ?>" title="logs"><button><?php echo $this->lang->line('view_log');?></button></a>
+                                                      <a href="#" data-toggle="modal" class="log_view" data-id="<?php echo $good_article['id']; ?>" title="logs"><button type="button" class="btn btn-primary btn-xs"><?php echo $this->lang->line('view_log');?></button></a>
                                                   </td>
                                                  <?php } ?>
                                             </tr>
@@ -1443,7 +1443,7 @@ $this->load->view('dashboard/header'); ?>
                                                            <td>
                                                                 <?php $work_id = $work['id']; ?>
                                                                   
-                                                               <a href="#" data-toggle="modal" class="log_view" data-id="<?php echo $work_id; ?>" title="logs"><button><?php echo $this->lang->line('view_log'); ?></button></a>
+                                                               <a href="#" data-toggle="modal" class="log_view" data-id="<?php echo $work_id; ?>" title="logs"><button type="button" class="btn btn-primary btn-xs"><?php echo $this->lang->line('view_log'); ?></button></a>
                                                                <?php } ?> 
                                                            </td>
 

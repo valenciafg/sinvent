@@ -46,7 +46,7 @@ class Works extends MX_Controller {
                         'name' =>$this->input->post('work_name'),
                         'since' =>$this->input->post('since'),
                         'until' =>$this->input->post('until'),
-                        'agreement_id' =>(int)$this->input->post('work_clasification'),
+                        'agreement_id' =>(int)$this->input->post('agreement_number'),
         );
         $this->works_model->add_work($data);
         redirect('works');

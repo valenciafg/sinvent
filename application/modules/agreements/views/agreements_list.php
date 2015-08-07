@@ -44,7 +44,7 @@ Todos los derechos reservados 2015
         ?>
         <tr>
             <td>
-                <?php echo $agreement['id'];?>
+                <?php echo $agreement['agreement_number'];?>
             </td>
             <td>
                 <?php echo $agreement['name'];?>
@@ -71,12 +71,12 @@ Todos los derechos reservados 2015
                 <a class="agreement_delete" data-id="<?php echo $agreement['id'];?>" href="#">
                    <button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line("table_delete"); ?></button>
                 </a>
-                <a class="agreement_pdf" href="<?php echo base_url(); ?>">
+                <!--<a class="agreement_pdf" href="<?php echo base_url(); ?>">
                     <button type="button" class="btn btn-primary btn-xs"> PDF...</button>
                 </a>
                 <a class="agreement_csv" href="<?php echo base_url(); ?>">
                     <button type="button" class="btn btn-success btn-xs">CSV</button>
-                </a>
+                </a>-->
             </td>
         </tr>
         <?php } ?>

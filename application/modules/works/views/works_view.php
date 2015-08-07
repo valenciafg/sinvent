@@ -148,12 +148,12 @@ $(document).ready(function () {
 
         var search = $("#agreement_number");
         search.keyup(function() {
-            if (search.val() != '') {
+            if (search.val() != '' && search.val().length>0) {
                 $.ajax({
                     url: "<?php echo base_url(); ?>agreements/get_agreement_info_json",
                     type: "POST",
                     dataType:'json',
-                    data: {"agreement_id": search.val()},                    
+                    data: {"agreement_number": search.val()},                    
                     success : function(response){ 
                         console.log(response); 
                         if(response){
