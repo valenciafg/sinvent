@@ -392,135 +392,7 @@ LISTADO DE BIENES Y MATERIALES
                                                 <?php echo $this->lang->line('dashboard_location_articlelist'); ?>
                                             </div>
                                         </div>
-                                        <div class="portlet-body">
-                                            <?php
-                                            if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
-                                                ?>
-                                                <div class="table-toolbar">
-                                                    <div class="btn-group">
-                                                        <a href="#portlet-config" data-toggle="modal" class="config">
-                                                            <button id="sample_editable_1_new" class="btn green">
-                                                                <?php echo $this->lang->line('dashboard_location_addnew'); ?> <i class="fa fa-plus"></i>
-                                                            </button></a>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                            <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            <?php echo $this->lang->line('dashboard_location_description'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('dashboard_location_model'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('dashboard_location_brand'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('quantity'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('dashboard_location_serial'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('categories'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('subcategories'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('table_building'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('table_floor'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('table_office'); ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $this->lang->line('dashboard_location_divestiture'); ?>
-                                                        </th>
-                                                        <?php
-                                                        if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
-                                                            ?>
-                                                            <th>
-                                                            <?php echo $this->lang->line('dashboard_location_action'); ?>
-                                                            </th>
-                                                            <?php } ?>
-                                                    </tr>
-                                                </thead>  
-                                                <tbody>
-                                                <?php
-                                                foreach ($good_articles as $good_article) {
-                                                    ?>
-                                                        <tr>
-                                                            <td>
-                                                            <?php echo wordwrap($good_article['description'], 15, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                            <?php echo wordwrap($good_article['model'], 15, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                            <?php echo wordwrap($good_article['brand'], 10, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                            <?php echo wordwrap($good_article['quantity']." ".$good_article['quantity_type'], 10, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                            <?php echo wordwrap($good_article['serial'], 15, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo wordwrap($good_article['category'], 10, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo wordwrap($good_article['subcategory'], 10, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo wordwrap($good_article['building'], 15, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo wordwrap($good_article['floor'], 10, "<br>\n"); ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo wordwrap($good_article['office'], 15, "<br>\n"); ?>
-                                                            </td>
-<!--                                                            <td>
-                                                                <?php echo date('d-m-Y g:i A', strtotime($good_article['date_added'])); ?>
-                                                            </td>-->
-                                                            <td>
-                                                                <?php echo $good_article['divestiture']; ?>
-                                                            </td>
-                                                                <?php
-                                                                if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
-                                                                    ?>
-                                                                <td>
-                                                                <?php $good_articles_id = $good_article['id']; ?>
-                                                                    <a href="" class="article_edit" data-id="<?php echo $good_articles_id; ?>">
-              <!--                                                    <a href="<?php echo base_url(); ?>inventory/get_articles_info/<?php echo $good_articles_id; ?>" class="user_edit" data-id="<?php echo $good_article['id']; ?>">-->
-                                                                        <button type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line("table_edit"); ?></button>
-                                                                    </a>
-                                                                    <?php
-                                                                        if ($this->session->userdata('role') == 'admin') {
-                                                                    ?>
-                                                                        <a href="" class="articles_delete" data-id="<?php echo $good_articles_id; ?>">
-                                                                            <button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line("table_delete"); ?></button>
-                                                                        </a>
-                                                                    <?php } ?>
-                                                                    <a href="#" data-toggle="modal" class="img_upload" data-id="<?php echo $good_article['id']; ?>" title="img Upload">
-                                                                        <button type="button" class="btn btn-success btn-xs"><?php echo $this->lang->line('upload'); ?></button>
-                                                                    </a>
-                                                                    <a href="#" data-toggle="modal" class="log_view" data-id="<?php echo $good_article['id']; ?>" title="logs">
-                                                                        <button type="button" class="btn btn-info btn-xs"><?php echo $this->lang->line('view_log'); ?></button>
-                                                                    </a>
-                                                                </td>
-    <?php } ?>
-
-                                                        </tr>
-<?php } ?>
-                                                </tbody>
-                                            </table>                               
-                                        </div>
+                                        <?php $this->load->view('goods_list');?>
                                     </div>
                                     <!-- END EXAMPLE TABLE PORTLET-->
                                 </div>
@@ -551,21 +423,35 @@ LISTADO DE BIENES Y MATERIALES
         </div>
     </div>
 </div>
-<script src="<?php echo base_url(); ?>assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-<!--date picker-->
+<!--<script src="<?php echo base_url(); ?>assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>-->
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/jquery-1.11.1.min.js"></script>
+<!--search scripts-->
+<script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
+<script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+<!--datatables scripts-->
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/dataTables.bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/dataTables.responsive.min.js"></script>
+<!--datepicker-->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/datepicker.css"/>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
+<!--<script src="<?php echo base_url(); ?>assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<!--date picker--
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 <link href="<?php echo base_url(); ?>assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
 <!--date picker end-->
-<!--search scripts-->
+<!--search scripts
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
 <!--search scripts-->
-<!--search css-->
+<!--search css
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.css"/>
 
 <!--search css-->
@@ -573,353 +459,365 @@ LISTADO DE BIENES Y MATERIALES
 
 
 
-<!--extra js-->
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+<!--extra js-
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>-->
 <!--linux files-->
 
 
-<!--search scripts-->
+<!--search scripts-
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
-<script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
-<!--datepicker-->
+<script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>-->
+<!--datepicker-
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<!--datepicker end -->
-<!--        <link href="<?php echo base_url(); ?>assets/css/datepicker.css" rel="stylesheet" />
-        <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>-->
-<!--datepicker-->
+
 <!--linux files-->
 <script>
-                                                jQuery(document).ready(function() {
-                                                    App.init();
-                                                    $('#sample_editable_1').dataTable({
-                                                        "aLengthMenu": [
-                                                            [5, 15, 20, -1],
-                                                            [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
-                                                        ],
-                                                        // set the initial value
-                                                        "iDisplayLength": 10,
-                                                        "sPaginationType": "bootstrap",
-                                                        "oLanguage": {
-                                                            "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
-                                                        },
-                                                        "aoColumnDefs": [{
-                                                                'bSortable': false,
-                                                                'aTargets': [0],
-                                                        }]
-                                                    });
+    $(document).ready(function () {
+        $('#example').DataTable({
+            //responsive: true;
+        });
+    /*var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone : 480
+    };
+    var tableElement = $('#example');
+    tableElement.dataTable({
+        autoWidth        : false,
+        language: {
+            url: "<?php echo base_url(); ?>assets/plugins/datatables/js/lang/Spanish.json"
+        },
+        aLengthMenu: [
+                [5, 15, 20, -1],
+                [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+            ],
+        iDisplayLength: 5,
+        preDrawCallback: function () {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback    : function (nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback   : function (oSettings) {
+            responsiveHelper.respond();
+        }
+    });*/
 
-                                                    //search and pagination language conversion end
-                                                    //populate floors on building select
-                                                    $(document).on("change", ".building-select", function() {
+        //search and pagination language conversion end
+        //populate floors on building select
+        $(document).on("change", ".building-select", function() {
 
-                                                        if ($(this).val() !== '')
-                                                        {
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>inventory/get_content',
-                                                                type: 'POST',
-                                                                data: {
-                                                                    'main_cat': 'buildings',
-                                                                    'data': $(this).val()
-                                                                },
-                                                                //dataType:'json',
-                                                                success: function(data) {
-                                                                    $(".floor-select").html(data);
-                                                                    $(".office-select").html('<option value="">-select-</option>');
-                                                                },
-                                                                error: function(request, error)
-                                                                {
-                                                                    alert("Request: " + JSON.stringify(request));
-                                                                }
-                                                            });
-                                                        }
+            if ($(this).val() !== '')
+            {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>inventory/get_content',
+                    type: 'POST',
+                    data: {
+                        'main_cat': 'buildings',
+                        'data': $(this).val()
+                    },
+                    //dataType:'json',
+                    success: function(data) {
+                        $(".floor-select").html(data);
+                        $(".office-select").html('<option value="">-select-</option>');
+                    },
+                    error: function(request, error)
+                    {
+                        alert("Request: " + JSON.stringify(request));
+                    }
+                });
+            }
 
-                                                    });
-                                                    
+        });
+        
 
-                                                    $(document).on("change", ".category-select", function() {
-                                                        if ($(this).val() !== ''){
-                                                            if($(this).val() == "3"){
-                                                                $('#type').css('display', 'block');
-                                                                $('#subtype').css('display', 'block');
-                                                                $('#clasification').css('display', 'block');
-                                                            }else{
-                                                                $('#type').css('display', 'none');
-                                                                $('#subtype').css('display', 'none');
-                                                                $('#clasification').css('display', 'none');
-                                                            }
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>categories/get_subcategories',
-                                                                type: 'POST',
-                                                                data: {
-                                                                    'data': $(this).val()
-                                                                },
-                                                                success: function(data) {
-                                                                    $(".subcategory-select").html(data);
-                                                                },
-                                                                error: function(request, error)
-                                                                {
-                                                                    alert("Request: " + JSON.stringify(request));
-                                                                }
-                                                            });
-                                                        }else{
-                                                            $('#type').css('display', 'none');
-                                                            $('#subtype').css('display', 'none');
-                                                            $('#clasification').css('display', 'none');
-                                                        }
-                                                    });
-                                                    $(document).on("change", ".category-select-edit", function() {
-                                                        
-                                                            if($(this).val() == "3"){
-                                                                $('#type-edit').css('display', 'block');
-                                                                $('#subtype-edit').css('display', 'block');
-                                                                $('#clasification-edit').css('display', 'block');
-                                                            }else{
-                                                                $('#type-edit').css('display', 'none');
-                                                                $('#subtype-edit').css('display', 'none');
-                                                                $('#clasification-edit').css('display', 'none');
-                                                            }
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>categories/get_subcategories',
-                                                                type: 'POST',
-                                                                data: {
-                                                                    'data': $(this).val()
-                                                                },
-                                                                success: function(data) {
-                                                                    $(".subcategory-select").html(data);
-                                                                },
-                                                                error: function(request, error)
-                                                                {
-                                                                    alert("Request: " + JSON.stringify(request));
-                                                                }
-                                                            });                                                        
-                                                    });
-                                                    //populate office on floor select
-                                                    $(document).on("change", ".floor-select", function() {
-                                                    if ($(this).val() !== '')
-                                                        {
-                                                        $.ajax({
-                                                            url: '<?php echo base_url(); ?>inventory/get_content',
-                                                            type: 'POST',
-                                                            data: {
-                                                                'main_cat': 'office',
-                                                                'data': $(this).val()
-                                                            },
-                                                            //dataType:'json',
-                                                            success: function(data) {
-                                                                $(".office-select").html(data);
-                                                            },
-                                                            error: function(request, error)
-                                                            {
-                                                                alert("Request: " + JSON.stringify(request));
-                                                            }
-                                                        });
-                                                        }
+        $(document).on("change", ".category-select", function() {
+            if ($(this).val() !== ''){
+                if($(this).val() == "3"){
+                    $('#type').css('display', 'block');
+                    $('#subtype').css('display', 'block');
+                    $('#clasification').css('display', 'block');
+                }else{
+                    $('#type').css('display', 'none');
+                    $('#subtype').css('display', 'none');
+                    $('#clasification').css('display', 'none');
+                }
+                $.ajax({
+                    url: '<?php echo base_url(); ?>categories/get_subcategories',
+                    type: 'POST',
+                    data: {
+                        'data': $(this).val()
+                    },
+                    success: function(data) {
+                        $(".subcategory-select").html(data);
+                    },
+                    error: function(request, error)
+                    {
+                        alert("Request: " + JSON.stringify(request));
+                    }
+                });
+            }else{
+                $('#type').css('display', 'none');
+                $('#subtype').css('display', 'none');
+                $('#clasification').css('display', 'none');
+            }
+        });
+        $(document).on("change", ".category-select-edit", function() {
+            
+                if($(this).val() == "3"){
+                    $('#type-edit').css('display', 'block');
+                    $('#subtype-edit').css('display', 'block');
+                    $('#clasification-edit').css('display', 'block');
+                }else{
+                    $('#type-edit').css('display', 'none');
+                    $('#subtype-edit').css('display', 'none');
+                    $('#clasification-edit').css('display', 'none');
+                }
+                $.ajax({
+                    url: '<?php echo base_url(); ?>categories/get_subcategories',
+                    type: 'POST',
+                    data: {
+                        'data': $(this).val()
+                    },
+                    success: function(data) {
+                        $(".subcategory-select").html(data);
+                    },
+                    error: function(request, error)
+                    {
+                        alert("Request: " + JSON.stringify(request));
+                    }
+                });                                                        
+        });
+        //populate office on floor select
+        $(document).on("change", ".floor-select", function() {
+        if ($(this).val() !== '')
+            {
+            $.ajax({
+                url: '<?php echo base_url(); ?>inventory/get_content',
+                type: 'POST',
+                data: {
+                    'main_cat': 'office',
+                    'data': $(this).val()
+                },
+                //dataType:'json',
+                success: function(data) {
+                    $(".office-select").html(data);
+                },
+                error: function(request, error)
+                {
+                    alert("Request: " + JSON.stringify(request));
+                }
+            });
+            }
 
-                                                    });
+        });
 
-                                                    $('.articles_delete').click(function(e) {
-                                                        e.preventDefault();
-                                                        var inventory_id = $(this).attr('data-id');
-                                                        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Bien/Material?") === false) {
-                                                            return;
-                                                        }
-                                                        var element = this;
-                                                        $.ajax({
-                                                            url: "<?php echo base_url(); ?>inventory/delete_inventory",
-                                                            type: "POST",
-                                                            data: {"inventory_id": inventory_id},
-                                                            success: function(data)
-                                                            {
-                                                                $(element).parents('tr')[0].remove();
+        $('.articles_delete').click(function(e) {
+            e.preventDefault();
+            var inventory_id = $(this).attr('data-id');
+            if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Bien/Material?") === false) {
+                return;
+            }
+            var element = this;
+            $.ajax({
+                url: "<?php echo base_url(); ?>inventory/delete_inventory",
+                type: "POST",
+                data: {"inventory_id": inventory_id},
+                success: function(data)
+                {
+                    $(element).parents('tr')[0].remove();
 
-                                                                return false;
-                                                            },
-                                                            error: function()
-                                                            {
-                                                                console.log('error');
-                                                                return false;
-                                                            },
-                                                        });
+                    return false;
+                },
+                error: function()
+                {
+                    console.log('error');
+                    return false;
+                },
+            });
 
-                                                    });
-
-
-
-                                                    $('#article_divestiture').datepicker();
-                                                    //inventory image upload
-                                                    $(".img_upload").click(function() {
-                                                        inventory_id = $(this).attr('data-id');
-                                                        $("#inventory_id").val(inventory_id);
-                                                        $("#img_upload_modal").modal('show');
-                                                    });
-                                                    $(".log_view").click(function() {
-                                                        inventory_id = $(this).attr('data-id');
-                                                        $.ajax({
-                                                            url: "<?php echo base_url(); ?>inventory/get_inventory_logs",
-                                                            type: "POST",
-                                                            data: {"inventory_id": inventory_id},
-                                                            success: function(data)
-                                                            {
-                                                                console.log(data);
-                                                                $("#log_info").html(data);
-                                                            }
-                                                        })
-
-
-                                                        $("#inventory_id").val(inventory_id);
-                                                        $("#log_details_modal").modal('show');
-                                                    });
-                                                    //inventory image upload end
-
-//             
-                                                });
-
-                                                function validategoodarticleForm() {
+        });
 
 
 
-                                                    /*if ($('#goods_building').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_brand').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_ariclebrand"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                   /* else if ($("#article_model").val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_ariclemodel"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_serial').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_aricleserial"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_description').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_aricledescription"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_divestiture').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_articledivestiture"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else
-                                                    {
-                                                        $('#error').hide();
-                                                        return true;
-                                                    }
-*/
+        $('#article_divestiture').datepicker();
+        //inventory image upload
+        $(".img_upload").click(function() {
+            inventory_id = $(this).attr('data-id');
+            $("#inventory_id").val(inventory_id);
+            $("#img_upload_modal").modal('show');
+        });
+        $(".log_view").click(function() {
+            inventory_id = $(this).attr('data-id');
+            $.ajax({
+                url: "<?php echo base_url(); ?>inventory/get_inventory_logs",
+                type: "POST",
+                data: {"inventory_id": inventory_id},
+                success: function(data)
+                {
+                    console.log(data);
+                    $("#log_info").html(data);
+                }
+            })
 
 
-                                                }
+            $("#inventory_id").val(inventory_id);
+            $("#log_details_modal").modal('show');
+        });
+        //inventory image upload end
 
-                                                //validate article edit form
-                                                function validatearticleEditForm() {
-                                                    if ($('#goods_edit_building').val() === '')
-                                                    {
-                                                        $('#article_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                        $('#artilce_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_edit_brand').val() === '')
-                                                    {
-                                                        $('#article_edit_error').html('<?php echo $this->lang->line("error_ariclebrand"); ?>');
-                                                        $('#article_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($("#article_edit_model").val() === '')
-                                                    {
-                                                        $('#article_edit_error').html('<?php echo $this->lang->line("error_ariclemodel"); ?>');
-                                                        $('#article_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_edit_serial').val() === '')
-                                                    {
-                                                        $('#article_edit_error').html('<?php echo $this->lang->line("error_aricleserial"); ?>');
-                                                        $('#article_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_edit_description').val() === '')
-                                                    {
-                                                        $('#article_edit_error').html('<?php echo $this->lang->line("error_aricledescription"); ?>');
-                                                        $('#article_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_edit_divestiture').val() === '')
-                                                    {
-                                                        $('#article_edit_error').html('<?php echo $this->lang->line("error_articledivestiture"); ?>');
-                                                        $('#article_edit_error').show();
-                                                        return false;
-                                                    }
-                                                    else
-                                                    {
-                                                        $('#article_edit_error').hide();
-                                                        return true;
-                                                    }
+    //             
+    });
+
+    function validategoodarticleForm() {
 
 
 
-                                                }
+        /*if ($('#goods_building').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#article_brand').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_ariclebrand"); ?>');
+            $('#error').show();
+            return false;
+        }
+       /* else if ($("#article_model").val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_ariclemodel"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#article_serial').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_aricleserial"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#article_description').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_aricledescription"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#article_divestiture').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_articledivestiture"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else
+        {
+            $('#error').hide();
+            return true;
+        }
+    */
 
-                                                //validate  upload form
-                                                function validateUploadForm() {
-                                                    if ($('#inventory_img').val() === '')
-                                                    {
-                                                        $('#upload_error').html("<?php echo $this->lang->line('error_file_upload'); ?>");
-                                                        $('#upload_error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#inventory_img_description').val() === '')
-                                                    {
-                                                        $('#upload_error').html("<?php echo $this->lang->line('error_description'); ?>");
-                                                        $('#upload_error').show();
-                                                        return false;
-                                                    }
 
-                                                    else
-                                                    {
-                                                        $('#upload_error').hide();
-                                                        return true;
-                                                    }
-                                                }
-                                                //floor edit
-                                                $(".article_edit").click(function() {
-                                                    var article_id = $(this).attr('data-id');
-                                                    $.ajax({
-                                                        url: "<?php echo base_url(); ?>inventory/get_articles_info",
-                                                        type: "POST",
-                                                        data: {"article_id": article_id},
-                                                        success: function(data)
-                                                        {
-                                                            console.log(data);
-                                                            $('#article_edit_form').html(data);
-                                                            $('#article_edit_modal').modal('show');
-                                                            return false;
-                                                        },
-                                                        error: function()
-                                                        {
-                                                            console.log('error');
-                                                            return false;
-                                                        },
-                                                    });
-                                                    return false;
+    }
 
-                                                });
-                                                //validate upload form end
+    //validate article edit form
+    function validatearticleEditForm() {
+        if ($('#goods_edit_building').val() === '')
+        {
+            $('#article_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#artilce_edit_error').show();
+            return false;
+        }
+        else if ($('#article_edit_brand').val() === '')
+        {
+            $('#article_edit_error').html('<?php echo $this->lang->line("error_ariclebrand"); ?>');
+            $('#article_edit_error').show();
+            return false;
+        }
+        else if ($("#article_edit_model").val() === '')
+        {
+            $('#article_edit_error').html('<?php echo $this->lang->line("error_ariclemodel"); ?>');
+            $('#article_edit_error').show();
+            return false;
+        }
+        else if ($('#article_edit_serial').val() === '')
+        {
+            $('#article_edit_error').html('<?php echo $this->lang->line("error_aricleserial"); ?>');
+            $('#article_edit_error').show();
+            return false;
+        }
+        else if ($('#article_edit_description').val() === '')
+        {
+            $('#article_edit_error').html('<?php echo $this->lang->line("error_aricledescription"); ?>');
+            $('#article_edit_error').show();
+            return false;
+        }
+        else if ($('#article_edit_divestiture').val() === '')
+        {
+            $('#article_edit_error').html('<?php echo $this->lang->line("error_articledivestiture"); ?>');
+            $('#article_edit_error').show();
+            return false;
+        }
+        else
+        {
+            $('#article_edit_error').hide();
+            return true;
+        }
+
+
+
+    }
+
+    //validate  upload form
+    function validateUploadForm() {
+        if ($('#inventory_img').val() === '')
+        {
+            $('#upload_error').html("<?php echo $this->lang->line('error_file_upload'); ?>");
+            $('#upload_error').show();
+            return false;
+        }
+        else if ($('#inventory_img_description').val() === '')
+        {
+            $('#upload_error').html("<?php echo $this->lang->line('error_description'); ?>");
+            $('#upload_error').show();
+            return false;
+        }
+
+        else
+        {
+            $('#upload_error').hide();
+            return true;
+        }
+    }
+    //floor edit
+    $(".article_edit").click(function() {
+        var article_id = $(this).attr('data-id');
+        $.ajax({
+            url: "<?php echo base_url(); ?>inventory/get_articles_info",
+            type: "POST",
+            data: {"article_id": article_id},
+            success: function(data)
+            {
+                console.log(data);
+                $('#article_edit_form').html(data);
+                $('#article_edit_modal').modal('show');
+                return false;
+            },
+            error: function()
+            {
+                console.log('error');
+                return false;
+            },
+        });
+        return false;
+
+    });
+    //validate upload form end
 
 
 

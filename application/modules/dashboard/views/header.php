@@ -16,11 +16,12 @@ Todos los derechos reservados 2015
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sistema de Inventario</title>
         <link href="<?php echo base_url(); ?>assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+        <!--<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">-->
         <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/css/bootstrap-theme.min.css"/>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/css/dataTables.bootstrap.css"/>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/css/datatables.responsive.css"/>
+        <!--<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/css/bootstrap-theme.min.css"/>-->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/responsive-datatable/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/responsive-datatable/css/dataTables.bootstrap.css"/>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/responsive-datatable/css/dataTables.responsive.css"/>
         <style>
             .title {
                 font-size: larger;
