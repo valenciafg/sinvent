@@ -198,7 +198,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-5"></div>
                                 <div class="col-md-5">
-                                    <input type="submit" name="submit" value="<?php echo $this->lang->line("submit"); ?>" class="btn blue" style="margin-top:30px;margin-left:226px;">
+                                    <input type="submit" name="submit" value="<?php echo $this->lang->line("submit"); ?>" class="btn btn-success" style="margin-top:30px;margin-left:226px;">
 
                                 </div>
                             </div>

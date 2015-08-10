@@ -62,7 +62,7 @@ Todos los derechos reservados 2015
 
                 <!--/row-->
             </div>
-                                    <input style="float:right;"type="submit" name="submit" value="<?php echo $this->lang->line("save"); ?>" class="btn blue">
+                                    <input style="float:right;"type="submit" name="submit" value="<?php echo $this->lang->line("save"); ?>" class="btn btn-success">
                                     
                                 </form>
 

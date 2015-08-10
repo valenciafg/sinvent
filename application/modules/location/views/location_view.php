@@ -35,7 +35,6 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                     <div id="error" style="padding-left: 220px;color: red;display:none;">All Fields are Required*</div>
                                                     <form id="building_add" name="building_add" method="post"  onsubmit="return validateForm()" action="<?php echo base_url(); ?>location/add_building" class="form-horizontal">
                                                         <div class="form-body">
-
                                                             <div class="row">
                                                                 <div class="col-md-3"></div>
                                                                 <div class="col-md-6">
@@ -67,19 +66,16 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                 <!--/span-->
                                                                 <div class="col-md-3"></div>
                                                                 <!--/span-->
-                                                            </div>
-
-                                     
+                                                            </div>                                     
                                                         </div>
-
-
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input id="building_add_submit" type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn blue">
-                                            </form>
-                                        </div>
+                                            <div class="modal-footer">
+                                                <input id="building_add_submit" type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn btn-success">
+                                            </div>  
+                                        </form>
+                                        
                                     </div>
                                     <!-- /.modal-content -->
                                 </div>
@@ -155,7 +151,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                         </div>
                                         <div class="modal-footer">
 
-                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn blue">
+                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn btn-success">
                                             </form>
                                         </div>
                                     </div>
@@ -247,7 +243,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn blue">
+                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn btn-success">
                                         </div>
                                         </form>
                                     </div>
@@ -307,7 +303,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                     <div class="table-toolbar">
                                                                         <div class="btn-group">
                                                                             <a href="#portlet-config" data-toggle="modal" class="config">
-                                                                                <button id="sample_editable_1_new" class="btn green">
+                                                                                <button id="sample_editable_1_new" class="btn btn-success">
                                                                                     <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                                                 </button></a>
                                                                         </div>
@@ -392,7 +388,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                     <div class="table-toolbar">
                                                                         <div class="btn-group">
                                                                             <a href="#portlet-config1" data-toggle="modal" class="config">
-                                                                                <button id="sample_editable_1_new" class="btn green">
+                                                                                <button id="sample_editable_1_new" class="btn btn-success">
                                                                                     <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                                                 </button></a>
                                                                         </div>
@@ -488,7 +484,7 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
                                                                     <div class="table-toolbar">
                                                                         <div class="btn-group">
                                                                             <a href="#portlet-config2" data-toggle="modal" class="config">
-                                                                                <button id="sample_editable_1_new" class="btn green">
+                                                                                <button id="sample_editable_1_new" class="btn btn-success">
                                                                                     <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                                                 </button></a>
                                                                         </div>

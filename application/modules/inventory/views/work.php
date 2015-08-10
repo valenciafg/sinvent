@@ -375,7 +375,7 @@ $this->load->view('dashboard/header');?>
                                                 <div class="table-toolbar">
                                                     <div class="btn-group">
                                                         <a href="#portlet-config" data-toggle="modal" class="config">
-                                                            <button id="sample_editable_1_new" class="btn green">
+                                                            <button id="sample_editable_1_new" type="button" class="btn btn-success">
                                                                 <?php echo $this->lang->line('add_new_button'); ?> <i class="fa fa-plus"></i>
                                                             </button>
                                                         </a>

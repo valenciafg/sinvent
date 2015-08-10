@@ -38,7 +38,7 @@ class Agreements extends MX_Controller {
     public function add_agreement(){
         if ($this->input->post('submit', TRUE)) {
             $data = array(
-                //"number" => $this->input->post('agreement_number'),
+                "agreement_number" => $this->input->post('agreement_number'),
                 "contractor" => $this->input->post('agreement_contractor'),
                 "amount_awarded" => (float)$this->input->post('amount_awarded'),
                 "amount_per_run" => (float)$this->input->post('amount_per_run'),
@@ -72,7 +72,7 @@ class Agreements extends MX_Controller {
 
     public function edit_agreement(){
         $data = array(
-            //'number' => $this->input->post('agreement_number'),
+            'agreement_number' => $this->input->post('agreement_number'),
             'contractor' => $this->input->post('agreement_contractor'),
             'amount_awarded' => floatval($this->input->post('amount_awarded')),
             'amount_per_run' => floatval($this->input->post('amount_per_run')),

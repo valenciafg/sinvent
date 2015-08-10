@@ -284,6 +284,7 @@ $lang['add_new_delivery'] = "Agregar nueva nota de entrega (AÚN NO DISPONIBLE)"
 $lang['agreement_name'] = "Nombre de contrato";
 $lang['agreement_contractor'] = "Contratista";*/
 $lang['quantity'] = "Cantidad";
+$lang['quantity_available'] = "Cantidad Disponible";
 
 //OBRAS
 $lang['work_title'] = 'Obras';

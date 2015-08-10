@@ -1,6 +1,6 @@
 <!--EDIT AGREEMENT FORM-->
 <?php
-$number = $agreement['number'];
+$number = $agreement['agreement_number'];
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -14,7 +14,7 @@ $number = $agreement['number'];
                         <div class="form-group">
                             <label class="control-label col-md-4"><?php echo $this->lang->line('agreement_number'); ?></label>
                             <div class="col-md-8">
-                                <input class="form-control" id="agreement_id" type="text" placeholder="<?php echo $agreement['id']; ?>" disabled>
+                                <input class="form-control" id="agreement_number" name="agreement_number" type="text" placeholder="<?php echo $agreement['agreement_number']; ?>">
                                 <input type="hidden" class="form-control" value="<?php echo $agreement['id']; ?>" name="agreement_id">                                
                             </div>
                         </div>
@@ -110,7 +110,7 @@ $number = $agreement['number'];
                     <div class="col-md-12">
                         <div class="col-md-5"></div>
                         <div class="col-md-5">
-                            <input type="submit" name="submit" value="<?php echo $this->lang->line("submit"); ?>" class="btn blue" style="margin-top:30px;margin-left:226px;">
+                            <input type="submit" name="submit" value="<?php echo $this->lang->line("submit"); ?>" class="btn btn-success" style="margin-top:30px;margin-left:226px;">
                         </div>
                     </div>
 

@@ -332,7 +332,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn blue"><?php echo $this->lang->line('submit'); ?></button>
+                                            <button type="button" class="btn btn-success"><?php echo $this->lang->line('submit'); ?></button>
 
                                         </div>
                                     </div>
@@ -478,6 +478,15 @@ LISTADO DE BIENES Y MATERIALES
     $(document).ready(function () {
         $('#example').DataTable({
             //responsive: true;
+            language: {
+                url: "<?php echo base_url(); ?>assets/plugins/datatables/js/lang/Spanish.json"
+            },
+            aLengthMenu: [
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+                ],
+            iDisplayLength: 5,            
+            order: [[ 3, "desc" ]]
         });
     /*var responsiveHelper = undefined;
     var breakpointDefinition = {
@@ -618,31 +627,7 @@ LISTADO DE BIENES Y MATERIALES
 
         });
 
-        $('.articles_delete').click(function(e) {
-            e.preventDefault();
-            var inventory_id = $(this).attr('data-id');
-            if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Bien/Material?") === false) {
-                return;
-            }
-            var element = this;
-            $.ajax({
-                url: "<?php echo base_url(); ?>inventory/delete_inventory",
-                type: "POST",
-                data: {"inventory_id": inventory_id},
-                success: function(data)
-                {
-                    $(element).parents('tr')[0].remove();
-
-                    return false;
-                },
-                error: function()
-                {
-                    console.log('error');
-                    return false;
-                },
-            });
-
-        });
+        
 
 
 
@@ -653,26 +638,71 @@ LISTADO DE BIENES Y MATERIALES
             $("#inventory_id").val(inventory_id);
             $("#img_upload_modal").modal('show');
         });
+
         $(".log_view").click(function() {
             inventory_id = $(this).attr('data-id');
             $.ajax({
                 url: "<?php echo base_url(); ?>inventory/get_inventory_logs",
                 type: "POST",
                 data: {"inventory_id": inventory_id},
-                success: function(data)
-                {
+                success: function(data){
                     console.log(data);
                     $("#log_info").html(data);
                 }
             })
-
-
             $("#inventory_id").val(inventory_id);
             $("#log_details_modal").modal('show');
         });
         //inventory image upload end
+        //Article delete
+        //$('.articles_delete').click(function(e) {
+        $('#example').on('click', '.articles_delete', function(e){    
+            e.preventDefault();
+            var inventory_id = $(this).attr('data-id');
+            if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Bien/Material?") === false) {
+                return;
+            }
+            var element = this;
+            $.ajax({
+                url: "<?php echo base_url(); ?>inventory/delete_inventory",
+                type: "POST",
+                data: {"inventory_id": inventory_id},
+                success: function(data){
+                    $(element).parents('tr')[0].remove();
 
-    //             
+                    return false;
+                },
+                error: function(){
+                    console.log('error');
+                    return false;
+                },
+            });
+
+        });
+        //Edit article            
+        //$(".article_edit").click(function() {    
+        $('#example').on('click', '.article_edit', function(e){
+            var article_id = $(this).attr('data-id');
+            $.ajax({
+                url: "<?php echo base_url(); ?>inventory/get_articles_info",
+                type: "POST",
+                data: {"article_id": article_id},
+                success: function(data)
+                {
+                    console.log(data);
+                    $('#article_edit_form').html(data);
+                    $('#article_edit_modal').modal('show');
+                    return false;
+                },
+                error: function()
+                {
+                    console.log('error');
+                    return false;
+                },
+            });
+            return false;
+
+        }); 
     });
 
     function validategoodarticleForm() {
@@ -795,28 +825,7 @@ LISTADO DE BIENES Y MATERIALES
         }
     }
     //floor edit
-    $(".article_edit").click(function() {
-        var article_id = $(this).attr('data-id');
-        $.ajax({
-            url: "<?php echo base_url(); ?>inventory/get_articles_info",
-            type: "POST",
-            data: {"article_id": article_id},
-            success: function(data)
-            {
-                console.log(data);
-                $('#article_edit_form').html(data);
-                $('#article_edit_modal').modal('show');
-                return false;
-            },
-            error: function()
-            {
-                console.log('error');
-                return false;
-            },
-        });
-        return false;
 
-    });
     //validate upload form end
 
 

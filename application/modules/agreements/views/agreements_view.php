@@ -41,7 +41,7 @@ $this->load->view('dashboard/header'); ?>
                                     <div class="portlet-body">
                                         <div class="table-toolbar">
                                             <div class="btn-group">
-                                                <button id="add_user" class="btn green">
+                                                <button id="add_user" class="btn btn-success">
                                                     <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>                                            
@@ -77,6 +77,18 @@ $this->load->view('dashboard/header'); ?>
                                             <div class="form-body">
                                         	<!--FORM BODY -->
                                                 <!--/row-->
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-4"><?php echo $this->lang->line('agreement_number'); ?></label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" id="agreement_number" name="agreement_number" class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
@@ -165,7 +177,7 @@ $this->load->view('dashboard/header'); ?>
                                                     <div class="col-md-12">
                                                         <div class="col-md-5"></div>
                                                         <div class="col-md-5">
-                                                            <input type="submit" name="submit" value="<?php echo $this->lang->line("submit"); ?>" class="btn blue" style="margin-top:30px;margin-left:226px;">
+                                                            <input type="submit" name="submit" value="<?php echo $this->lang->line("submit"); ?>" class="btn btn-success" style="margin-top:30px;margin-left:226px;">
 
                                                         </div>
                                                     </div>
@@ -206,18 +218,33 @@ $this->load->view('dashboard/header'); ?>
         </div>
     </div>
 </div>
-<script src="<?php echo base_url(); ?>assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/jquery-1.11.1.min.js"></script>
 <!--search scripts-->
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <!--datatables scripts-->
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/js/dataTables.bootstrap.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/js/datatables.responsive.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/dataTables.bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/dataTables.responsive.min.js"></script>
+<!--datepicker-->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/datepicker.css"/>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
 <script>
 $(document).ready(function () {
-    var responsiveHelper = undefined;
+        $('#example').DataTable({
+            //responsive: true;
+            language: {
+                url: "<?php echo base_url(); ?>assets/plugins/datatables/js/lang/Spanish.json"
+            },
+            aLengthMenu: [
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+                ],
+            iDisplayLength: 5,
+        });
+    /*var responsiveHelper = undefined;
     var breakpointDefinition = {
         tablet: 1024,
         phone : 480
@@ -245,7 +272,7 @@ $(document).ready(function () {
         drawCallback   : function (oSettings) {
             responsiveHelper.respond();
         }
-    });
+    });*/
 
     $("#add_user").click(function() {
         $('#newuser_modal').modal('show');

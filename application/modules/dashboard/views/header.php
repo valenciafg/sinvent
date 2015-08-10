@@ -61,6 +61,8 @@ Todos los derechos reservados 2015
             .Contenedor-Texto-sub-Menu{ margin-left:20px;}
             .btn{margin-bottom: 10px;}
         </style>
+        <!--This is for show bootstrap datepicker on Chrome-->
+        <style>.datepicker{z-index:1200 !important;}</style>
     </head>
     <body>
         <div class="header">

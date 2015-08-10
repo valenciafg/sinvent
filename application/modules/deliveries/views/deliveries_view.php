@@ -58,7 +58,7 @@ $this->load->view('dashboard/header'); ?>
                                             <div class="portlet-body">
                                                 <div class="table-toolbar">
                                                     <div class="btn-group">
-                                                        <button id="add_delivery" class="btn green">
+                                                        <button id="add_delivery" class="btn btn-success">
                                                             <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                         </button>
                                                     </div>                                            

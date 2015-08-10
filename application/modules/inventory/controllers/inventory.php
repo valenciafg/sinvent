@@ -257,6 +257,7 @@ function add_location() {
                 'description' => $this->input->post('article_description'),
                 'divestiture' => $this->input->post('article_divestiture'),
                 'quantity' => $this->input->post('article_amount'),
+                'quantity_available' => $this->input->post('article_amount'),
                 'quantity_id' => $this->input->post('goods_unit')
             );
         }else{
@@ -275,6 +276,7 @@ function add_location() {
                 'description' => $this->input->post('article_description'),
                 'divestiture' => $this->input->post('article_divestiture'),
                 'quantity' => $this->input->post('article_amount'),
+                'quantity_available' => $this->input->post('article_amount'),
                 'quantity_id' => $this->input->post('goods_unit')
             );
         }

@@ -204,7 +204,7 @@
                             </div>                                                            
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" name="submit" value="<?php echo $this->lang->line('submit'); ?>" class="btn blue">                                            
+                            <input type="submit" name="submit" value="<?php echo $this->lang->line('submit'); ?>" class="btn btn-success">                                            
                         </div>
                     </form>
                 </div>

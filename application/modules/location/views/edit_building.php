@@ -101,7 +101,7 @@ $this->load->view('dashboard/header'); ?>
                                                     </div>-->
                                                     <!--/row-->
                                                 </div>
-                                                <input style="float: right;" id="building_add_submit" type="submit" name="submit" value="<?php echo $this->lang->line('save');?>" class="btn blue">
+                                                <input style="float: right;" id="building_add_submit" type="submit" name="submit" value="<?php echo $this->lang->line('save');?>" class="btn btn-success">
                                     </form>
 
 

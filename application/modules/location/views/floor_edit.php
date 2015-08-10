@@ -69,7 +69,7 @@ Todos los derechos reservados 2015
                                                         </div>
                                                         <div class="modal-footer">
 
-                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn blue">
+                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('save'); ?>" class="btn btn-success">
                                             </form>
                                         </div>
                                                             

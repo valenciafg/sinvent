@@ -5,7 +5,7 @@
         <div class="table-toolbar">
             <div class="btn-group">
                 <a href="#portlet-config" data-toggle="modal" class="config">
-                    <button id="sample_editable_1_new" class="btn green">
+                    <button id="sample_editable_1_new" class="btn btn-success">
                         <?php echo $this->lang->line('dashboard_location_addnew'); ?> <i class="fa fa-plus"></i>
                     </button></a>
             </div>
@@ -25,6 +25,9 @@
                 </th>
                 <th>
                     <?php echo $this->lang->line('quantity'); ?>
+                </th>
+                <th>
+                    <?php echo $this->lang->line('quantity_available'); ?>
                 </th>
                 <th>
                     <?php echo $this->lang->line('dashboard_location_serial'); ?>
@@ -72,6 +75,9 @@
                     </td>
                     <td>
                     <?php echo wordwrap($good_article['quantity']." ".$good_article['quantity_type'], 10, "<br>\n"); ?>
+                    </td>
+                    <td>
+                    <?php echo wordwrap($good_article['quantity_available']." ".$good_article['quantity_type'], 10, "<br>\n"); ?>
                     </td>
                     <td>
                     <?php echo wordwrap($good_article['serial'], 15, "<br>\n"); ?>

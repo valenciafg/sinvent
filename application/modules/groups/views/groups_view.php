@@ -85,7 +85,7 @@ $this->load->view('dashboard/header'); ?>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit" name="submit" value="<?php echo $this->lang->line("save"); ?>" class="btn blue">
+                                            <input type="submit" name="submit" value="<?php echo $this->lang->line("save"); ?>" class="btn btn-success">
 
                                         </div>
                                         </form>
@@ -140,7 +140,7 @@ $this->load->view('dashboard/header'); ?>
                                                     <div class="table-toolbar">
                                                         <div class="btn-group">
                                                             <a href="#portlet-config" data-toggle="modal" class="config">
-                                                                <button id="" class="btn green">
+                                                                <button id="" class="btn btn-success">
                                                                     <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                                 </button></a>
                                                         </div>

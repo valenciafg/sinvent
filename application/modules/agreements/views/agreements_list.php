@@ -9,7 +9,7 @@ Todos los derechos reservados 2015
 ***************************/
 ?>
 <!--<table class="table table-striped table-hover table-bordered" id="sample_editable_1">-->
-<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="example" class="table table-striped table-hover dt-responsive" cellspacing="0" width="100%">
     <thead>
         <tr>
             <th>

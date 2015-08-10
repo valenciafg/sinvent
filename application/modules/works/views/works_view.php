@@ -22,7 +22,6 @@ $this->load->view('dashboard/header'); ?>
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="page-title"><?php echo $this->lang->line('work_title'); ?></h3>
-
                                 <!-- END PAGE TITLE & BREADCRUMB-->
                             </div>
                         </div>
@@ -41,7 +40,7 @@ $this->load->view('dashboard/header'); ?>
                                     <div class="portlet-body">
                                         <div class="table-toolbar">
                                             <div class="btn-group">
-                                                <button id="add_work" class="btn green">
+                                                <button id="add_work" class="btn btn-success">
                                                     <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>                                            

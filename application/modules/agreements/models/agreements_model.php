@@ -30,7 +30,7 @@ class Agreements_model extends CI_Model {
         $this->db->select('*');
         $this->db->where('id', $id);
         $query = $this->db->get('agreements');
-        return $query->result_array();
+        return $query->row_array();
     }
     public function get_agreement_info_by_number($agreement_number){
         $this->db->select('*');
