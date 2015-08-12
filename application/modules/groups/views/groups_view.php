@@ -27,74 +27,16 @@ $this->load->view('dashboard/header'); ?>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                             <h4 class="modal-title"><?php echo $this->lang->line("add_group"); ?></h4>
                                         </div>
+                                        <!-- NEW GROUP -->
                                         <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div id="error" style="padding-left: 220px;color: red;display:none;"><?php echo $this->lang->line('error_groupname'); ?></div>
-
-                                                    <form id="group_add" name="group_add" method="post"  onsubmit="return validategroupForm()" action="<?php echo base_url(); ?>groups/add_group" class="form-horizontal">
-                                                        <div class="form-body">
-
-                                                            <div class="row">
-
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-4"><?php echo $this->lang->line("table_group_name"); ?></label>
-                                                                        <div class="col-md-8">
-                                                                            <input type="text" id="group" name="group" value="" class="form-control">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-
-                                                                <!--/span-->
-                                                            </div>
-                                                            <!--/row-->
-
-                                                            <div class="row">
-
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-4"><?php echo $this->lang->line('table_role'); ?></label>
-                                                                        <div class="col-md-8">
-                                                                            <select id="roles" name="role" class="form-control role-select">
-                                                                                <?php
-                                                                                echo '<option value="">--seleccione--</option>';
-                                                                                foreach ($roles as $role) {
-                                                                                    echo '<option value="' . $role["id"] . '">' . $this->lang->line($role["name"]). '</option>';
-                                                                                }
-                                                                                ?>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-
-                                                                <!--/span-->
-                                                            </div>
-
-                                                            <!--/row-->
-
-
-                                                            <!--/row-->
-                                                        </div>
-
-
-                                                </div>
-                                            </div>
+                                            <?php $this->load->view('group_new');?>
                                         </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" name="submit" value="<?php echo $this->lang->line("save"); ?>" class="btn btn-success">
-
-                                        </div>
-                                        </form>
+                                        <!-- END. NEW GROUP -->                            
                                     </div>
                                     <!-- /.modal-content -->
                                 </div>
                                 <!-- /.modal-dialog -->
                             </div>
-
                             <!--group edit -->
                             <div class="modal fade" id="group_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -106,7 +48,6 @@ $this->load->view('dashboard/header'); ?>
                                         <div id="group_edit_modal_body" class="modal-body">
 
                                         </div>
-
                                     </div>
                                     <!-- /.modal-content -->
                                 </div>
@@ -136,7 +77,8 @@ $this->load->view('dashboard/header'); ?>
                                                         <?php echo $this->lang->line("group_list"); ?>
                                                     </div>
 
-                                                </div>                                                <div class="portlet-body">
+                                                </div>                                                
+                                                <div class="portlet-body">
                                                     <div class="table-toolbar">
                                                         <div class="btn-group">
                                                             <a href="#portlet-config" data-toggle="modal" class="config">
@@ -144,59 +86,8 @@ $this->load->view('dashboard/header'); ?>
                                                                     <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
                                                                 </button></a>
                                                         </div>
-
                                                     </div>
-                                                    <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>
-                                                                    <?php echo $this->lang->line("table_group_name"); ?>
-                                                                </th>
-                                                                <th>
-                                                                    <?php echo $this->lang->line("table_role"); ?>
-                                                                </th>
-                                                                <th>
-                                                            <?php echo $this->lang->line('dashboard_location_action'); ?>
-                                                        </th>
-                                                                
-                        <!--                                                        <th>
-                                                                                    Delete
-                                                                                </th>-->
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php foreach ($groups as $group) {
-                                                                ?>
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php echo $group['name']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $this->lang->line($group['role_name']); ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="" class="group_edit" data-id="<?php echo $group['id']; ?>">
-                                                                            <button type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line('table_edit'); ?></button>
-                                                                            </a>
-                                                                   
-
-                                                                        <a class="group_delete" data-id="<?php echo $group['id']; ?>" href="#">
-                                                                            <button type="button" class="btn btn-danger btn-xs"><?php echo $this->lang->line('table_delete'); ?></button>
-                                                                            </a>
-                                                                    </td>
-
-        <!--                                                            <td>
-                                                                        <a class="delete" href="javascript:;">
-                                                                    <?php echo $this->lang->line("table_delete"); ?>
-                                                                        </a>
-                                                                    </td>-->
-
-                                                                </tr>
-                                                            <?php } ?>
-
-                                                        </tbody>
-                                                    </table>
+                                                    <?php $this->load->view('group_list');?>
                                                 </div>
                                             </div>
                                             <!-- END EXAMPLE TABLE PORTLET-->

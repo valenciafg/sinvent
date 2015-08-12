@@ -68,7 +68,7 @@ $this->load->view('dashboard/header'); ?>
                                                     <!-- AQUI CAMBIAR POR LISTAS DE ENTREGAS-->                                                    
                                                     <?php //echo $this->load->view('agreements/agreements_list'); ?>
                                                 </div>
-                                                <!--END. AGREEMENTS LIST-->
+                                                <!--END. AGREEMENTS LIST-->                                                
                                             </div>
                                         </div>                    
                                     </div>  
@@ -135,6 +135,8 @@ $this->load->view('dashboard/header'); ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/plugins/ajax-typehead/js/bootstrap-typeahead.js"></script>
 <!--linux files-->
 <script>
 
@@ -186,6 +188,43 @@ $this->load->view('dashboard/header'); ?>
         $("#add_delivery").click(function() {
             $('#new_delivery_modal').modal('show');
         });
+
+        //Typeahead
+        $('input[name^="id"]').each(function() {
+            //alert($(this).val());
+            var value = $(this).val(); 
+            console.log(value);
+            ($(this)).typeahead({
+                source: [
+                    { id: 1, full_name: 'Toronto', first_two_letters: 'To' },
+                    { id: 2, full_name: 'Montreal', first_two_letters: 'Mo' },
+                    { id: 3, full_name: 'New York', first_two_letters: 'Ne' },
+                    { id: 4, full_name: 'Buffalo', first_two_letters: 'Bu' },
+                    { id: 5, full_name: 'Boston', first_two_letters: 'Bo' },
+                    { id: 6, full_name: 'Columbus', first_two_letters: 'Co' },
+                    { id: 7, full_name: 'Dallas', first_two_letters: 'Da' },
+                    { id: 8, full_name: 'Vancouver', first_two_letters: 'Va' },
+                    { id: 9, full_name: 'Seattle', first_two_letters: 'Se' },
+                    { id: 10, full_name: 'Los Angeles', first_two_letters: 'Lo' }
+                ],
+                displayField: 'full_name'
+            });
+        });
+        /*$('input[name^="id"]').typeahead({
+            source: [
+                { id: 1, full_name: 'Toronto', first_two_letters: 'To' },
+                { id: 2, full_name: 'Montreal', first_two_letters: 'Mo' },
+                { id: 3, full_name: 'New York', first_two_letters: 'Ne' },
+                { id: 4, full_name: 'Buffalo', first_two_letters: 'Bu' },
+                { id: 5, full_name: 'Boston', first_two_letters: 'Bo' },
+                { id: 6, full_name: 'Columbus', first_two_letters: 'Co' },
+                { id: 7, full_name: 'Dallas', first_two_letters: 'Da' },
+                { id: 8, full_name: 'Vancouver', first_two_letters: 'Va' },
+                { id: 9, full_name: 'Seattle', first_two_letters: 'Se' },
+                { id: 10, full_name: 'Los Angeles', first_two_letters: 'Lo' }
+            ],
+            displayField: 'full_name'
+        });*/
         //user edit function
         $(".user_edit").click(function() {
             var user_id = $(this).attr('data-id');

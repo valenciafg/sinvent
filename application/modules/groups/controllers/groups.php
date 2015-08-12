@@ -34,6 +34,7 @@ $this->role = $this->session->userdata('role');
         $this->lang->load($this->language, $this->language);
         $this->load->model('groups/groups_model');
         $this->load->model('roles/roles_model');
+        $this->load->model('applications/application_model');
         if ($this->session->userdata('role') == 'write' || $this->session->userdata('role') == 'read') {
             $action = $this->uri->segment(2);
             if($action != 'logout' && $action != 'login')
@@ -49,17 +50,19 @@ $this->role = $this->session->userdata('role');
     public function index() {
 
         $data['page'] = 'group';
-                        $data['role'] = $this->role; 
+        $data['role'] = $this->role; 
 
         $data['language'] = $this->language;
         $data['groups'] = $this->groups_model->get_all_groups();
         $data['roles'] = $this->roles_model->get_all_roles();
+        $data['applications'] = $this->application_model->get_all_applications();
         $this->load->view('groups_view', $data);
     }
 
     public function add_group() {
         $data['name'] = $this->input->post('group');
         $data['role_id'] = $this->input->post('role');
+        $data['application_id'] = $this->input->post('application');
         $this->groups_model->add_group($data);
         redirect('groups');
     }

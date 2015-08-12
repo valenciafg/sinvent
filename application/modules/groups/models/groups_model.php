@@ -28,9 +28,22 @@ class Groups_model extends CI_Model {
             $this->db->insert('groups', $data);
         }
 	function get_all_groups() {
-            $query  = $this->db->query("SELECT groups.*, roles.name as role_name from groups left join roles on groups.role_id = roles.id");
-         return $query->result_array();
-
+		$sql="SELECT 
+				groups.*, 
+				roles.name as role_name,
+				applications.name as application_name
+			from 
+				groups 
+			left join 
+				roles 
+			on 
+				groups.role_id = roles.id
+			left join
+				applications
+			on
+				groups.application_id = applications.id";
+		$query  = $this->db->query($sql);
+		return $query->result_array();
 	}
         
         function get_all_floors() {

@@ -39,6 +39,8 @@ $lang['table_group']="Grupo";
 $lang['table_cargo']="Cargo";
 $lang['table_group_name'] = "Nombre del grupo";
 $lang['table_roles'] = "Roles";
+$lang['table_applications'] = "Aplicaciones";
+$lang['application'] = "Aplicación";
 //user
 //edit user
 $lang['edit_user']="Editar usuario";
