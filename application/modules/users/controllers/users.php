@@ -121,6 +121,7 @@ class Users extends MX_Controller {
                                 'group' => $user_details['group_id'],
                                 'cargo' => $user_details['cargo'],
                                 'role' => $role,
+                                'application' => $user_details['app_name'],
                                 'start_time' => time() //tiempo de espera de inicio de sesion
                             );
                             $this->session->set_userdata($userarray);
@@ -139,6 +140,7 @@ class Users extends MX_Controller {
                                     'group' => $user_details['group_id'],
                                     'cargo' => $user_details['cargo'],
                                     'role' => $role,
+                                    'application' => $user_details['app_name'],
                                     'start_time' => time() //tiempo de espera de inicio de sesion
                                 );
                                 $this->session->set_userdata($userarray);

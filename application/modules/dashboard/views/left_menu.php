@@ -21,8 +21,9 @@ Todos los derechos reservados 2015
             <span class="Text-menu" > <?php echo $this->lang->line("dashboard_menu"); ?></span>
         </a>
         </li>
+        <!-- Usuarios -->
         <?php
-        if($this->session->userdata('role') == 'admin'){
+        if($this->session->userdata('role') == 'admin' && $this->session->userdata('application') == 'Todas'){        
             if ($page == 'user') {
                 echo '<li class="start menuactive">';
             } else {
@@ -33,6 +34,7 @@ Todos los derechos reservados 2015
             <span class="Text-menu" ><?php echo $this->lang->line("users_menu"); ?></span>
         </a>
         </li>
+        <!-- Grupos -->
         <?php
             if ($page == 'group') {
                 echo '<li class="start menuactive">';
@@ -41,79 +43,104 @@ Todos los derechos reservados 2015
             }
             ?>            
             <a href="<?php echo base_url(); ?>groups" class="Contenedor-Texto-Menu">
-                <span class="Text-menu" > <?php echo $this->lang->line("group_menu"); ?></span>
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("group_menu"); ?>
+                </span>
             </a>
         </li>
-            <?php } 
-            
-            if ($page == 'location') {
-                echo '<li class="start menuactive">';
-            } else {
-                echo '<li class="start">';
-            }
-            ?>
- 
-            <a href="<?php echo base_url(); ?>location" class="Contenedor-Texto-Menu"><span class="Text-menu" >
-       <?php echo $this->lang->line("dashboard_location_menu"); ?>
-        </span></a>
+        <!-- Áreas -->
+        <?php
+        if ($page == 'location') {
+            echo '<li class="start menuactive">';
+        } else {
+            echo '<li class="start">';
+        }
+        ?>
+            <a href="<?php echo base_url(); ?>location" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("dashboard_location_menu"); ?>
+                </span>
+            </a>
         </li>
+        <?php 
+        }             
+        ?>
+        <!-- Obras -->
         <?php
-       
-            if ($page == 'inventory_articles') {
-                echo '<li class="start menuactive">';
-            } else {
-                echo '<li class="start">';
-            }
-            ?>
-            
-            <a href="<?php echo base_url(); ?>inventory/goods" class="Contenedor-Texto-Menu"><span class="Text-menu" >
-        <?php echo $this->lang->line("dashboard_location_article"); ?>
-        </span></a></li>
-        
-        <?php
-            if ($page == 'inventory_works') {
-                echo '<li class="start menuactive">';
-            } else {
-                echo '<li class="start">';
-            }
-            ?>
-            
-            <a href="<?php echo base_url(); ?>inventory/works" class="Contenedor-Texto-Menu"><span class="Text-menu" >
-        <?php echo $this->lang->line("dashboard_location_work"); ?>
-        </span></a></li>
-        <!-- Works Menu -->
-            <?php
+        if($this->session->userdata('application') == 'Todas' || $this->session->userdata('application') == 'Obras'){
             if ($page == 'works') {
                 echo '<li class="start menuactive">';
             } else {
                 echo '<li class="start">';
             }
             ?>            
-            <a href="<?php echo base_url(); ?>works" class="Contenedor-Texto-Menu"><span class="Text-menu" >
-        <?php echo $this->lang->line("works"); ?>
-        </span></a></li>
-
-            <!-- Agreements Menu -->
-            <?php
+            <a href="<?php echo base_url(); ?>works" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("works"); ?>
+                </span>
+            </a>
+        </li>
+            
+        <!-- Servicios -->
+        <?php
+        }
+        if($this->session->userdata('application') == 'Todas' || $this->session->userdata('application') == 'Inventario/Servicios'){
+            if ($page == 'inventory_works') {
+                echo '<li class="start menuactive">';
+            } else {
+                echo '<li class="start">';
+            }
+            ?>            
+            <a href="<?php echo base_url(); ?>inventory/works" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("dashboard_location_work"); ?>
+                </span>
+            </a>
+        </li>
+        <!-- Bienes/Materiales -->
+        <?php
+            if ($page == 'inventory_articles') {
+                echo '<li class="start menuactive">';
+            }else {
+                echo '<li class="start">';
+            }
+            ?>            
+            <a href="<?php echo base_url(); ?>inventory/goods" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("dashboard_location_article"); ?>
+                </span>
+            </a>
+        </li>
+        <!-- Contrataciones -->
+        <?php        
             if ($page == 'agreements') {
                 echo '<li class="start menuactive">';
             } else {
                 echo '<li class="start">';
             }
             ?>            
-            <a href="<?php echo base_url(); ?>agreements" class="Contenedor-Texto-Menu"><span class="Text-menu" >
-        <?php echo $this->lang->line("dashboard_agreements"); ?>
-        </span></a></li>
-        <!-- Deliveries Menu -->
-            <?php
-            if ($page == 'deliveries') {
-                echo '<li class="start menuactive">';
-            } else {
-                echo '<li class="start">';
-            }
-            ?>            
-            <a href="<?php echo base_url(); ?>deliveries" class="Contenedor-Texto-Menu"><span class="Text-menu" >
-        <?php echo $this->lang->line("dashboard_deliveries"); ?>
-        </span></a></li>
+            <a href="<?php echo base_url(); ?>agreements" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("dashboard_agreements"); ?>
+                </span>
+            </a>
+        </li>
+        <!-- Notas de entrega -->
+        <?php
+        if ($page == 'deliveries') {
+            echo '<li class="start menuactive">';
+        } else {
+            echo '<li class="start">';
+        }
+        ?>            
+            <a href="<?php echo base_url(); ?>deliveries" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("dashboard_deliveries"); ?>
+                </span>
+            </a>
+        </li>
+        <?php
+        }
+        ?>
     </ul>
 </div>

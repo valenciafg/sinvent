@@ -47,9 +47,15 @@ class User_model extends CI_Model {
 
 	}
     function checkUser($data) {
-                //print_r($data);
-        $query = $this->db->get_where('users', array('username'=>$data['username'],'password'=>$data['password']));
-		return $query->result_array();
+    	$query = $this->db->select('u.*, g.name as group, g.role_id as rol_id, r.name as rol_name,g.application_id as app_id , a.name as app_name')
+                ->from('users as u')
+                ->join('groups as g', 'u.group_id = g.id', 'LEFT')
+                ->join('roles as r', 'g.role_id = r.id', 'LEFT')
+                ->join('applications as a', 'g.application_id = a.id', 'LEFT')                
+                ->where('u.username', $data['username'])
+                ->where('u.password', $data['password'])
+                ->get();
+        return $query->result_array();
 	}
 
 	function checkUsername($username){
@@ -57,6 +63,13 @@ class User_model extends CI_Model {
 		return $query->result_array();
 	}
 	
+	function check_role_application($user_role,$user_app,$role,$app){
+		if($user_role == $role && $user_app == $app)
+			return 1;
+		else
+			return 0;
+	}
+
 	function updateActiveSession($username,$active_session){
 		$this->db->where('username',$username);
 		$this->db->update('users',array('active_session' => $active_session,'active_session_time' => date('Y-m-d G:i:s')));
