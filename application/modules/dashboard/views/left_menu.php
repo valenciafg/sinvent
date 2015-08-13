@@ -10,38 +10,40 @@ Todos los derechos reservados 2015
 ?>
 <div class="col-sm-3 col-md-2 col-lg-2 sidebar">
     <ul class="nav nav-sidebar">
-         <?php
-            if ($page == 'dashboard') {
-                echo '<li class="start menuactive">';
-            } else {
-                echo '<li class="start">';
-            }
-            ?>
-            <a href="<?php echo base_url(); ?>dashboard" class="Contenedor-Texto-Menu"><span class="Text-menu" > <?php echo $this->lang->line("dashboard_menu"); ?>
-            </span></a>
-            </li>
         <?php
-             if($this->session->userdata('role') == 'admin')
-            {
+        if ($page == 'dashboard') {
+            echo '<li class="start menuactive">';
+        }else {
+            echo '<li class="start">';
+        }
+        ?>
+        <a href="<?php echo base_url(); ?>dashboard" class="Contenedor-Texto-Menu">
+            <span class="Text-menu" > <?php echo $this->lang->line("dashboard_menu"); ?></span>
+        </a>
+        </li>
+        <?php
+        if($this->session->userdata('role') == 'admin'){
             if ($page == 'user') {
                 echo '<li class="start menuactive">';
             } else {
                 echo '<li class="start">';
             }
-            ?>
-            
-            <a href="<?php echo base_url(); ?>users" class="Contenedor-Texto-Menu"><span class="Text-menu" > <?php echo $this->lang->line("users_menu"); ?>
-            </span></a></li>
+        ?>            
+        <a href="<?php echo base_url(); ?>users" class="Contenedor-Texto-Menu">
+            <span class="Text-menu" ><?php echo $this->lang->line("users_menu"); ?></span>
+        </a>
+        </li>
         <?php
             if ($page == 'group') {
                 echo '<li class="start menuactive">';
             } else {
                 echo '<li class="start">';
             }
-            ?>
-            
-            <a href="<?php echo base_url(); ?>groups" class="Contenedor-Texto-Menu"><span class="Text-menu" > <?php echo $this->lang->line("group_menu"); ?>
-            </span></a></li>
+            ?>            
+            <a href="<?php echo base_url(); ?>groups" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" > <?php echo $this->lang->line("group_menu"); ?></span>
+            </a>
+        </li>
             <?php } 
             
             if ($page == 'location') {

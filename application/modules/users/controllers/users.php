@@ -102,7 +102,7 @@ class Users extends MX_Controller {
                 'username' => $this->input->post('username'),
                 'password' => md5($this->input->post('password'))
             );
-            if($data['username'] == 'admin'){
+            //if($data['username'] == 'admin'){
                 $user_details = $this->user_model->checkUser($data);
                 $user_details = $user_details[0];
                 //Si usuario y contraseña son correctos
@@ -183,7 +183,7 @@ class Users extends MX_Controller {
                     redirect('site/home/login?status=failure', 'refresh');
                 }
 //VALIDACIÓN CON LDAP                
-            }else{
+            /*}else{
                 //redirect('site/home/login?status=prueba', 'refresh');
                 //$this->load->library("Soapclient");
                 //$estado = $this->Soapclient->iniciarSesion();
@@ -236,7 +236,7 @@ class Users extends MX_Controller {
                 }elseif (strcmp($estado['codigoMensaje'], '05') == 0) {
                     redirect('site/home/login?status=application', 'refresh');
                 }
-            }
+            }*/
         }else{
             redirect('site/home/login', 'refresh');
         }
