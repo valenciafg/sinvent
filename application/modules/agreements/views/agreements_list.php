@@ -33,9 +33,15 @@ Todos los derechos reservados 2015
             <th>
                 <?php echo $this->lang->line('amount_per_run'); ?>
             </th>
+            <?php
+            if ($this->session->userdata('role') == 'admin' || ($this->session->userdata('role') == 'write' &&  $this->session->userdata('application') == 'Inventario/Servicios')) {
+            ?>
             <th>
                 <?php echo $this->lang->line('actions'); ?>
             </th>
+            <?php
+            }
+            ?>
         </tr>
     </thead>
     <tbody>
@@ -64,8 +70,11 @@ Todos los derechos reservados 2015
             <td>
                 <?php echo number_format($agreement['amount_per_run'],3,",",".");?>
             </td>
+            <?php
+            if ($this->session->userdata('role') == 'admin' || ($this->session->userdata('role') == 'write' &&  $this->session->userdata('application') == 'Inventario/Servicios')) {
+            ?>
             <td>
-                <a href="" class="agreement_edit" data-id="<?php echo $agreement['id'];?>">
+                <a href="" class="agreement_edit" data-id="<?php echo $agreement['agreement_number'];?>">
                  <button type="button" class="btn btn-warning btn-xs"><?php echo $this->lang->line("table_edit"); ?></button>
                 </a>            
                 <a class="agreement_delete" data-id="<?php echo $agreement['id'];?>" href="#">
@@ -78,6 +87,9 @@ Todos los derechos reservados 2015
                     <button type="button" class="btn btn-success btn-xs">CSV</button>
                 </a>-->
             </td>
+            <?php
+            }
+            ?>
         </tr>
         <?php } ?>
 

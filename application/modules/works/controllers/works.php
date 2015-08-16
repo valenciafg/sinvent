@@ -69,7 +69,7 @@ class Works extends MX_Controller {
         $data['floors'] = $this->location_model->get_all_floors();
         $data['offices'] = $this->location_model->get_all_offices();
         $data['agreement'] = $this->agreements_model->get_agreement_info($data['work']['agreement_id']);
-        $data['agreement'] = $data['agreement'][0];
+        //$data['agreement'] = $data['agreement'][0];
         //$data['good_articles'] = $this->inventory_model->get_all_inventory_article();        
         $this->load->view('edit_work',$data);
     }

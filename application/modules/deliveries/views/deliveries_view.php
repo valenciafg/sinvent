@@ -277,75 +277,7 @@ $this->load->view('dashboard/header'); ?>
         //delete user end
 
     });
-    function validateForm() {
 
-        if ($('#username').val() === '')
-        {
-            $('#error').html('<?php echo $this->lang->line("error_username"); ?>');
-            $('#error').show();
-            return false;
-        }
-        else if (!ValidateEmail($("#email").val()))
-        {
-            $('#error').html('<?php echo $this->lang->line("error_validemail"); ?>');
-            $('#error').show();
-            return false;
-        }
-        else if ($('#user-group').val() === '')
-        {
-            $('#error').html('<?php echo $this->lang->line("error_group"); ?>');
-            $('#error').show();
-            return false;
-        }
-        else if ($('#password').val() === '')
-        {
-            $('#error').html('<?php echo $this->lang->line("error_password"); ?>');
-            $('#error').show();
-            return false;
-        }
-        else
-        {
-            $('#error').hide();
-            return true;
-        }
-    }
-    function validateEditForm() {
-// 
-        if ($('#edit_username').val() === '')
-        {
-            $('#edit_error').html('<?php echo $this->lang->line("error_username"); ?>');
-            $('#edit_error').show();
-            return false;
-        }
-        else if (!ValidateEmail($("#edit_email").val()))
-        {
-            $('#edit_error').html('<?php echo $this->lang->line("error_validemail"); ?>');
-            $('#edit_error').show();
-            return false;
-        }
-        else if ($('#edit-user-group').val() === '')
-        {
-            $('#edit_error').html('<?php echo $this->lang->line("error_group"); ?>');
-            $('#edit_error').show();
-            return false;
-        }
-        else if ($('#edit_password').val() === '')
-        {
-            $('#edit_error').html('<?php echo $this->lang->line("error_password"); ?>');
-            $('#edit_error').show();
-            return false;
-        }
-        else
-        {
-            $('#edit_error').hide();
-            return true;
-        }
-    }
-    function ValidateEmail(email) {
-        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-        return expr.test(email);
-    }
-    ;
 
 </script>
 </body>

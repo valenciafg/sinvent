@@ -104,7 +104,7 @@ class Users extends MX_Controller {
             );
             //if($data['username'] == 'admin'){
                 $user_details = $this->user_model->checkUser($data);
-                $user_details = $user_details[0];
+                //$user_details = $user_details[0];
                 //Si usuario y contraseña son correctos
                 if (!empty($user_details)){                
                     $active_session = $user_details['active_session'];
@@ -262,7 +262,7 @@ class Users extends MX_Controller {
     public function get_user_info() {
         $user_id = $this->input->post('user_id');
         $data['user'] = $this->user_model->get_user_info($user_id);
-        $data['user'] = $data['user'][0];
+        //$data['user'] = $data['user'][0];
         $this->load->model('groups/groups_model');
         $data['groups'] = $this->groups_model->get_all_groups();
         $this->load->view('users/user_edit', $data);

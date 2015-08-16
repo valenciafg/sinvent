@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4"><?php echo $this->lang->line('agreement_number'); ?></label>
                                 <div class="col-md-8">
-                                    <input name="edit_agreement_number" id="edit_agreement_number" type="text" value="<?php echo $agreement['id'];?>" class="form-control">
+                                    <input name="edit_agreement_number" id="edit_agreement_number" type="text" value="<?php echo $agreement['agreement_number'];?>" class="form-control">
 
                                 </div>
                             </div>
@@ -234,7 +234,7 @@ $(document).ready(function () {
                 url: "<?php echo base_url(); ?>agreements/get_agreement_info_json",
                 type: "POST",
                 dataType:'json',
-                data: {"agreement_id": edit_search.val()},                    
+                data: {"agreement_number": edit_search.val()},                    
                 success : function(response){ 
                     console.log(response); 
                     if(response){

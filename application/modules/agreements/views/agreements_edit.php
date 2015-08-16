@@ -15,7 +15,7 @@ $number = $agreement['agreement_number'];
                             <label class="control-label col-md-4"><?php echo $this->lang->line('agreement_number'); ?></label>
                             <div class="col-md-8">
                                 <input class="form-control" id="agreement_number" name="agreement_number" type="text" placeholder="<?php echo $agreement['agreement_number']; ?>">
-                                <input type="hidden" class="form-control" value="<?php echo $agreement['id']; ?>" name="agreement_id">                                
+                                <input type="hidden" class="form-control" value="<?php echo $agreement['agreement_number']; ?>" name="agreement_id">                                
                             </div>
                         </div>
                     </div>

@@ -36,16 +36,13 @@ class User_model extends CI_Model {
 	}
 	
 	function get_user_info($id) {
-
 		$this->db->select('*');
-                $this->db->where('id', $id);
+        $this->db->where('id', $id);
 		$query = $this->db->get('users');
-
-         return $query->row_array();
-
-	
-
+		$result = $query->row_array();
+         return $result;
 	}
+	
     function checkUser($data) {
     	$query = $this->db->select('u.*, g.name as group, g.role_id as rol_id, r.name as rol_name,g.application_id as app_id , a.name as app_name')
                 ->from('users as u')
@@ -55,7 +52,8 @@ class User_model extends CI_Model {
                 ->where('u.username', $data['username'])
                 ->where('u.password', $data['password'])
                 ->get();
-        return $query->result_array();
+        $result = $query->row_array(); 
+        return $result;
 	}
 
 	function checkUsername($username){

@@ -7,7 +7,7 @@
             <th><?php echo $this->lang->line('table_floor'); ?></th>
             <th><?php echo $this->lang->line('table_office'); ?></th>
             <?php
-            if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
+            if ($this->session->userdata('role') == 'admin' || ($this->session->userdata('role') == 'write' &&  $this->session->userdata('application') == 'Inventario/Servicios')) {
                 ?>
             <th><?php echo $this->lang->line('dashboard_location_action'); ?></th>
             <?php } ?>
@@ -23,8 +23,8 @@
                 <td><?php echo wordwrap($work['floor'], 23, "<br>\n"); ?></td>
                 <td><?php echo wordwrap($work['office'], 23, "<br>\n"); ?></td>
                 <?php
-                if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
-                    ?>
+                if ($this->session->userdata('role') == 'admin' || ($this->session->userdata('role') == 'write' &&  $this->session->userdata('application') == 'Inventario/Servicios')) {
+                ?>
                 <td>
                 <?php $work_id = $work['id']; ?>
                     <a href="" class="work_edit" data-id="<?php echo $work['id']; ?>">

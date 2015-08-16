@@ -51,12 +51,12 @@
                     <?php echo $this->lang->line('dashboard_location_divestiture'); ?>
                 </th>
                 <?php
-                if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
-                    ?>
-                    <th>
-                    <?php echo $this->lang->line('dashboard_location_action'); ?>
-                    </th>
-                    <?php } ?>
+                if ($this->session->userdata('role') == 'admin' || ($this->session->userdata('role') == 'write' &&  $this->session->userdata('application') == 'Inventario/Servicios')) {
+                ?>
+                <th>
+                <?php echo $this->lang->line('dashboard_location_action'); ?>
+                </th>
+                <?php } ?>
             </tr>
         </thead>  
         <tbody>

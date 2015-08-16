@@ -251,10 +251,11 @@ $(document).ready(function () {
                     $('#work_edit_modal').modal('show');
                     return false;
                 },
-                error: function(){
-                    console.log('error');
-                    return false;
-                },
+                error: function(jqxhr,textStatus,errorThrown){
+                    console.log(jqxhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
             });
             return false;
 

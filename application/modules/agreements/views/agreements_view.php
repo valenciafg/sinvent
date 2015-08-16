@@ -279,11 +279,11 @@ $(document).ready(function () {
     });
     //user edit function
     $(".agreement_edit").click(function() {
-        var agreement_id = $(this).attr('data-id');
+        var agreement_number = $(this).attr('data-id');
         $.ajax({
             url: "<?php echo base_url(); ?>agreements/get_agreement_info",
             type: "POST",
-            data: {"agreement_id": agreement_id},
+            data: {"agreement_id": agreement_number},
             success: function(data){
                 console.log(data);
                 $('#edit_modal').html(data);

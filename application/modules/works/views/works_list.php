@@ -8,7 +8,7 @@
                 <th><?php echo $this->lang->line('table_floor'); ?></th>
                 <th><?php echo $this->lang->line('table_office'); ?></th>
                 <?php
-                if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
+                if ($this->session->userdata('role') == 'admin' || ($this->session->userdata('role') == 'write' &&  $this->session->userdata('application') == 'Obras')) {
                     ?>
                 <th><?php echo $this->lang->line('actions'); ?></th>
                 <?php } ?>            
@@ -26,7 +26,7 @@
                 <td><?php echo $work['floor'];?></td>
                 <td><?php echo $work['office'];?></td>
                 <?php
-                if ($this->session->userdata('role') == 'admin' || $this->session->userdata('role') == 'write') {
+                if ($this->session->userdata('role') == 'admin' || ($this->session->userdata('role') == 'write' &&  $this->session->userdata('application') == 'Obras')) {
                     ?>
                 <td>
                 <?php $work_id = $work['id']; ?>
