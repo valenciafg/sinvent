@@ -136,7 +136,7 @@ $this->load->view('dashboard/header'); ?>
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
 
-<script src="<?php echo base_url(); ?>assets/plugins/ajax-typehead/js/bootstrap-typeahead.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/typeahead2/js/bootstrap-typeahead.js"></script>
 <!--linux files-->
 <script>
 
@@ -159,6 +159,7 @@ $this->load->view('dashboard/header'); ?>
             inputs = inputs + '<a href="#" class="remove_field"><button class="btn btn-danger">X</button></a>'
             inputs = inputs + '</div>'
             $(wrapper).append(inputs); //add input box
+            item_search($('input[name^="id[]"]'),$('input[name^="item[]"]'),$('input[name^="cantidad[]"]'),$('input[name^="unidad[]"]'));
         });
 
         $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
@@ -189,42 +190,36 @@ $this->load->view('dashboard/header'); ?>
             $('#new_delivery_modal').modal('show');
         });
 
-        //Typeahead
-        $('input[name^="id"]').each(function() {
-            //alert($(this).val());
-            var value = $(this).val(); 
-            console.log(value);
-            ($(this)).typeahead({
-                source: [
-                    { id: 1, full_name: 'Toronto', first_two_letters: 'To' },
-                    { id: 2, full_name: 'Montreal', first_two_letters: 'Mo' },
-                    { id: 3, full_name: 'New York', first_two_letters: 'Ne' },
-                    { id: 4, full_name: 'Buffalo', first_two_letters: 'Bu' },
-                    { id: 5, full_name: 'Boston', first_two_letters: 'Bo' },
-                    { id: 6, full_name: 'Columbus', first_two_letters: 'Co' },
-                    { id: 7, full_name: 'Dallas', first_two_letters: 'Da' },
-                    { id: 8, full_name: 'Vancouver', first_two_letters: 'Va' },
-                    { id: 9, full_name: 'Seattle', first_two_letters: 'Se' },
-                    { id: 10, full_name: 'Los Angeles', first_two_letters: 'Lo' }
-                ],
-                displayField: 'full_name'
+        /*
+        
+        */
+        function item_search($code,$item,$cantidad,$unidad){
+            $code.keyup(function(){
+                var code = $code.val();
+                var item = "asd";
+                $item.val("asd");
+                $cantidad.val("asd2");
+                $unidad.val("asd3");
+                //var length = $(this).length;
+                console.log(code);
+                $.ajax({
+                    url: "<?php echo base_url(); ?>inventory/get_good_info_json",
+                    type: "POST",
+                    data: {"id": code},
+                    success: function(data){
+                        console.log(data);
+                        $('#edit_modal').html(data);
+                        $('#user_edit_modal').modal('show');
+                        return false;
+                    },
+                    error: function(){
+                        console.log('error');
+                        return false;
+                    },
+                });
             });
-        });
-        /*$('input[name^="id"]').typeahead({
-            source: [
-                { id: 1, full_name: 'Toronto', first_two_letters: 'To' },
-                { id: 2, full_name: 'Montreal', first_two_letters: 'Mo' },
-                { id: 3, full_name: 'New York', first_two_letters: 'Ne' },
-                { id: 4, full_name: 'Buffalo', first_two_letters: 'Bu' },
-                { id: 5, full_name: 'Boston', first_two_letters: 'Bo' },
-                { id: 6, full_name: 'Columbus', first_two_letters: 'Co' },
-                { id: 7, full_name: 'Dallas', first_two_letters: 'Da' },
-                { id: 8, full_name: 'Vancouver', first_two_letters: 'Va' },
-                { id: 9, full_name: 'Seattle', first_two_letters: 'Se' },
-                { id: 10, full_name: 'Los Angeles', first_two_letters: 'Lo' }
-            ],
-            displayField: 'full_name'
-        });*/
+        }
+        item_search($('input[name^="id[]"]'),$('input[name^="item[]"]'),$('input[name^="cantidad[]"]'),$('input[name^="unidad[]"]'));
         //user edit function
         $(".user_edit").click(function() {
             var user_id = $(this).attr('data-id');

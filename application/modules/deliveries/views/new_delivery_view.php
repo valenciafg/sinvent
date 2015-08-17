@@ -46,7 +46,7 @@
                 <div class="input_fields_wrap">
                     <div class="row">
                         <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="Código" id="id" name="id[]" value="sad">
+                            <input type="text" class="form-control" placeholder="Código" id="id" name="id[]">
                         </div>
                         <div class="col-xs-2">
                             <input type="text" class="form-control" placeholder="ítem" id="item"name="item[]">
@@ -63,30 +63,7 @@
                         <div class="col-xs-3">
                             <input type="text" class="form-control" placeholder="Observaciones" name="observaciones[]">
                         </div>
-                        <div class="col-xs-1">        
-                        </div>
-                        <div class="row">
-                        <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="Código" id="id" name="id[]" value="sad2">
-                        </div>
-                        <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="ítem" id="item"name="item[]">
-                        </div>
-                        <div class="col-xs-1">
-                            <input type="text" class="form-control" placeholder="Cantidad" name="cantidad[]">
-                        </div>
-                        <div class="col-xs-1">
-                            <input type="text" class="form-control" placeholder="Unidad" name="unidad[]">
-                        </div>
-                        <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="Fecha" name="fecha[]">
-                        </div>
-                        <div class="col-xs-3">
-                            <input type="text" class="form-control" placeholder="Observaciones" name="observaciones[]">
-                        </div>
-                        <div class="col-xs-1">        
-                        </div>
-                    </div>
+                        <div class="col-xs-1"></div>                        
                     </div>
                 </div>
                 <br>

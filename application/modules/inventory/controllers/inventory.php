@@ -470,10 +470,15 @@ function add_location() {
             $work_id = $this->input->post('work_id');
             $this->inventory_model->delete_work($work_id);
         }        
-    public function get_good_info(){
-        /*$id = $this->input->post('id');
-        $data['good'] = $this->inventory_model->get_good_info($id);
+    public function get_good_info_json(){
+        $id = $this->input->post('id');
+        /*$data['good'] = $this->inventory_model->get_good_info($id);
         $data['good'] = $data['good'][0];*/
+        //$agreement_number = $this->input->post('good_id');
+        $data['good'] = $this->inventory_model->get_all_inventory_article();
+        $data['good'] = $data['good'][0];
+        //$this->load->view('agreements/agreements_edit',$data);
+        echo json_encode($data['agreement']);
     }
 }
 
