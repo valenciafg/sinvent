@@ -36,32 +36,32 @@
                         </div>
                     </div> 
                 </div>            
-                <label class="col-xs-2 text-center">Código</label>
+                <label class="col-xs-1 text-center">Código</label>
                 <label class="col-xs-2 text-center">Item</label>
                 <label class="col-xs-1 text-center">Cantidad</label>
-                <label class="col-xs-1 text-center">Unidad</label>
+                <label class="col-xs-2 text-center">Unidad</label>
                 <label class="col-xs-2 text-center">Fecha</label>
                 <label class="col-xs-3 text-center">Observaciones</label>
                 <label class="col-xs-1 text-center">Eliminar</label>
                 <div class="input_fields_wrap">
                     <div class="row">
-                        <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="Código" id="id" name="id[]">
+                        <div class="col-xs-1">
+                            <input type="text" class="form-control" placeholder="Cod" name="id[0]">
                         </div>
                         <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="ítem" id="item"name="item[]">
+                            <input type="text" class="form-control" placeholder="ítem" name="item[0]">
                         </div>
                         <div class="col-xs-1">
-                            <input type="text" class="form-control" placeholder="Cantidad" name="cantidad[]">
-                        </div>
-                        <div class="col-xs-1">
-                            <input type="text" class="form-control" placeholder="Unidad" name="unidad[]">
+                            <input type="text" class="form-control" placeholder="Cantidad" name="cantidad[0]">
                         </div>
                         <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="Fecha" name="fecha[]">
+                            <input type="text" class="form-control" placeholder="Unidad" name="unidad[0]" disabled>
+                        </div>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" placeholder="Fecha" name="fecha[0]">
                         </div>
                         <div class="col-xs-3">
-                            <input type="text" class="form-control" placeholder="Observaciones" name="observaciones[]">
+                            <input type="text" class="form-control" placeholder="Observaciones" name="observaciones[0]">
                         </div>
                         <div class="col-xs-1"></div>                        
                     </div>

@@ -145,21 +145,24 @@ $this->load->view('dashboard/header'); ?>
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID    
         var inputs = ""
-
+        var idx = 1;
         $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
-
+            console.log("aquiiii"+idx);
             inputs = '<div class="row">'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Código" name="id[]"/></div>'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="ítem" name="item[]"/></div>'
-            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="Cant" name="cantidad[]"/></div>'
-            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="Unid" name="unidad[]"/></div>'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Fecha" name="fecha[]"/></div>'
-            inputs = inputs + '<div class="col-xs-3"><input type="text" class="form-control" placeholder="Observaciones" name="observaciones[]"/></div>'
+            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="Cod" name="id['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="ítem" name="item['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="Cant" name="cantidad['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Unid" name="unidad['+idx+']" disabled></div>'
+            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Fecha" name="fecha['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-3"><input type="text" class="form-control" placeholder="Observaciones" name="observaciones['+idx+']"/></div>'
             inputs = inputs + '<a href="#" class="remove_field"><button class="btn btn-danger">X</button></a>'
             inputs = inputs + '</div>'
             $(wrapper).append(inputs); //add input box
-            item_search($('input[name^="id[]"]'),$('input[name^="item[]"]'),$('input[name^="cantidad[]"]'),$('input[name^="unidad[]"]'));
+            console.log('indice: '+$('input[name^="id['+idx+']"]').index());
+            //item_search($('input[name^="id['+idx+']"]'));
+            item_search($('input[name^="id['+idx+']"]'),$('input[name^="item['+idx+']"]'),$('input[name^="cantidad['+idx+']"]'),$('input[name^="unidad['+idx+']"]'));
+            idx++;
         });
 
         $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
@@ -191,40 +194,36 @@ $this->load->view('dashboard/header'); ?>
         });
 
         /*
-        
+        Item search
         */
-        function item_search($code,$item,$cantidad,$unidad){
-            $code.keyup(function(){
-                var code = $code.val();
-                //var item = "asd";
-                /*$item.val("asd");
-                $cantidad.val("asd2");
-                $unidad.val("asd3");*/
-                //var length = $(this).length;
-                console.log(code);
+        function item_search($id,$item,$cantidad,$unidad){
+        $id.keyup(function(){
+            $id.each(function(){
+                var code = $id.val();
                 $.ajax({
                     url: "<?php echo base_url(); ?>inventory/get_good_info_json",
                     type: "POST",
                     dataType:'json',
                     data: {"id": code},
                     success: function(response){
-                        console.log(response);
-                        //$('#edit_modal').html(data);
-                        //$('#user_edit_modal').modal('show');
+                        console.log(response);     
                         $item.val(response['description']);
                         $cantidad.val(response['quantity_available']);
-                        $unidad.val(response['unidad']);
-                        return false;
+                        $unidad.val(response['unidad']);                 
                     },
                     error: function(jqxhr,textStatus,errorThrown){
                         console.log(jqxhr);
                         console.log(textStatus);
                         console.log(errorThrown);
+                        $item.val('');
+                        $cantidad.val('');
+                        $unidad.val('');
                     },
                 });
             });
+        });
         }
-        item_search($('input[name^="id[]"]'),$('input[name^="item[]"]'),$('input[name^="cantidad[]"]'),$('input[name^="unidad[]"]'));
+        item_search($('input[name^="id[0]"]'),$('input[name^="item[0]"]'),$('input[name^="cantidad[0]"]'),$('input[name^="unidad[0]"]'));
         //user edit function
         $(".user_edit").click(function() {
             var user_id = $(this).attr('data-id');

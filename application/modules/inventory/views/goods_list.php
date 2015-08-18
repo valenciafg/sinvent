@@ -15,6 +15,9 @@
         <thead>
             <tr>
                 <th>
+                    <?php echo $this->lang->line('id'); ?>
+                </th>
+                <th>
                     <?php echo $this->lang->line('dashboard_location_description'); ?>
                 </th>
                 <th>
@@ -64,6 +67,9 @@
         foreach ($good_articles as $good_article) {
             ?>
                 <tr>
+                    <td>
+                    <?php echo wordwrap($good_article['id'], 15, "<br>\n"); ?>
+                    </td>
                     <td>
                     <?php echo wordwrap($good_article['description'], 15, "<br>\n"); ?>
                     </td>

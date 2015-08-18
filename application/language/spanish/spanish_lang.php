@@ -303,4 +303,7 @@ $lang['description'] = 'Descripción';
 $lang['description'] = 'Descripción';
 
 $lang['confirm_delete_work'] = '¿Está seguro que desea eliminar esta Obra?';
+
+$lang['code'] = 'Código';
+$lang['id'] = 'Id';
 ?>
