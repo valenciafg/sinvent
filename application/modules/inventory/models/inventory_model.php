@@ -67,7 +67,15 @@ class Inventory_model extends CI_Model {
         return $query->result_array();
 
     }
-
+    function get_article_work($id,$type){
+        $array = array('t1.id'=>$id,'t1.type'=>$type);
+        $this->db->select('t1.*, t2.description as unidad');
+        $this->db->from('inventory as t1');
+        $this->db->join('measuring as t2', 't1.quantity_id = t2.id', 'LEFT');
+        $this->db->where($array);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     function get_all_inventory_work() {
         $work = 'works';
         $query = $this->db->select('t1.*, t2.name as building, t3.name as floor, t4.name as office, t5.contractor as contractor')

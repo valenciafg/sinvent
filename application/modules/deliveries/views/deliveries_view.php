@@ -196,25 +196,30 @@ $this->load->view('dashboard/header'); ?>
         function item_search($code,$item,$cantidad,$unidad){
             $code.keyup(function(){
                 var code = $code.val();
-                var item = "asd";
-                $item.val("asd");
+                //var item = "asd";
+                /*$item.val("asd");
                 $cantidad.val("asd2");
-                $unidad.val("asd3");
+                $unidad.val("asd3");*/
                 //var length = $(this).length;
                 console.log(code);
                 $.ajax({
                     url: "<?php echo base_url(); ?>inventory/get_good_info_json",
                     type: "POST",
+                    dataType:'json',
                     data: {"id": code},
-                    success: function(data){
-                        console.log(data);
-                        $('#edit_modal').html(data);
-                        $('#user_edit_modal').modal('show');
+                    success: function(response){
+                        console.log(response);
+                        //$('#edit_modal').html(data);
+                        //$('#user_edit_modal').modal('show');
+                        $item.val(response['description']);
+                        $cantidad.val(response['quantity_available']);
+                        $unidad.val(response['unidad']);
                         return false;
                     },
-                    error: function(){
-                        console.log('error');
-                        return false;
+                    error: function(jqxhr,textStatus,errorThrown){
+                        console.log(jqxhr);
+                        console.log(textStatus);
+                        console.log(errorThrown);
                     },
                 });
             });

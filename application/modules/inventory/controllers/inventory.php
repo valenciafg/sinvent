@@ -475,10 +475,10 @@ function add_location() {
         /*$data['good'] = $this->inventory_model->get_good_info($id);
         $data['good'] = $data['good'][0];*/
         //$agreement_number = $this->input->post('good_id');
-        $data['good'] = $this->inventory_model->get_all_inventory_article();
+        $data['good'] = $this->inventory_model->get_article_work($id,'goods');
         $data['good'] = $data['good'][0];
         //$this->load->view('agreements/agreements_edit',$data);
-        echo json_encode($data['agreement']);
+        echo json_encode($data['good']);
     }
 }
 
