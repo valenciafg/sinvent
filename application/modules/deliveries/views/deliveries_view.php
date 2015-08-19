@@ -135,9 +135,14 @@ $this->load->view('dashboard/header'); ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
-
 <script src="<?php echo base_url(); ?>assets/plugins/typeahead2/js/bootstrap-typeahead.js"></script>
-<!--linux files-->
+
+<!--datepicker-->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/datepicker.css"/>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
+<!--jqBootstrapValidation-->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/jsbootstrapvalidation/jqBootstrapValidation.js"></script> 
 <script>
 
     jQuery(document).ready(function() {
@@ -150,18 +155,18 @@ $this->load->view('dashboard/header'); ?>
             e.preventDefault();
             console.log("aquiiii"+idx);
             inputs = '<div class="row">'
-            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="Cod" name="id['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="#" name="id['+idx+']"/></div>'
             inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="ítem" name="item['+idx+']"/></div>'
-            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="Cant" name="cantidad['+idx+']"/></div>'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Unid" name="unidad['+idx+']" disabled></div>'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Fecha" name="fecha['+idx+']"/></div>'
-            inputs = inputs + '<div class="col-xs-3"><input type="text" class="form-control" placeholder="Observaciones" name="observaciones['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-2"><input type="number" class="form-control" placeholder="Cantidad" name="cantidad['+idx+']" min="0"/></div>'
+            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Unidad" name="unidad['+idx+']" disabled></div>'
+            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Fecha" name="fecha['+idx+']" required/></div>'
+            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Observaciones" name="observaciones['+idx+']"/></div>'
             inputs = inputs + '<a href="#" class="remove_field"><button class="btn btn-danger">X</button></a>'
             inputs = inputs + '</div>'
-            $(wrapper).append(inputs); //add input box
+            $(wrapper).append(inputs);
             console.log('indice: '+$('input[name^="id['+idx+']"]').index());
-            //item_search($('input[name^="id['+idx+']"]'));
             item_search($('input[name^="id['+idx+']"]'),$('input[name^="item['+idx+']"]'),$('input[name^="cantidad['+idx+']"]'),$('input[name^="unidad['+idx+']"]'));
+            create_datepicker($('input[name^="fecha['+idx+']'));
             idx++;
         });
 
@@ -169,6 +174,16 @@ $this->load->view('dashboard/header'); ?>
             e.preventDefault();             
              $(this).closest("div").remove();    
         });
+
+        function create_datepicker($date){
+                $date.datepicker({
+                autoclose: true,
+                format: 'dd/mm/yyyy',
+                isRTL: false,
+                language: 'es'
+            });    
+        }
+        create_datepicker($('input[name^="fecha[0]'));
         //search and pagination language conversion start
         $('#sample_editable_1').dataTable({
             "responsive": true,
@@ -209,6 +224,7 @@ $this->load->view('dashboard/header'); ?>
                         console.log(response);     
                         $item.val(response['description']);
                         $cantidad.val(response['quantity_available']);
+                        $cantidad.attr('max', response['quantity_available']);
                         $unidad.val(response['unidad']);                 
                     },
                     error: function(jqxhr,textStatus,errorThrown){
@@ -273,8 +289,7 @@ $this->load->view('dashboard/header'); ?>
             });
 
         });
-        //delete user end
-
+        //delete user end    
     });
 
 
