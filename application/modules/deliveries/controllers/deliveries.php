@@ -37,6 +37,19 @@ class Deliveries extends MX_Controller {
         $this->load->view('deliveries_view', $data);
     }
 
+    public function add_delivery(){
+        if ($this->input->post('submit', TRUE)) {
+            $delivered_by = $this->session->userdata('username');
+            $data = array(
+                "received_by" => $this->input->post('username'),
+                "delivered_by" => $delivered_by,
+                "process_id" => $this->input->post('process')                               
+            );
+            $this->deliveries_model->add_delivery($data);
+        }
+        redirect('deliveries');
+    }
+    /*
     public function add_agreement(){
         if ($this->input->post('submit', TRUE)) {
             $data = array(
@@ -51,7 +64,7 @@ class Deliveries extends MX_Controller {
             $this->agreements_model->add_agreement($data);
         }
         redirect("agreements");
-    }
+    }*/
 }
 
 ?>

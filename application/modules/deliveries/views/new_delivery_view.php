@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-12">
-        <form class="form-horizontal" method="POST">
+        <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>deliveries/add_delivery">
             <div class="form-group col-md-6">
                 <label for="username">Identificador</label>
-                <input type="text" class="form-control" id="username" placeholder="Usuario LDAP" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Usuario LDAP" required>
             </div>            
             <div class="form-group col-md-6">
                 <label for="cedula">Cédula</label>
@@ -15,7 +15,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="process">Proceso</label>
-                <select class="form-control" id="process" required>
+                <select class="form-control" id="process" name="process" required>
                     <option>-- Seleccione --</option>
                     <?php
                         foreach ($processes as $process) {
@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Guardar</button>           
+                            <input type="submit" name="submit" class="btn btn-primary">
                         </div>
                     </div>
                 </div> 

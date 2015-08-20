@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/sinvent/';
+$config['base_url']	= 'http://192.168.1.132/sinvent/';
 //$config['base_url']	= 'http://sinvent-test.pdvsa.com/';
 
 /*

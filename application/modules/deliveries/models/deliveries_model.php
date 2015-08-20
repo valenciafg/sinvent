@@ -23,6 +23,15 @@ class Deliveries_model extends CI_Model {
         $query = $this->db->get('processes');
         return $query->result_array();
     }
+    public function add_delivery($data){
+        $this->db->trans_start();
+        $this->db->insert('deliveries', $data);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE){
+        // generate an error... or use the log_message() function to log your error
+            log_message('error', 'Error al insertar data');
+        }
+    }
     /*public function add_agreement($data){
         $this->db->insert('agreements', $data);
     }
