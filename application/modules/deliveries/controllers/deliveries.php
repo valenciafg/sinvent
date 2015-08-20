@@ -39,32 +39,31 @@ class Deliveries extends MX_Controller {
 
     public function add_delivery(){
         if ($this->input->post('submit', TRUE)) {
-            $delivered_by = $this->session->userdata('username');
+            if (!empty($this->input->post('id')) && is_array($this->input->post('id'))) { 
+                //redirect('deliveriess');
+                $items = array( $this->input->post('id'),
+                                $this->input->post('cantidad'),
+                                $this->input->post('fecha'),
+                                $this->input->post('observaciones'));
+                $delivered_by = $this->session->userdata('username');
+                $data = array(
+                "received_by" => $this->input->post('username'),
+                "delivered_by" => $delivered_by,
+                "process_id" => $this->input->post('process'));
+            $this->deliveries_model->add_delivery($data,$items);
+                //redirect('deliveriess?status=',$items);
+            }
+            //redirect('deliveriesx');
+            /*$delivered_by = $this->session->userdata('username');
             $data = array(
                 "received_by" => $this->input->post('username'),
                 "delivered_by" => $delivered_by,
                 "process_id" => $this->input->post('process')                               
             );
-            $this->deliveries_model->add_delivery($data);
+            $this->deliveries_model->add_delivery($data);*/
         }
         redirect('deliveries');
     }
-    /*
-    public function add_agreement(){
-        if ($this->input->post('submit', TRUE)) {
-            $data = array(
-                "number" => $this->input->post('agreement_number'),
-                "contractor" => $this->input->post('agreement_contractor'),
-                "amount_awarded" => (float)$this->input->post('amount_awarded'),
-                "amount_per_run" => (float)$this->input->post('amount_per_run'),
-                "physical_progress" => (float)$this->input->post('physical_progress'),
-                "financial_progress" => (float)$this->input->post('financial_progress'),
-                "name" => $this->input->post('agreement_name')
-            );
-            $this->agreements_model->add_agreement($data);
-        }
-        redirect("agreements");
-    }*/
 }
 
 ?>

@@ -153,9 +153,9 @@ $this->load->view('dashboard/header'); ?>
         var idx = 1;
         $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
-            console.log("aquiiii"+idx);
+            //console.log("aquiiii"+idx);
             inputs = '<div class="row">'
-            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="#" name="id['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="#" name="id['+idx+']" required/></div>'
             inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="ítem" name="item['+idx+']"/></div>'
             inputs = inputs + '<div class="col-xs-2"><input type="number" class="form-control" placeholder="Cantidad" name="cantidad['+idx+']" min="0"/></div>'
             inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Unidad" name="unidad['+idx+']" disabled></div>'
@@ -164,9 +164,8 @@ $this->load->view('dashboard/header'); ?>
             inputs = inputs + '<a href="#" class="remove_field"><button class="btn btn-danger">X</button></a>'
             inputs = inputs + '</div>'
             $(wrapper).append(inputs);
-            console.log('indice: '+$('input[name^="id['+idx+']"]').index());
             item_search($('input[name^="id['+idx+']"]'),$('input[name^="item['+idx+']"]'),$('input[name^="cantidad['+idx+']"]'),$('input[name^="unidad['+idx+']"]'));
-            create_datepicker($('input[name^="fecha['+idx+']'));
+            create_datepicker($('input[name^="fecha['+idx+']"]'));
             idx++;
         });
 
@@ -183,7 +182,7 @@ $this->load->view('dashboard/header'); ?>
                 language: 'es'
             });    
         }
-        create_datepicker($('input[name^="fecha[0]'));
+        create_datepicker($('input[name^="fecha[0]"]'));
         //search and pagination language conversion start
         $('#sample_editable_1').dataTable({
             "responsive": true,

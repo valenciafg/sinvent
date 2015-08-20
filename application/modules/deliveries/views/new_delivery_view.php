@@ -16,7 +16,7 @@
             <div class="form-group col-md-6">
                 <label for="process">Proceso</label>
                 <select class="form-control" id="process" name="process" required>
-                    <option>-- Seleccione --</option>
+                    <option value="">-- Seleccione --</option>
                     <?php
                         foreach ($processes as $process) {
                             echo "<option value='".$process['id']."'>".$process['name']."</option>";
@@ -45,7 +45,7 @@
             <div class="input_fields_wrap" style="padding-left: 10px;">
                 <div class="row">
                     <div class="col-xs-1">
-                        <input type="text" class="form-control" placeholder="#" name="id[0]">
+                        <input type="text" class="form-control" placeholder="#" name="id[0]" required>
                     </div>
                     <div class="col-xs-2">
                         <input type="text" class="form-control" placeholder="ítem" name="item[0]">

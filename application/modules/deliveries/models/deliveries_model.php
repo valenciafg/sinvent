@@ -23,9 +23,14 @@ class Deliveries_model extends CI_Model {
         $query = $this->db->get('processes');
         return $query->result_array();
     }
-    public function add_delivery($data){
+    public function add_delivery($data,items){
         $this->db->trans_start();
         $this->db->insert('deliveries', $data);
+        $last_id = $this->db->insert_id();
+        //
+        foreach ($items as $item) {
+            $items_delivered
+        }
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE){
         // generate an error... or use the log_message() function to log your error
