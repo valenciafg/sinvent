@@ -65,7 +65,7 @@ $this->load->view('dashboard/header'); ?>
                         <?php $this->load->view('new_work');?>
                     </div>
                 </div>
-                <!--END. ADD NEW AGREEMENT-->
+                <!--END. ADD NEW WORK-->
 
                 <!--user edit modal start-->
                 <div class="modal fade" id="work_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -258,7 +258,6 @@ $(document).ready(function () {
                 }
             });
             return false;
-
         });
         //Delete Work
         $('.work_delete').click(function(e) {

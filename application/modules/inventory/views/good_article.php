@@ -437,6 +437,8 @@ LISTADO DE BIENES Y MATERIALES
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/datepicker.css"/>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
+<!--jqBootstrapValidation-->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/jsbootstrapvalidation/jqBootstrapValidation.js"></script> 
 <!--<script src="<?php echo base_url(); ?>assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <!--date picker--
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
@@ -486,7 +488,7 @@ LISTADO DE BIENES Y MATERIALES
                     [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
                 ],
             iDisplayLength: 5,            
-            order: [[ 3, "desc" ]]
+            order: [[ 3, "desc" ],[ 1, "desc" ]]
         });
     /*var responsiveHelper = undefined;
     var breakpointDefinition = {

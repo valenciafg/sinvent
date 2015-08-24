@@ -111,20 +111,6 @@ Todos los derechos reservados 2015
                 </span>
             </a>
         </li>
-        <!-- Contrataciones -->
-        <?php        
-            if ($page == 'agreements') {
-                echo '<li class="start menuactive">';
-            } else {
-                echo '<li class="start">';
-            }
-            ?>            
-            <a href="<?php echo base_url(); ?>agreements" class="Contenedor-Texto-Menu">
-                <span class="Text-menu" >
-                    <?php echo $this->lang->line("dashboard_agreements"); ?>
-                </span>
-            </a>
-        </li>
         <!-- Notas de entrega -->
         <?php
         if ($page == 'deliveries') {
@@ -139,6 +125,20 @@ Todos los derechos reservados 2015
                 </span>
             </a>
         </li>
+        <!-- Contrataciones -->
+        <?php        
+            if ($page == 'agreements') {
+                echo '<li class="start menuactive">';
+            } else {
+                echo '<li class="start">';
+            }
+            ?>            
+            <a href="<?php echo base_url(); ?>agreements" class="Contenedor-Texto-Menu">
+                <span class="Text-menu" >
+                    <?php echo $this->lang->line("dashboard_agreements"); ?>
+                </span>
+            </a>
+        </li>        
         <?php
         }
         ?>

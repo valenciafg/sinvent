@@ -64,7 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<a href="index.html">
 <!--            <h2><strong>Inventario</strong></h2>-->
             
-		<img src="<?php echo base_url();?>assets/img/inventory_img/logorojxo.png" alt=""/>
+		<img src="<?php echo base_url();?>assets/img/inventory_img/logorojo.png" alt=""/>
 	</a>
 </div>
 <!-- END LOGO -->

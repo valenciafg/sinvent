@@ -54,9 +54,8 @@ class Works extends MX_Controller {
     public function get_all_works(){
         $data=$this->works_model->get_all_works();
     }
-    public  function get_work_info(){
-        //echo"get_work_info";
-          $work_id = $this->input->post('work_id');
+    public  function get_work_info(){        
+        $work_id = $this->input->post('work_id');
         
         $this->load->model('inventory/inventory_model');
         $this->load->model('location/location_model');

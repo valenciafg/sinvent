@@ -25,118 +25,95 @@ $this->load->view('dashboard/header'); ?>
                                 <!-- END PAGE TITLE & BREADCRUMB-->
                             </div>
                         </div>
-                        <!-- END PAGE HEADER-->
-                        <!-- BEGIN PAGE CONTENT-->
-                        <!-- Nav tabs. PESTAÑAS-->
-                        <!--TAB HEADERS-->
-                          <!--<ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#delivery_list" aria-controls="delivery_list" role="tab" data-toggle="tab">
-                                    <?php //echo $this->lang->line('deliveries_list'); ?>
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#new_delivery" aria-controls="new_delivery" role="tab" data-toggle="tab">
-                                    <?php //echo $this->lang->line('add_new_delivery'); ?>
-                                </a>
-                            </li>    
-                          </ul>-->
-                        <!--/END TAB HEADERS-->
-                        <!-- TAB BODY-->
-                        <!--<div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="delivery_list">
-                        -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                                        <div class="portlet box blue">
-                                            <div class="portlet-title">
-                                                <div class="caption">
-                                                    <?php echo $this->lang->line('deliveries_list'); ?>
-                                                </div>
-                                            </div>                                    
-                                            <div class="portlet-body">
-                                                <div class="table-toolbar">
-                                                    <div class="btn-group">
-                                                        <button id="add_delivery" class="btn btn-success">
-                                                            <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
-                                                        </button>
-                                                    </div>                                            
-                                                </div>
-                                                <!--AGREEMENTS LIST-->
-                                                <div id="users_list">
-                                                    <!-- AQUI CAMBIAR POR LISTAS DE ENTREGAS-->                                                    
-                                                    <?php //echo $this->load->view('agreements/agreements_list'); ?>
-                                                </div>
-                                                <!--END. AGREEMENTS LIST-->                                                
-                                            </div>
-                                        </div>                    
-                                    </div>  
-                                </div>
-                                    <!-- END PAGE CONTENT -->
-                            <!--</div>-->                            
-                            
-                        <!---</div>-->
-                        <!-- END. TAB BODY-->
+                        <div class="row">
+                            <div class="col-md-12">                                
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <?php echo $this->lang->line('deliveries_list'); ?>
+                                        </div>
+                                    </div>                                    
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="btn-group">
+                                                <button id="add_delivery" class="btn btn-success">
+                                                    <?php echo $this->lang->line("add_new_button"); ?> <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>                                            
+                                        </div>
+                                        <!--DELIVERIES LIST-->
+                                        <div id="users_list">
+                                            <!-- AQUI CAMBIAR POR LISTAS DE ENTREGAS-->                                                    
+                                            <?php echo $this->load->view('deliveries/deliveries_list'); ?>
+                                        </div>
+                                        <!--END. DELIVERIES LIST-->                                                
+                                    </div>
+                                </div>                    
+                            </div>  
+                        </div>                            
                     </div>
                 </div>
-<!-- NEW DELIVERY FORM -->
-<div class="modal fade" id="new_delivery_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<!--<div class="modal fade" id="new_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('add_new_delivery'); ?></h4>
-            </div>
-            <div class="modal-body">
-                <!--<div role="tabpanel" class="tab-pane" id="new_delivery">-->
-                    <?php $this->load->view('new_delivery_view'); ?>
-                <!--</div>-->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END. NEW DELIVERY FORM -->
-                <!--user edit modal start-->
-                <div class="modal fade" id="user_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <!--DELIVERIES DETAILS-->
+                <div class="modal fade" id="delivery_detail_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('edit_user'); ?></h4>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('deliveries_details'); ?></h4>
+                            </div>
+                            <div id="delivery_detail" class="modal-body">
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--user edit modal end-->
+                <!-- END. DELIVERIES DETAILS-->
+                <!-- NEW DELIVERY FORM -->
+                <div class="modal fade" id="new_delivery_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <!--<div class="modal fade" id="new_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('add_new_delivery'); ?></h4>
+                            </div>
+                            <div class="modal-body">
+                                <!--<div role="tabpanel" class="tab-pane" id="new_delivery">-->
+                                    <?php $this->load->view('new_delivery_view'); ?>
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END. NEW DELIVERY FORM -->
+                <!-- EDIT DELIVERY-->
+                <div class="modal fade" id="edit_delivery_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('edit_delivery'); ?></h4>
+                                <div id="delivery_edit" class="modal-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END. EDIT DELIVERY-->
             </div>
         </div>
     </div>
 </div>
-<script src="<?php echo base_url(); ?>assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/jquery-1.11.1.min.js"></script>
 <!--search scripts-->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
-<!--search scripts-->
-<!--search css-->
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.css"/>
-
-<!--search css-->
-<!--extra js-->
-<!--extra js-->
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-<!--linux files-->
-<!--search scripts-->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/DT_bootstrap.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/core/app.js"></script> 
-<script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/typeahead2/js/bootstrap-typeahead.js"></script>
-
+<!--datatables scripts-->
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/dataTables.bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/responsive-datatable/js/dataTables.responsive.min.js"></script>
 <!--datepicker-->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/datepicker.css"/>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
@@ -156,11 +133,10 @@ $this->load->view('dashboard/header'); ?>
             //console.log("aquiiii"+idx);
             inputs = '<div class="row">'
             inputs = inputs + '<div class="col-xs-1"><input type="text" class="form-control" placeholder="#" name="id['+idx+']" required/></div>'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="ítem" name="item['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-3"><input type="text" class="form-control" placeholder="ítem" name="item['+idx+']"/></div>'
             inputs = inputs + '<div class="col-xs-2"><input type="number" class="form-control" placeholder="Cantidad" name="cantidad['+idx+']" min="0"/></div>'
             inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Unidad" name="unidad['+idx+']" disabled></div>'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Fecha" name="fecha['+idx+']" required/></div>'
-            inputs = inputs + '<div class="col-xs-2"><input type="text" class="form-control" placeholder="Observaciones" name="observaciones['+idx+']"/></div>'
+            inputs = inputs + '<div class="col-xs-3"><input type="text" class="form-control" placeholder="Observaciones" name="observaciones['+idx+']"/></div>'
             inputs = inputs + '<a href="#" class="remove_field"><button class="btn btn-danger">X</button></a>'
             inputs = inputs + '</div>'
             $(wrapper).append(inputs);
@@ -182,25 +158,19 @@ $this->load->view('dashboard/header'); ?>
                 language: 'es'
             });    
         }
-        create_datepicker($('input[name^="fecha[0]"]'));
+        //create_datepicker($('input[name^="fecha[0]"]'));
         //search and pagination language conversion start
-        $('#sample_editable_1').dataTable({
-            "responsive": true,
-            "aLengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
-            ],
-            // set the initial value
-            "iDisplayLength": 8,
-            "sPaginationType": "bootstrap",
-            "oLanguage": {
-                "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
+        $('#example').DataTable({
+            //responsive: true;
+            language: {
+                url: "<?php echo base_url(); ?>assets/plugins/datatables/js/lang/Spanish.json"
             },
-            "aoColumnDefs": [{
-                    'bSortable': false,
-                    'aTargets': [0]
-                }
-            ]
+            aLengthMenu: [
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+                ],
+            iDisplayLength: 5,            
+            order: [[ 3, "desc" ]]
         });
         //search and pagination language conversion end
         $("#add_delivery").click(function() {
@@ -240,7 +210,7 @@ $this->load->view('dashboard/header'); ?>
         }
         item_search($('input[name^="id[0]"]'),$('input[name^="item[0]"]'),$('input[name^="cantidad[0]"]'),$('input[name^="unidad[0]"]'));
         //user edit function
-        $(".user_edit").click(function() {
+        /*$(".user_edit").click(function() {
             var user_id = $(this).attr('data-id');
             $.ajax({
                 url: "<?php echo base_url(); ?>users/get_user_info",
@@ -261,6 +231,48 @@ $this->load->view('dashboard/header'); ?>
             });
             return false;
 
+        });*/
+        $(".delivery_edit").click(function() {
+            //$('#edit_delivery_modal').modal('show');
+            var delivery_id = $(this).attr('data-id');
+            $.ajax({
+                url: "<?php echo base_url(); ?>deliveries/edit_delivery",
+                type: "POST",
+                data: {"delivery_id": delivery_id},
+                success: function(data){
+                    console.log(data);
+                    $('#delivery_edit').html(data);
+                    $('#edit_delivery_modal').modal('show');
+                    return false;
+                },
+                error: function(jqxhr,textStatus,errorThrown){
+                    console.log(jqxhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+            return false;
+        });
+        $(".details_view").click(function() {
+            //$('#delivery_detail_modal').modal('show');
+            var delivery_id = $(this).attr('data-id');
+            $.ajax({
+                url: "<?php echo base_url(); ?>deliveries/get_delivery_info",
+                type: "POST",
+                data: {"delivery_id": delivery_id},
+                success: function(data){
+                    console.log(data);
+                    $('#delivery_detail').html(data);
+                    $('#delivery_detail_modal').modal('show');
+                    return false;
+                },
+                error: function(jqxhr,textStatus,errorThrown){
+                    console.log(jqxhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+            return false;
         });
         //user delete start
         $('.user_delete').click(function(e) {

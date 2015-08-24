@@ -18,7 +18,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-4"><?php echo $this->lang->line('categories'); ?></label>
                                             <div class="col-md-8">
-                                                <select id="goods_category" name="goods_category" class="form-control category-select">
+                                                <select id="goods_category" name="goods_category" class="form-control category-select" required>
                                                     <?php                                                                                    
                                                     echo '<option value="">--seleccione--</option>';
                                                     foreach ($categories as $category) {
@@ -37,7 +37,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-4"><?php echo $this->lang->line('subcategories'); ?></label>
                                             <div class="col-md-8">
-                                                <select id="goods_subcategory" name="goods_subcategory" class="form-control subcategory-select">
+                                                <select id="goods_subcategory" name="goods_subcategory" class="form-control subcategory-select" required>
                                                     <?php
                                                     echo '<option value="">--seleccione--</option>';
                                                     foreach ($subcategories as $subcategory) {
@@ -119,7 +119,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-4"><p style="margin-left:-10px;"><?php echo $this->lang->line('dashboard_location_description'); ?></p></label>
                                             <div class="col-md-8">
-                                                <input type="text" id="article_description" name="article_description" class="form-control">
+                                                <input type="text" id="article_description" name="article_description" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -175,8 +175,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-4"><?php echo $this->lang->line('dashboard_location_amount'); ?></label>
                                             <div class="col-md-8">
-                                                <input name="article_amount"  id="article_amount" type="text" class="form-control">
-
+                                                <input name="article_amount"  id="article_amount" type="text" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +187,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-4"><?php echo $this->lang->line('dashboard_location_unit'); ?></label>
                                             <div class="col-md-8">                                                                                
-                                                <select id="goods_unit" name="goods_unit" class="form-control unit-select">
+                                                <select id="goods_unit" name="goods_unit" class="form-control unit-select" required>
                                                     <?php
                                                     echo '<option value="">--seleccione--</option>';
                                                     foreach ($measurings as $measuring) {
@@ -212,3 +211,8 @@
         </div>                                        
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function () {
+    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); 
+});
+</script>

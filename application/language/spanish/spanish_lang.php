@@ -277,16 +277,26 @@ $lang['agreement_name'] = "Nombre de Contrato";
 $lang['agreement_contractor'] = "Contratista";
 $lang['contractor'] = "Contratista";
 $lang['edit_agreement'] = "Editar Contratación";
+
 //Deliveries
 $lang['dashboard_deliveries'] = "Notas de Entregas";
+$lang['deliveries_list'] = "Listado de Notas de Entregas";
 $lang['deliveries_title'] = "Notas de Entregas";
-$lang['deliveries_list'] = "Listado de Notas de Entrega (AÚN NO DISPONIBLE)";
-$lang['add_new_delivery'] = "Agregar nueva nota de entrega (AÚN NO DISPONIBLE)";
-/*$lang['agreement_number'] = "Número de contrato";
-$lang['agreement_name'] = "Nombre de contrato";
-$lang['agreement_contractor'] = "Contratista";*/
+$lang['date_delivered'] = "Fecha de Entrega";
+$lang['received_by'] = "Recibido por";
+$lang['delivered_by'] = "Entregado por";
+$lang['registration_date'] = "Fecha de Registro";
+$lang['process'] = "Proceso";
+$lang['workers_name'] = "Nombre del Trabajador";
 $lang['quantity'] = "Cantidad";
 $lang['quantity_available'] = "Cantidad Disponible";
+$lang['quantity_assigned'] = "Cantidad Asignada";
+$lang['details'] = "Detalles";
+$lang['good_equipment'] = "Bien/Material";
+$lang['deliveries_details'] = "Detalles de la Entrega";
+$lang['observations'] = "Observaciones";
+$lang['edit_delivery'] = "Editar Entrega";
+$lang['concept_description'] = "Concepto o Descripción";
 
 //OBRAS
 $lang['work_title'] = 'Obras';
@@ -306,4 +316,7 @@ $lang['confirm_delete_work'] = '¿Está seguro que desea eliminar esta Obra?';
 
 $lang['code'] = 'Código';
 $lang['id'] = 'Id';
+$lang['item'] = 'Item';
+
+
 ?>

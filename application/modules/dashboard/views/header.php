@@ -70,7 +70,7 @@ Todos los derechos reservados 2015
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="col-lg-2">
-                            <img src="<?php echo base_url(); ?>assets/img/inventory_img/logorojxo.png" class="img-responsive">
+                            <img src="<?php echo base_url(); ?>assets/img/inventory_img/logorojo.png" class="img-responsive">
                         </div>
                         <div class="col-lg-10">
                             <img src="<?php echo base_url(); ?>assets/img/inventory_img/degradacion_roja-aux12.png" style="margin-top:30px;" class="img-responsive">
