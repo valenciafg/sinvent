@@ -73,6 +73,11 @@ class Works extends MX_Controller {
         $this->load->view('edit_work',$data);
     }
 
+    public  function get_work_upload_info(){  
+        $work_id = $this->input->post('work_id');
+        $data['id']=$work_id;
+        $this->load->view('work_upload',$data);
+    }
     public function edit_work(){
         $work_id = $this->input->post('work_id');        
           $data = array(
@@ -92,4 +97,65 @@ class Works extends MX_Controller {
         $this->works_model->delete_work($work_id);
     }
 
+    public function do_upload(){
+        /*$inventory_id = $this->input->post('inventory_id');
+        $inventory_img_description = $this->input->post('inventory_img_description');
+        //upload configuration
+        //$config['max_size']   = '100';
+        //$config['max_width']  = '1024';
+        //$config['max_height']  = '768';
+        $config['upload_path'] = FCPATH . 'assets/img/inventory_uploads/';
+        $config['allowed_types'] = '*';
+                $this->load->library('upload', $config);
+
+        $field_name = 'inventory_img';
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload($field_name)) {
+            $data = $this->upload->data();
+                        //insert to logs
+            $insert_data= array(
+             'inventory_id' =>$inventory_id,
+             'image'        => $data['file_name'],
+             'description'  => $inventory_img_description 
+            ) ;
+            $this->inventory_model->add_log($insert_data);
+            
+                        //insert to inventory end
+            $this->session->set_flashdata('upload_success', 'Image Added Successfully');
+              redirect($this->agent->referrer());              
+        } else {
+            $error = array('error' => $this->upload->display_errors());
+              redirect($this->agent->referrer());              
+        }*/
+
+        $id = $this->input->post('work_id');
+        $img_description = $this->input->post('img_description');        
+
+        $config['upload_path'] = FCPATH . 'assets/img/work_uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encrypt_name'] = TRUE;
+        $field_name = 'work_img';
+        /*$config['max_size'] = '100';
+        $config['max_width']  = '1024';
+        $config['max_height']  = '768';*/
+
+        $this->load->library('upload', $config);
+        if ( ! $this->upload->do_upload($field_name)){
+            $error = array('error' => $this->upload->display_errors());
+
+            //$this->load->view('upload_form', $error);
+            log_message("error",$err->getMessage());
+            return show_error($err->getMessage());
+        }else{
+            $data = $this->upload->data();
+            $insert = array(
+                    'work_id' => $id,
+                    'file_name' => $data['file_name'], 
+                    'original_file_name' => $data['orig_name'],
+                    'description'  => $img_description,
+                    );
+            $this->works_model->add_file($insert);            
+        }
+        redirect('works');
+    }
 }

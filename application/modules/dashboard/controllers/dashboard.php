@@ -15,27 +15,13 @@ class Dashboard extends MX_Controller {
     public function __construct() {
 
         parent::__construct();
-	$this->load->helper('sessions');
+        $this->load->helper('sessions');
         without_stored_cache();
         session_inactivity_logout();
-//                  if($this->session->all_userdata('language') != '')
-//        {
-//             if($this->session->userdata('language') != '')
-//             $this->language = $this->session->userdata('language');
-//             else
-//             $this->language = 'english';
-//                 
-//        }
-//        else
-//        {
-//            
-//            $this->language = 'english';
-//        }
         $this->language = 'spanish';
-$this->role = $this->session->userdata('role');
+        $this->role = $this->session->userdata('role');
         //$this->language = ($this->session->all_userdata('language')) ? $this->session->userdata('language') : $this->config->item('default_language'); 
-      if (! $this->session->userdata('username') && $uristring != 'users/login')
-        {
+        if (! $this->session->userdata('username') && $uristring != 'users/login'){
             redirect('site/home/login','refresh');; // the user is not logged in, redirect them!
         }
         $this->lang->load($this->language,  $this->language);
@@ -61,21 +47,20 @@ $this->role = $this->session->userdata('role');
         $this->load->view('goods_location', $data);
     }
 
- public function index() {
- 	$this->load->model('inventory/inventory_model');
+    public function index() {
+        $this->load->model('inventory/inventory_model');
         $this->load->model('location/location_model');
         $this->load->model('layers/layer_model');
         $data['page'] = 'dashboard';
-                $data['language'] = $this->language;
-                $data['role'] = $this->role; 
+        $data['language'] = $this->language;
+        $data['role'] = $this->role; 
         $data['buildings'] = $this->location_model->get_all_buildings();
         $data['first_floor'] = $this->inventory_model->get_initial_floor();
         $data['first_office'] = $this->inventory_model->get_initial_office();
         $data['good_articles'] = $this->inventory_model->get_all_inventory_article();
         //work start
         $data['works'] = $this->inventory_model->get_all_inventory_work();
-        //work end
-        
+        //work end        
         $this->load->view('dashboard_view',$data);
     }
      public function works() {

@@ -63,4 +63,16 @@
 		if(!$session_exist || $session_exist='') 
 			redirect('site/home/login', 'refresh');
 	}
+
+	function updateActiveSession(){
+
+	}
+	function resetActiveSessionTime(){
+
+	}
+
+	function newActiveSessionTime(){
+		
+	}
+
 ?>

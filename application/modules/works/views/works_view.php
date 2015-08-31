@@ -82,6 +82,19 @@ $this->load->view('dashboard/header'); ?>
                     </div>
                 </div>
                 <!--user edit modal end-->
+                <!--NEW UPLOAD FILE MODAL-->
+                <div class="modal fade" id="work_upload_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title"><?php echo $this->lang->line('upload_image'); ?></h4>
+                            </div>
+                            <div id="work_upload_form" class="modal-body">
+                                                            
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -99,7 +112,8 @@ $this->load->view('dashboard/header'); ?>
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/datepicker.css"/>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
-<!--END datepicker-->
+<!--jqBootstrapValidation-->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/jsbootstrapvalidation/jqBootstrapValidation.js"></script> 
 <script>
 $(document).ready(function () {
     var responsiveHelper = undefined;
@@ -285,8 +299,24 @@ $(document).ready(function () {
         });
         //img_upload
         $('.img_upload').click(function(e) {
-            e.preventDefault();
-            alert("No disponible");
+            var work_id = $(this).attr('data-id');
+            $.ajax({
+                url: "<?php echo base_url(); ?>works/get_work_upload_info",
+                type: "POST",
+                data: {"work_id": work_id},
+                success: function(data){
+                    console.log(data);
+                    $('#work_upload_form').html(data);
+                    $('#work_upload_modal').modal('show');
+                    return false;
+                },
+                error: function(jqxhr,textStatus,errorThrown){
+                    console.log(jqxhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+            return false;            
         });
         //log_view
         $('.log_view').click(function(e) {

@@ -1172,77 +1172,68 @@ $this->load->view('dashboard/header'); ?>
                 });
                 //inventory image upload end
                    
-
+                $( window ).unload(function() {
+                  alert("Bye now!");
+                });
             });
             
-            function validategoodarticleForm() {
-                                                   
-                                                   
-                                                   
-                                                   if ($('#article_brand').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_ariclebrand");?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if($("#article_model").val()==='')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_ariclemodel");?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if($('#article_serial').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_aricleserial");?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if($('#article_description').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_aricledescription");?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else if ($('#article_divestiture').val() === '')
-                                                    {
-                                                        $('#error').html('<?php echo $this->lang->line("error_articledivestiture"); ?>');
-                                                        $('#error').show();
-                                                        return false;
-                                                    }
-                                                    else
-                                                    {
-                                                        $('#error').hide();
-                                                        return true;
-                                                    }
-                                                   
-                                                    
-                                                    
-                                                }
-                                                //validate  upload form
-                                                function validateUploadForm() {
-                                                if($('#inventory_img').val() === '')
-                                                    {
-                                                        $('#upload_error').html("<?php echo $this->lang->line('error_file_upload');?>");
-                                                        $('#upload_error').show();
-                                                        return false;
-                                                    }
-                                                    else if($('#inventory_img_description').val() === '')
-                                                    {
-                                                        $('#upload_error').html("<?php echo $this->lang->line('error_description');?>");
-                                                        $('#upload_error').show();
-                                                        return false;
-                                                    }
-                                                    
-                                                    else
-                                                    {
-                                                        $('#upload_error').hide();
-                                                        return true;
-                                                    }
-                                                }
-                                                //validate upload form end
+    function validategoodarticleForm() {
 
-            
-            
+       if ($('#article_brand').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_ariclebrand");?>');
+            $('#error').show();
+            return false;
+        }
+        else if($("#article_model").val()==='')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_ariclemodel");?>');
+            $('#error').show();
+            return false;
+        }
+        else if($('#article_serial').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_aricleserial");?>');
+            $('#error').show();
+            return false;
+        }
+        else if($('#article_description').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_aricledescription");?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#article_divestiture').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_articledivestiture"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else
+        {
+            $('#error').hide();
+            return true;
+        }
+       
+        
+        
+    }
+    //validate  upload form
+    function validateUploadForm() {
+        if($('#inventory_img').val() === ''){
+            $('#upload_error').html("<?php echo $this->lang->line('error_file_upload');?>");
+            $('#upload_error').show();
+            return false;
+        }else if($('#inventory_img_description').val() === ''){
+            $('#upload_error').html("<?php echo $this->lang->line('error_description');?>");
+            $('#upload_error').show();
+            return false;
+        }else{
+                $('#upload_error').hide();
+                return true;
+            }
+    }
+    //validate upload form end            
         </script>
 </body>
 </html>

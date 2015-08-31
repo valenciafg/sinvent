@@ -49,5 +49,9 @@ class Works_model extends CI_Model {
         $this->db->where('id', $work_id);
         $this->db->delete('works');
     }    
+
+    public function add_file($data){
+        $this->db->insert('work_uploads', $data);
+    }
 }
 ?>

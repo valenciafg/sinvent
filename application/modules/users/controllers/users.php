@@ -12,33 +12,15 @@ if (!defined('BASEPATH'))
 
 class Users extends MX_Controller {
     protected $suspended_time = 120;//Minutos expresados en segundos
+    
     public function __construct() {
-
         parent::__construct();
         $this->load->helper('sessions');
         without_stored_cache();
         session_inactivity_logout();
         $uristring = uri_string();
-
-//         if($this->session->all_userdata('language') != '')
-//        {
-//             if($this->session->userdata('language') != '')
-//             $this->language = $this->session->userdata('language');
-//             else
-//             $this->language = 'english';
-//                 
-//        }
-//        else
-//        {
-//            
-//            $this->language = 'english';
-//        }
-
         $this->language = 'spanish';
         $this->role = $this->session->userdata('role');
-
-
-//$this->language = ($this->session->all_userdata('language')) ? $this->session->userdata('language') : $this->config->item('default_language'); 
         if (!$this->session->userdata('username') && $uristring != 'users/login') {
             redirect('site/home/login', 'refresh'); // the user is not logged in, redirect them!
         }
@@ -46,15 +28,12 @@ class Users extends MX_Controller {
 
         if ($this->session->userdata('role') == 'write' || $this->session->userdata('role') == 'read') {
             $action = $this->uri->segment(2);
-            if($action != 'logout' && $action != 'login')
-            {
+            if($action != 'logout' && $action != 'login'){
             redirect('noaccess', 'refresh');
             }
         }
         $this->load->model('users/user_model', 'user_model');
-
         $this->load->library('form_validation');
-//        $this->lang->load('dashboard', 'english');
     }
 
     public function index() {
@@ -103,10 +82,9 @@ class Users extends MX_Controller {
                 'password' => md5($this->input->post('password'))
             );
             //if($data['username'] == 'admin'){
-                $user_details = $this->user_model->checkUser($data);
-                //$user_details = $user_details[0];
+                $user_details = $this->user_model->checkUser($data);                
                 //Si usuario y contraseña son correctos
-                if (!empty($user_details)){                
+                if (!empty($user_details)){
                     $active_session = $user_details['active_session'];
                     if($active_session == 0){                    
                         $suspended_user = $user_details['suspended'];
@@ -123,6 +101,7 @@ class Users extends MX_Controller {
                                 'role' => $role,
                                 'application' => $user_details['app_name'],
                                 'start_time' => time() //tiempo de espera de inicio de sesion
+
                             );
                             $this->session->set_userdata($userarray);
                             $this->user_model->resetSuspendedUser($user_details['username']);

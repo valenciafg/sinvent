@@ -49,43 +49,33 @@ $this->load->view('dashboard/header');?>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div id="upload_error" style="padding-left: 220px;color: red;display:none;"></div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-4">
-
-<?php echo $this->lang->line('dashboard_location_imglocation'); ?></label>
-                                                                <div class="col-md-8">
-                                                                    <input type="hidden" name="inventory_id" id="inventory_id">
-                                                                    <input type="file" id="inventory_img" name="inventory_img">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-4">
+                                                                        <?php echo $this->lang->line('dashboard_location_imglocation'); ?>
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <input type="hidden" name="inventory_id" id="inventory_id">
+                                                                        <input type="file" id="inventory_img" name="inventory_img">
+                                                                    </div>
                                                                 </div>
-
-
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">
-<?php echo $this->lang->line("table_description"); ?>
+                                                                    <?php echo $this->lang->line("table_description"); ?>
                                                                 </label>
                                                                 <div class="col-md-8">
                                                                     <textarea id="inventory_img_description" name="inventory_img_description" value="" class="form-control" rows="3"></textarea>
                                                                 </div>
-
-
                                                             </div>
                                                         </div>
-
-
-                                                        <!--/span-->
-
-                                                        <!--/span-->
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('upload'); ?>" 
-                                                   class="btn blue">
+                                            <input type="submit" name="submit" value="<?php echo $this->lang->line('upload'); ?>" class="btn blue">
                                         </div>
                                         </form>
                                     </div>
@@ -93,6 +83,7 @@ $this->load->view('dashboard/header');?>
                                 </div>
                                 <!-- /.modal-dialog -->
                             </div>
+                        </div>
                             <div class="modal fade" id="portlet-config31" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
