@@ -53,5 +53,12 @@ class Works_model extends CI_Model {
     public function add_file($data){
         $this->db->insert('work_uploads', $data);
     }
+
+    public function get_work_files($id){
+        $this->db->select('*');
+        $this->db->where('work_id', $id);
+        $query = $this->db->get('work_uploads');
+        return $query->result_array();
+    }
 }
 ?>

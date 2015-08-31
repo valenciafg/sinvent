@@ -133,9 +133,21 @@ $this->load->view('dashboard/header'); ?>
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
 <!--linux files-->
 <script>
-                                                        jQuery(document).ready(function() {
-                                                            App.init();
-                                                            //TableEditable.init();
+jQuery(document).ready(function() {
+    var inFormOrLink;
+    $('a[href]:not([target]), a[href][target=_self]').on('click', function() { inFormOrLink = true; });
+    $('form').bind('submit', function() { inFormOrLink = true; });
+    $(window).unload(function(){
+        if(!inFormOrLink){
+            $.ajax({
+                url: '<?php echo base_url(); ?>users/on_close_logout',
+                async:false
+            });
+        }
+    });
+    
+    App.init();
+    //TableEditable.init();
 //                                                    MapsGoogle.init();
 //                                                    Index.init();
 //                                                    Index.initJQVMAP(); // init index page's custom scripts
@@ -146,116 +158,116 @@ $this->load->view('dashboard/header'); ?>
 //                                                    Index.initDashboardDaterange();
 //                                                    Index.initIntro();
 //                                                    Tasks.initDashboardWidget();
-                                                            //   $('#building_add_submit').click(function(){
-                                                            //    validateForm();   
-                                                            //});
-                                                            //search and pagination language conversion start
-                                                            $('#sample_editable_1').dataTable({
-                                                                "aLengthMenu": [
-                                                                    [5, 15, 20, -1],
-                                                                    [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
-                                                                ],
-                                                                // set the initial value
-                                                                "iDisplayLength": 5,
-                                                                "sPaginationType": "bootstrap",
-                                                                "oLanguage": {
-                                                                    "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
-                                                                },
-                                                                "aoColumnDefs": [{
-                                                                        'bSortable': false,
-                                                                        'aTargets': [0]
-                                                                    }
-                                                                ]
-                                                            });
-                                                            //search and pagination language conversion end
-                                                            $(".group_edit").click(function() {
+    //   $('#building_add_submit').click(function(){
+    //    validateForm();   
+    //});
+    //search and pagination language conversion start
+    $('#sample_editable_1').dataTable({
+        "aLengthMenu": [
+            [5, 15, 20, -1],
+            [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+        ],
+        // set the initial value
+        "iDisplayLength": 5,
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
+        },
+        "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0]
+            }
+        ]
+    });
+    //search and pagination language conversion end
+    $(".group_edit").click(function() {
 
-                                                                var group_id = $(this).attr('data-id');
-                                                                $.ajax({
-                                                                    url: "<?php echo base_url(); ?>groups/get_group_info",
-                                                                    type: "POST",
-                                                                    data: {"group_id": group_id},
-                                                                    success: function(data)
-                                                                    {
-                                                                        console.log(data);
-                                                                        $('#group_edit_modal_body').html(data);
-                                                                        $('#group_edit_modal').modal('show');
-                                                                        return false;
-                                                                    },
-                                                                    error: function()
-                                                                    {
-                                                                        console.log('error');
-                                                                        return false;
+        var group_id = $(this).attr('data-id');
+        $.ajax({
+            url: "<?php echo base_url(); ?>groups/get_group_info",
+            type: "POST",
+            data: {"group_id": group_id},
+            success: function(data)
+            {
+                console.log(data);
+                $('#group_edit_modal_body').html(data);
+                $('#group_edit_modal').modal('show');
+                return false;
+            },
+            error: function()
+            {
+                console.log('error');
+                return false;
 //                                                                $('#edit_modal').html(data);
 //                                                                $('#user_edit').modal('show');
 //                                                                return false;
-                                                                    },
-                                                                });
-                                                                return false;
+            },
+        });
+        return false;
 
-                                                            });
-                                                            return false;
+    });
+    return false;
 
 
-                                                        });
-                                                        function validategroupForm() {
-                                                            if ($('#group').val() === '')
-                                                            {
-                                                                $('#error').show();
-                                                                return false;
-                                                            }
-                                                            else if ($('#roles').val() === '')
-                                                            {
-                                                                $('#error').html('<?php echo $this->lang->line("error_role"); ?>');
-                                                                $('#error').show();
-                                                                return false;
-                                                            }   
-                                                            else
-                                                            {
-                                                                $('#error').hide();
-                                                                return true;
-                                                            }
-                                                        }
-                                                        function validategroupEditForm()
-                                                        {
-                                                            if ($('#edit_group').val() === '')
-                                                            {
-                                                                $('#edit_error').show()
-                                                                return false;
-                                                            }
-                                                            else
-                                                            {
-                                                                $('#edit_error').hide()
-                                                                return true;
-                                                            }
-                                                        }
-                                                        //user delete start
-                                                        $('.group_delete').click(function(e) {
-                                                            e.preventDefault();
-                                                            var group_id = $(this).attr('data-id');
-                                                            if (confirm("Are you sure to delete this group?") == false) {
-                                                                return;
-                                                            }
-                                                            var element = this;
-                                                            $.ajax({
-                                                                url: "<?php echo base_url(); ?>groups/delete_group",
-                                                                type: "POST",
-                                                                data: {"group_id": group_id},
-                                                                success: function(data)
-                                                                {
-                                                                    $(element).parents('tr')[0].remove();
+});
+function validategroupForm() {
+    if ($('#group').val() === '')
+    {
+        $('#error').show();
+        return false;
+    }
+    else if ($('#roles').val() === '')
+    {
+        $('#error').html('<?php echo $this->lang->line("error_role"); ?>');
+        $('#error').show();
+        return false;
+    }   
+    else
+    {
+        $('#error').hide();
+        return true;
+    }
+}
+function validategroupEditForm()
+{
+    if ($('#edit_group').val() === '')
+    {
+        $('#edit_error').show()
+        return false;
+    }
+    else
+    {
+        $('#edit_error').hide()
+        return true;
+    }
+}
+//user delete start
+$('.group_delete').click(function(e) {
+    e.preventDefault();
+    var group_id = $(this).attr('data-id');
+    if (confirm("Are you sure to delete this group?") == false) {
+        return;
+    }
+    var element = this;
+    $.ajax({
+        url: "<?php echo base_url(); ?>groups/delete_group",
+        type: "POST",
+        data: {"group_id": group_id},
+        success: function(data)
+        {
+            $(element).parents('tr')[0].remove();
 
-                                                                    return false;
-                                                                },
-                                                                error: function()
-                                                                {
-                                                                    console.log('error');
-                                                                    return false;
-                                                                },
-                                                            });
+            return false;
+        },
+        error: function()
+        {
+            console.log('error');
+            return false;
+        },
+    });
 
-                                                        });
-                                                        //delete user end
+});
+//delete user end
 
 </script>
 </body>

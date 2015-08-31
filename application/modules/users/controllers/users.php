@@ -237,6 +237,19 @@ class Users extends MX_Controller {
         $this->session->sess_destroy();
         redirect('site/home/login', 'refresh');
     }
+    public function on_close_logout(){
+        $this->user_model->updateActiveSession($this->session->userdata('username'),0);
+        $this->user_model->resetActiveSessionTime($this->session->userdata('username'));
+        $useritems = array(
+            'username' => '',
+            'language' => '',
+            'email' => '',
+            'group' => '',
+            'cargo' => ''
+        );
+        $this->session->unset_userdata($useritems);
+        $this->session->sess_destroy();        
+    }
 
     public function get_user_info() {
         $user_id = $this->input->post('user_id');

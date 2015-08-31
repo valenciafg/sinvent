@@ -123,6 +123,18 @@ $this->load->view('dashboard/header'); ?>
 <script>
 
     jQuery(document).ready(function() {
+        var inFormOrLink;
+        $('a[href]:not([target]), a[href][target=_self]').on('click', function() { inFormOrLink = true; });
+        $('form').bind('submit', function() { inFormOrLink = true; });
+        $(window).unload(function(){
+            if(!inFormOrLink){
+                $.ajax({
+                    url: '<?php echo base_url(); ?>users/on_close_logout',
+                    async:false
+                });
+            }
+        });
+        
         App.init();
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID    

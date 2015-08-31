@@ -233,6 +233,17 @@ $this->load->view('dashboard/header'); ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
 <script>
 $(document).ready(function () {
+    var inFormOrLink;
+    $('a[href]:not([target]), a[href][target=_self]').on('click', function() { inFormOrLink = true; });
+    $('form').bind('submit', function() { inFormOrLink = true; });
+    $(window).unload(function(){
+        if(!inFormOrLink){
+            $.ajax({
+                url: '<?php echo base_url(); ?>users/on_close_logout',
+                async:false
+            });
+        }
+    });
         $('#example').DataTable({
             //responsive: true;
             language: {

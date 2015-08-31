@@ -96,6 +96,20 @@ $this->load->view('dashboard/header'); ?>
                         </div>
                     </div>
             </div>
+            <div class="modal fade" id="work_files_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title"><?php echo $this->lang->line('works_details_title'); ?></h4>
+                        </div>
+                        <div id="work_files" class="modal-body">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -116,6 +130,18 @@ $this->load->view('dashboard/header'); ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/jsbootstrapvalidation/jqBootstrapValidation.js"></script> 
 <script>
 $(document).ready(function () {
+    var inFormOrLink;
+    $('a[href]:not([target]), a[href][target=_self]').on('click', function() { inFormOrLink = true; });
+    $('form').bind('submit', function() { inFormOrLink = true; });
+    $(window).unload(function(){
+        if(!inFormOrLink){
+            $.ajax({
+                url: '<?php echo base_url(); ?>users/on_close_logout',
+                async:false
+            });
+        }
+    });
+
     var responsiveHelper = undefined;
     var breakpointDefinition = {
         tablet: 1024,
@@ -320,9 +346,33 @@ $(document).ready(function () {
         });
         //log_view
         $('.log_view').click(function(e) {
-            e.preventDefault();
-            alert("No disponible");
+            var work_id = $(this).attr('data-id');
+            $.ajax({
+                url: "<?php echo base_url(); ?>works/get_work_files",
+                type: "POST",
+                data: {"work_id": work_id},
+                success: function(data){
+                    console.log(data);
+                    $('#work_files').html(data);
+                    $('#work_files_modal').modal('show');
+                    return false;
+                },
+                error: function(jqxhr,textStatus,errorThrown){
+                    console.log(jqxhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+            return false;            
         });
+
+        
+        /*$(window).unload(function(){
+            $.ajax({            
+                url: '<?php echo base_url(); ?>users/on_close_logout',
+                async:false
+            });
+        });*/
     });
     
 

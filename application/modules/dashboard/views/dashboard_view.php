@@ -1034,47 +1034,58 @@ $this->load->view('dashboard/header'); ?>
         <!--datepicker-->
 <!--linux files-->
 <script>
-           jQuery(document).ready(function() {
-               App.init();
-                                                    $('#sample_editable_1').dataTable(
-                                                            {
-                                                        "aLengthMenu": [
-                                                            [5, 15, 20, -1],
-                                                            [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
-                                                        ],
-                                                        // set the initial value
-                                                        "iDisplayLength": 5,
-                                                        "sPaginationType": "bootstrap",
-                                                        "oLanguage": {
-                                                            "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
-                                                        },
-                                                        "aoColumnDefs": [{
-                                                                'bSortable': false,
-                                                                'aTargets': [0]
-                                                            }
-                                                        ]
-                                                    }
-                                                        );
-                                                    //search and pagination language conversion end
-                                                       //search and pagination language conversion start
-                                                $('.sample_editable_1').dataTable({
-                                                    "aLengthMenu": [
-                                                        [5, 15, 20, -1],
-                                                        [5, 15, 20, "<?php echo $this->lang->line('all');?>"] // change per page values here
-                                                    ],
-                                                    // set the initial value
-                                                    "iDisplayLength": 5,
-                                                    "sPaginationType": "bootstrap",
-                                                    "oLanguage": {
-                                                         "sUrl": "<?php echo base_url();?>assets/datatable_lan/<?php echo $language;?>.txt"
-                                                    },
-                                                    "aoColumnDefs": [{
-                                                            'bSortable': false,
-                                                            'aTargets': [0]
-                                                        }
-                                                    ]
-                                                });
-                                                //search and pagination language conversion end
+jQuery(document).ready(function() {
+    var inFormOrLink;
+    $('a[href]:not([target]), a[href][target=_self]').on('click', function() { inFormOrLink = true; });
+    $('form').bind('submit', function() { inFormOrLink = true; });
+    $(window).unload(function(){
+        if(!inFormOrLink){
+            $.ajax({
+                url: '<?php echo base_url(); ?>users/on_close_logout',
+                async:false
+            });
+        }
+    });
+   App.init();
+    $('#sample_editable_1').dataTable(
+            {
+        "aLengthMenu": [
+            [5, 15, 20, -1],
+            [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+        ],
+        // set the initial value
+        "iDisplayLength": 5,
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
+        },
+        "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0]
+            }
+        ]
+    }
+        );
+    //search and pagination language conversion end
+       //search and pagination language conversion start
+$('.sample_editable_1').dataTable({
+    "aLengthMenu": [
+        [5, 15, 20, -1],
+        [5, 15, 20, "<?php echo $this->lang->line('all');?>"] // change per page values here
+    ],
+    // set the initial value
+    "iDisplayLength": 5,
+    "sPaginationType": "bootstrap",
+    "oLanguage": {
+         "sUrl": "<?php echo base_url();?>assets/datatable_lan/<?php echo $language;?>.txt"
+    },
+    "aoColumnDefs": [{
+            'bSortable': false,
+            'aTargets': [0]
+        }
+    ]
+});
+//search and pagination language conversion end
                 //populate floors on building select
                 $(".building-select").change(function() {
                     $.ajax({

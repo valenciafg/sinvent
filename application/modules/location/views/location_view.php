@@ -666,350 +666,361 @@ $tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'tab_0';
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
 <!--linux files-->
 <script>
-                                                    jQuery(document).ready(function() {
-                                                        App.init();
-                                                        //TableEditable.init();
-                                                        //SearchPagination.init();
-                                                        //search and pagination language conversion start
-                                                        $('.sample_editable_1').dataTable({
-                                                            "aLengthMenu": [
-                                                                [5, 15, 20, -1],
-                                                                [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
-                                                            ],
-                                                            // set the initial value
-                                                            "iDisplayLength": 5,
-                                                            "sPaginationType": "bootstrap",
-                                                            "oLanguage": {
-                                                                "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
-                                                            },
-                                                            "aoColumnDefs": [{
-                                                                    'bSortable': false,
-                                                                    'aTargets': [0]
-                                                                }
-                                                            ]
-                                                        });
-                                                        //search and pagination language conversion end
+jQuery(document).ready(function() {
+    var inFormOrLink;
+    $('a[href]:not([target]), a[href][target=_self]').on('click', function() { inFormOrLink = true; });
+    $('form').bind('submit', function() { inFormOrLink = true; });
+    $(window).unload(function(){
+        if(!inFormOrLink){
+            $.ajax({
+                url: '<?php echo base_url(); ?>users/on_close_logout',
+                async:false
+            });
+        }
+    });
+        App.init();
+        //TableEditable.init();
+        //SearchPagination.init();
+        //search and pagination language conversion start
+        $('.sample_editable_1').dataTable({
+            "aLengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+            "sPaginationType": "bootstrap",
+            "oLanguage": {
+                "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
+            },
+            "aoColumnDefs": [{
+                    'bSortable': false,
+                    'aTargets': [0]
+                }
+            ]
+        });
+        //search and pagination language conversion end
 
-                                                    });
-                                                    function validateForm() {
-                                                        if ($('#building_name').val() === '')
-                                                        {
-                                                            $('#error').html('<?php echo $this->lang->line("error_name"); ?>');
-                                                            $('#error').show();
-                                                            return false;
-                                                        }
-                                                        else if ($('#building_address').val() === '')
-                                                        {
-                                                            $('#error').html('<?php echo $this->lang->line("error_address"); ?>');
-                                                            $('#error').show();
-                                                            return false;
-                                                        }
+    });
+    function validateForm() {
+        if ($('#building_name').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_name"); ?>');
+            $('#error').show();
+            return false;
+        }
+        else if ($('#building_address').val() === '')
+        {
+            $('#error').html('<?php echo $this->lang->line("error_address"); ?>');
+            $('#error').show();
+            return false;
+        }
 //                                                
-                                                        else
-                                                        {
-                                                            $('#error').hide();
-                                                            return true;
-                                                        }
-                                                    }
-                                                    //building edit form validation
-                                                    function validateEditForm() {
-                                                        if ($('#building_edit_name').val() === '')
-                                                        {
-                                                            $('#building_edit_error').html('<?php echo $this->lang->line("error_name"); ?>');
-                                                            $('#building_edit_error').show();
-                                                            return false;
-                                                        }
-                                                        else if ($('#building_edit_address').val() === '')
-                                                        {
-                                                            $('#building_edit_error').html('<?php echo $this->lang->line("error_address"); ?>');
-                                                            $('#building_edit_error').show();
-                                                            return false;
-                                                        }
+        else
+        {
+            $('#error').hide();
+            return true;
+        }
+    }
+    //building edit form validation
+    function validateEditForm() {
+        if ($('#building_edit_name').val() === '')
+        {
+            $('#building_edit_error').html('<?php echo $this->lang->line("error_name"); ?>');
+            $('#building_edit_error').show();
+            return false;
+        }
+        else if ($('#building_edit_address').val() === '')
+        {
+            $('#building_edit_error').html('<?php echo $this->lang->line("error_address"); ?>');
+            $('#building_edit_error').show();
+            return false;
+        }
 //                                                
-                                                        else
-                                                        {
-                                                            $('#building_edit_error').hide();
-                                                            return true;
-                                                        }
-                                                    }
-                                                    function validatefloorForm() {
-                                                        if ($('#floor_building_id').val() === '')
-                                                        {
-                                                            $('#floor_error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                            $('#floor_error').show();
-                                                            return false;
-                                                        }
-                                                        else if ($('#floor').val() === '')
-                                                        {
-                                                            $('#floor_error').html('<?php echo $this->lang->line("error_floor"); ?>');
-                                                            $('#floor_error').show();
-                                                            return false;
-                                                        }
-                                                        else
-                                                        {
-                                                            $('#floor_error').hide();
-                                                            return true;
-                                                        }
-                                                    }
-                                                    function validatefloorEditForm() {
-                                                        if ($('#floor_building_edit_id').val() === '')
-                                                        {
-                                                            $('#floor_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                            $('#floor_edit_error').show();
-                                                            return false;
-                                                        }
-                                                        else if ($('#floor_edit').val() === '')
-                                                        {
-                                                            $('#floor_edit_error').html('<?php echo $this->lang->line("error_floor"); ?>');
-                                                            $('#floor_edit_error').show();
-                                                            return false;
-                                                        }
-                                                        else
-                                                        {
-                                                            $('#floor_edit_error').hide();
-                                                            return true;
-                                                        }
-                                                    }
-                                                    function validateofficeForm()
-                                                    {
-                                                     if ($('#building_select').val() === '')
-                                                        {
-                                                            $('#office_error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                            $('#office_error').show();
-                                                            return false;
-                                                        }  
-                                                    else if ($('#office').val() === '')
-                                                        {
-                                                            $('#office_error').html('<?php echo $this->lang->line("error_office"); ?>');
-                                                            $('#office_error').show();
-                                                            return false;
-                                                        }
-                                                        else
-                                                        {
-                                                            $('#office_error').hide();
-                                                            return true;
-                                                        }
-                                                    }
-                                                    function validateofficeEditForm()
-                                                    {
-                                                      if ($('#building_edit_select').val() === '')
-                                                        {
-                                                            $('#office_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
-                                                            $('#office_edit_error').show();
-                                                            return false;
-                                                        }    
-                                                    else if ($('#edit_office').val() === '')
-                                                        {
-                                                            $('#office_edit_error').html('<?php echo $this->lang->line("error_office"); ?>');
-                                                            $('#office_edit_error').show();
-                                                            return false;
-                                                        }
-                                                        else
-                                                        {
-                                                            $('#office_edit_error').hide();
-                                                            return true;
-                                                        }  
-                                                    }
-                                                    //update floors on building choose
-                                                    $("#building_select").change(function() {
-                                                    
-                                                       if($(this).val() != '')
-                                                       {
-                                                        $.ajax({
-                                                            url: '<?php echo base_url(); ?>location/get_content',
-                                                            type: 'POST',
-                                                            data: {
-                                                                'main_cat': 'buildings',
-                                                                'data': $(this).val()
-                                                            },
-                                                            //dataType:'json',
-                                                            success: function(data) {
-                                                                $("#floor_select").html(data);
-                                                            },
-                                                            error: function(request, error)
-                                                            {
-                                                                alert("Request: " + JSON.stringify(request));
-                                                            }
-                                                        });
-                                                        }
+        else
+        {
+            $('#building_edit_error').hide();
+            return true;
+        }
+    }
+    function validatefloorForm() {
+        if ($('#floor_building_id').val() === '')
+        {
+            $('#floor_error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#floor_error').show();
+            return false;
+        }
+        else if ($('#floor').val() === '')
+        {
+            $('#floor_error').html('<?php echo $this->lang->line("error_floor"); ?>');
+            $('#floor_error').show();
+            return false;
+        }
+        else
+        {
+            $('#floor_error').hide();
+            return true;
+        }
+    }
+    function validatefloorEditForm() {
+        if ($('#floor_building_edit_id').val() === '')
+        {
+            $('#floor_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#floor_edit_error').show();
+            return false;
+        }
+        else if ($('#floor_edit').val() === '')
+        {
+            $('#floor_edit_error').html('<?php echo $this->lang->line("error_floor"); ?>');
+            $('#floor_edit_error').show();
+            return false;
+        }
+        else
+        {
+            $('#floor_edit_error').hide();
+            return true;
+        }
+    }
+    function validateofficeForm()
+    {
+     if ($('#building_select').val() === '')
+        {
+            $('#office_error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#office_error').show();
+            return false;
+        }  
+    else if ($('#office').val() === '')
+        {
+            $('#office_error').html('<?php echo $this->lang->line("error_office"); ?>');
+            $('#office_error').show();
+            return false;
+        }
+        else
+        {
+            $('#office_error').hide();
+            return true;
+        }
+    }
+    function validateofficeEditForm()
+    {
+      if ($('#building_edit_select').val() === '')
+        {
+            $('#office_edit_error').html('<?php echo $this->lang->line("error_building"); ?>');
+            $('#office_edit_error').show();
+            return false;
+        }    
+    else if ($('#edit_office').val() === '')
+        {
+            $('#office_edit_error').html('<?php echo $this->lang->line("error_office"); ?>');
+            $('#office_edit_error').show();
+            return false;
+        }
+        else
+        {
+            $('#office_edit_error').hide();
+            return true;
+        }  
+    }
+    //update floors on building choose
+    $("#building_select").change(function() {
+    
+       if($(this).val() != '')
+       {
+        $.ajax({
+            url: '<?php echo base_url(); ?>location/get_content',
+            type: 'POST',
+            data: {
+                'main_cat': 'buildings',
+                'data': $(this).val()
+            },
+            //dataType:'json',
+            success: function(data) {
+                $("#floor_select").html(data);
+            },
+            error: function(request, error)
+            {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+        }
 
-                                                    });
-                                                    //office edit building select
-                                                    $(document).on("change", "#building_edit_select", function(){
-                                                       if($(this).val() != '')
-                                                       {
-                                                        $.ajax({
-                                                            url: '<?php echo base_url(); ?>location/get_content',
-                                                            type: 'POST',
-                                                            data: {
-                                                                'main_cat': 'buildings',
-                                                                'data': $(this).val()
-                                                            },
-                                                            //dataType:'json',
-                                                            success: function(data) {
-                                                                $("#floor_edit_select").html(data);
-                                                            },
-                                                            error: function(request, error)
-                                                            {
-                                                                alert("Request: " + JSON.stringify(request));
-                                                            }
-                                                        });
-                                                        }
+    });
+    //office edit building select
+    $(document).on("change", "#building_edit_select", function(){
+       if($(this).val() != '')
+       {
+        $.ajax({
+            url: '<?php echo base_url(); ?>location/get_content',
+            type: 'POST',
+            data: {
+                'main_cat': 'buildings',
+                'data': $(this).val()
+            },
+            //dataType:'json',
+            success: function(data) {
+                $("#floor_edit_select").html(data);
+            },
+            error: function(request, error)
+            {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+        }
 
-                                                    });
-                                                    //update floors on building choose end
-                                                    //delte layer start
-                                                    $('.building_item_delete').click(function(e) {
-                                                        e.preventDefault();
-                                                        var item_id = $(this).attr('data-id');
-                                                        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Edificio?") == false) {
-                                                            return;
-                                                        }
-                                                        var element = this;
-                                                        $.ajax({
-                                                            url: "<?php echo base_url(); ?>location/delete_building_item",
-                                                            type: "POST",
-                                                            data: {"building_item_id": item_id},
-                                                            success: function(data)
-                                                            {
-                                                                $(element).parents('tr')[0].remove();
-                                                                window.location = "<?php echo base_url();?>location";
-                                                                return false;
-                                                            },
-                                                            error: function()
-                                                            {
-                                                                console.log('error');
-                                                                return false;
-                                                            },
-                                                        });
+    });
+    //update floors on building choose end
+    //delte layer start
+    $('.building_item_delete').click(function(e) {
+        e.preventDefault();
+        var item_id = $(this).attr('data-id');
+        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Edificio?") == false) {
+            return;
+        }
+        var element = this;
+        $.ajax({
+            url: "<?php echo base_url(); ?>location/delete_building_item",
+            type: "POST",
+            data: {"building_item_id": item_id},
+            success: function(data)
+            {
+                $(element).parents('tr')[0].remove();
+                window.location = "<?php echo base_url();?>location";
+                return false;
+            },
+            error: function()
+            {
+                console.log('error');
+                return false;
+            },
+        });
 
-                                                    });
-                                                    //delete layer end
-                                                    //delte floor start
-                                                    $('.floor_delete').click(function(e) {
-                                                        e.preventDefault();
-                                                        var floor_id = $(this).attr('data-id');
-                                                        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Piso?") == false) {
-                                                            return;
-                                                        }
-                                                        var element = this;
-                                                        $.ajax({
-                                                            url: "<?php echo base_url(); ?>location/delete_floor",
-                                                            type: "POST",
-                                                            data: {"floor_id": floor_id},
-                                                            success: function(data)
-                                                            {
-                                                                $(element).parents('tr')[0].remove();
-                                                                window.location = "<?php echo base_url();?>location?tab=tab_1";
-                                                                return false;
-                                                            },
-                                                            error: function()
-                                                            {
-                                                                console.log('error');
-                                                                return false;
-                                                            },
-                                                        });
+    });
+    //delete layer end
+    //delte floor start
+    $('.floor_delete').click(function(e) {
+        e.preventDefault();
+        var floor_id = $(this).attr('data-id');
+        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Piso?") == false) {
+            return;
+        }
+        var element = this;
+        $.ajax({
+            url: "<?php echo base_url(); ?>location/delete_floor",
+            type: "POST",
+            data: {"floor_id": floor_id},
+            success: function(data)
+            {
+                $(element).parents('tr')[0].remove();
+                window.location = "<?php echo base_url();?>location?tab=tab_1";
+                return false;
+            },
+            error: function()
+            {
+                console.log('error');
+                return false;
+            },
+        });
 
-                                                    });
-                                                    //delete floor end
-                                                    //delte office start
-                                                    $('.office_delete').click(function(e) {
-                                                        e.preventDefault();
-                                                        var office_id = $(this).attr('data-id');
-                                                        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Officina?") == false) {
-                                                            return;
-                                                        }
-                                                        var element = this;
-                                                        $.ajax({
-                                                            url: "<?php echo base_url(); ?>location/delete_office",
-                                                            type: "POST",
-                                                            data: {"office_id": office_id},
-                                                            success: function(data)
-                                                            {
-                                                                $(element).parents('tr')[0].remove();
-                                                                window.location = "<?php echo base_url();?>location?tab=tab_2";
-                                                                return false;
-                                                            },
-                                                            error: function()
-                                                            {
-                                                                console.log('error');
-                                                                return false;
-                                                            },
-                                                        });
+    });
+    //delete floor end
+    //delte office start
+    $('.office_delete').click(function(e) {
+        e.preventDefault();
+        var office_id = $(this).attr('data-id');
+        if (confirm("Se eliminarán todos los archivos relacionados y registros. Está seguro de eliminar este Officina?") == false) {
+            return;
+        }
+        var element = this;
+        $.ajax({
+            url: "<?php echo base_url(); ?>location/delete_office",
+            type: "POST",
+            data: {"office_id": office_id},
+            success: function(data)
+            {
+                $(element).parents('tr')[0].remove();
+                window.location = "<?php echo base_url();?>location?tab=tab_2";
+                return false;
+            },
+            error: function()
+            {
+                console.log('error');
+                return false;
+            },
+        });
 
-                                                    });
-                                                    //delete office end
-                                                    
-                                                    //edit functions
-                                                    //building edit
-                                                    $(".building_edit").click(function() {
-                                                    var building_id = $(this).attr('data-id');
-                                                    $.ajax({
-                                                        url: "<?php echo base_url(); ?>location/get_building_info",
-                                                        type: "POST",
-                                                        data: {"building_id": building_id},
-                                                        success: function(data)
-                                                        {
-                                                            console.log(data);
-                                                            $('#building_edit_form').html(data);
-                                                            $('#building_edit_modal').modal('show');
-                                                            return false;
-                                                        },
-                                                        error: function()
-                                                        {
-                                                            console.log('error');
-                                                            return false;
-                                                        },
-                                                    });
-                                                    return false;
+    });
+    //delete office end
+    
+    //edit functions
+    //building edit
+    $(".building_edit").click(function() {
+    var building_id = $(this).attr('data-id');
+    $.ajax({
+        url: "<?php echo base_url(); ?>location/get_building_info",
+        type: "POST",
+        data: {"building_id": building_id},
+        success: function(data)
+        {
+            console.log(data);
+            $('#building_edit_form').html(data);
+            $('#building_edit_modal').modal('show');
+            return false;
+        },
+        error: function()
+        {
+            console.log('error');
+            return false;
+        },
+    });
+    return false;
 
-                                                });
-                                                    //floor edit
-                                                    $(".floor_edit").click(function() {
-                                                    var floor_id = $(this).attr('data-id');
-                                                    $.ajax({
-                                                        url: "<?php echo base_url(); ?>location/get_floor_info",
-                                                        type: "POST",
-                                                        data: {"floor_id": floor_id},
-                                                        success: function(data)
-                                                        {
-                                                            console.log(data);
-                                                            $('#floor_edit_form').html(data);
-                                                            $('#floor_edit_modal').modal('show');
-                                                            return false;
-                                                        },
-                                                        error: function()
-                                                        {
-                                                            console.log('error');
-                                                            return false;
-                                                        },
-                                                    });
-                                                    return false;
+});
+    //floor edit
+    $(".floor_edit").click(function() {
+    var floor_id = $(this).attr('data-id');
+    $.ajax({
+        url: "<?php echo base_url(); ?>location/get_floor_info",
+        type: "POST",
+        data: {"floor_id": floor_id},
+        success: function(data)
+        {
+            console.log(data);
+            $('#floor_edit_form').html(data);
+            $('#floor_edit_modal').modal('show');
+            return false;
+        },
+        error: function()
+        {
+            console.log('error');
+            return false;
+        },
+    });
+    return false;
 
-                                                });
-                                                    //office edit function
-                                                $(".office_edit").click(function() {
-                                                    var office_id = $(this).attr('data-id');
-                                                    $.ajax({
-                                                        url: "<?php echo base_url(); ?>location/get_office_info",
-                                                        type: "POST",
-                                                        data: {"office_id": office_id},
-                                                        success: function(data)
-                                                        {
-                                                            console.log(data);
-                                                            $('#office_edit_form').html(data);
-                                                            $('#office_edit_modal').modal('show');
-                                                            return false;
-                                                        },
-                                                        error: function()
-                                                        {
-                                                            console.log('error');
-                                                            return false;
-                                                        },
-                                                    });
-                                                    return false;
+});
+    //office edit function
+$(".office_edit").click(function() {
+    var office_id = $(this).attr('data-id');
+    $.ajax({
+        url: "<?php echo base_url(); ?>location/get_office_info",
+        type: "POST",
+        data: {"office_id": office_id},
+        success: function(data)
+        {
+            console.log(data);
+            $('#office_edit_form').html(data);
+            $('#office_edit_modal').modal('show');
+            return false;
+        },
+        error: function()
+        {
+            console.log('error');
+            return false;
+        },
+    });
+    return false;
 
-                                                });
+});
 
 
 </script>

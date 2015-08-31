@@ -241,152 +241,162 @@ $this->load->view('dashboard/header'); ?>
 <script src="<?php echo base_url(); ?>assets/js/custom/table-editable.js"></script>
 <!--linux files-->
 <script>
-                                            jQuery(document).ready(function() {
-                                                App.init();
-                                                //TableEditable.init();
-                                                //search and pagination language conversion start
-                                                $('#sample_editable_1').dataTable({
-                                                    "aLengthMenu": [
-                                                        [5, 15, 20, -1],
-                                                        [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
-                                                    ],
-                                                    // set the initial value
-                                                    "iDisplayLength": 5,
-                                                    "sPaginationType": "bootstrap",
-                                                    "oLanguage": {
-                                                        "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
-                                                    },
-                                                    "aoColumnDefs": [{
-                                                            'bSortable': false,
-                                                            'aTargets': [0]
-                                                        }
-                                                    ]
-                                                });
-                                                //search and pagination language conversion end
-                                                $("#add_user").click(function() {
-                                                    $('#newuser_modal').modal('show');
-                                                });
-                                                //user edit function
-                                                $(".user_edit").click(function() {
-                                                    var user_id = $(this).attr('data-id');
-                                                    $.ajax({
-                                                        url: "<?php echo base_url(); ?>users/get_user_info",
-                                                        type: "POST",
-                                                        data: {"user_id": user_id},
-                                                        success: function(data)
-                                                        {
-                                                            console.log(data);
-                                                            $('#edit_modal').html(data);
-                                                            $('#user_edit_modal').modal('show');
-                                                            return false;
-                                                        },
-                                                        error: function()
-                                                        {
-                                                            console.log('error');
-                                                            return false;
-                                                        },
-                                                    });
-                                                    return false;
+jQuery(document).ready(function() {
+    var inFormOrLink;
+    $('a[href]:not([target]), a[href][target=_self]').on('click', function() { inFormOrLink = true; });
+    $('form').bind('submit', function() { inFormOrLink = true; });
+    $(window).unload(function(){
+        if(!inFormOrLink){
+            $.ajax({
+                url: '<?php echo base_url(); ?>users/on_close_logout',
+                async:false
+            });
+        }
+    });
+    App.init();
+    //TableEditable.init();
+    //search and pagination language conversion start
+    $('#sample_editable_1').dataTable({
+        "aLengthMenu": [
+            [5, 15, 20, -1],
+            [5, 15, 20, "<?php echo $this->lang->line('all'); ?>"] // change per page values here
+        ],
+        // set the initial value
+        "iDisplayLength": 5,
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sUrl": "<?php echo base_url(); ?>assets/datatable_lan/<?php echo $language; ?>.txt"
+        },
+        "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0]
+            }
+        ]
+    });
+    //search and pagination language conversion end
+    $("#add_user").click(function() {
+        $('#newuser_modal').modal('show');
+    });
+    //user edit function
+    $(".user_edit").click(function() {
+        var user_id = $(this).attr('data-id');
+        $.ajax({
+            url: "<?php echo base_url(); ?>users/get_user_info",
+            type: "POST",
+            data: {"user_id": user_id},
+            success: function(data)
+            {
+                console.log(data);
+                $('#edit_modal').html(data);
+                $('#user_edit_modal').modal('show');
+                return false;
+            },
+            error: function()
+            {
+                console.log('error');
+                return false;
+            },
+        });
+        return false;
 
-                                                });
-                                                //user delete start
-                                                $('.user_delete').click(function(e) {
-                                                    e.preventDefault();
-                                                    var user_id = $(this).attr('data-id');
-                                                    if (confirm("Are you sure to delete this user?") == false) {
-                                                        return;
-                                                    }
-                                                    var element = this;
-                                                    $.ajax({
-                                                        url: "<?php echo base_url(); ?>users/delete_user",
-                                                        type: "POST",
-                                                        data: {"user_id": user_id},
-                                                        success: function(data)
-                                                        {
-                                                            $(element).parents('tr')[0].remove();
+    });
+    //user delete start
+    $('.user_delete').click(function(e) {
+        e.preventDefault();
+        var user_id = $(this).attr('data-id');
+        if (confirm("Are you sure to delete this user?") == false) {
+            return;
+        }
+        var element = this;
+        $.ajax({
+            url: "<?php echo base_url(); ?>users/delete_user",
+            type: "POST",
+            data: {"user_id": user_id},
+            success: function(data)
+            {
+                $(element).parents('tr')[0].remove();
 
-                                                            return false;
-                                                        },
-                                                        error: function()
-                                                        {
-                                                            console.log('error');
-                                                            return false;
-                                                        },
-                                                    });
+                return false;
+            },
+            error: function()
+            {
+                console.log('error');
+                return false;
+            },
+        });
 
-                                                });
-                                                //delete user end
+    });
+    //delete user end
 
-                                            });
-                                            function validateForm() {
+});
+function validateForm() {
 
-                                                if ($('#username').val() === '')
-                                                {
-                                                    $('#error').html('<?php echo $this->lang->line("error_username"); ?>');
-                                                    $('#error').show();
-                                                    return false;
-                                                }
-                                                else if (!ValidateEmail($("#email").val()))
-                                                {
-                                                    $('#error').html('<?php echo $this->lang->line("error_validemail"); ?>');
-                                                    $('#error').show();
-                                                    return false;
-                                                }
-                                                else if ($('#user-group').val() === '')
-                                                {
-                                                    $('#error').html('<?php echo $this->lang->line("error_group"); ?>');
-                                                    $('#error').show();
-                                                    return false;
-                                                }
-                                                else if ($('#password').val() === '')
-                                                {
-                                                    $('#error').html('<?php echo $this->lang->line("error_password"); ?>');
-                                                    $('#error').show();
-                                                    return false;
-                                                }
-                                                else
-                                                {
-                                                    $('#error').hide();
-                                                    return true;
-                                                }
-                                            }
-                                            function validateEditForm() {
+    if ($('#username').val() === '')
+    {
+        $('#error').html('<?php echo $this->lang->line("error_username"); ?>');
+        $('#error').show();
+        return false;
+    }
+    else if (!ValidateEmail($("#email").val()))
+    {
+        $('#error').html('<?php echo $this->lang->line("error_validemail"); ?>');
+        $('#error').show();
+        return false;
+    }
+    else if ($('#user-group').val() === '')
+    {
+        $('#error').html('<?php echo $this->lang->line("error_group"); ?>');
+        $('#error').show();
+        return false;
+    }
+    else if ($('#password').val() === '')
+    {
+        $('#error').html('<?php echo $this->lang->line("error_password"); ?>');
+        $('#error').show();
+        return false;
+    }
+    else
+    {
+        $('#error').hide();
+        return true;
+    }
+}
+function validateEditForm() {
 // 
-                                                if ($('#edit_username').val() === '')
-                                                {
-                                                    $('#edit_error').html('<?php echo $this->lang->line("error_username"); ?>');
-                                                    $('#edit_error').show();
-                                                    return false;
-                                                }
-                                                else if (!ValidateEmail($("#edit_email").val()))
-                                                {
-                                                    $('#edit_error').html('<?php echo $this->lang->line("error_validemail"); ?>');
-                                                    $('#edit_error').show();
-                                                    return false;
-                                                }
-                                                else if ($('#edit-user-group').val() === '')
-                                                {
-                                                    $('#edit_error').html('<?php echo $this->lang->line("error_group"); ?>');
-                                                    $('#edit_error').show();
-                                                    return false;
-                                                }
-                                                else if ($('#edit_password').val() === '')
-                                                {
-                                                    $('#edit_error').html('<?php echo $this->lang->line("error_password"); ?>');
-                                                    $('#edit_error').show();
-                                                    return false;
-                                                }
-                                                else
-                                                {
-                                                    $('#edit_error').hide();
-                                                    return true;
-                                                }
-                                            }
-                                            function ValidateEmail(email) {
-                                                var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-                                                return expr.test(email);
-                                            }
-                                            ;
+    if ($('#edit_username').val() === '')
+    {
+        $('#edit_error').html('<?php echo $this->lang->line("error_username"); ?>');
+        $('#edit_error').show();
+        return false;
+    }
+    else if (!ValidateEmail($("#edit_email").val()))
+    {
+        $('#edit_error').html('<?php echo $this->lang->line("error_validemail"); ?>');
+        $('#edit_error').show();
+        return false;
+    }
+    else if ($('#edit-user-group').val() === '')
+    {
+        $('#edit_error').html('<?php echo $this->lang->line("error_group"); ?>');
+        $('#edit_error').show();
+        return false;
+    }
+    else if ($('#edit_password').val() === '')
+    {
+        $('#edit_error').html('<?php echo $this->lang->line("error_password"); ?>');
+        $('#edit_error').show();
+        return false;
+    }
+    else
+    {
+        $('#edit_error').hide();
+        return true;
+    }
+}
+function ValidateEmail(email) {
+    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return expr.test(email);
+};
 
 </script>
 </body>

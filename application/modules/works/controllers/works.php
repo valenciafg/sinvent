@@ -98,36 +98,6 @@ class Works extends MX_Controller {
     }
 
     public function do_upload(){
-        /*$inventory_id = $this->input->post('inventory_id');
-        $inventory_img_description = $this->input->post('inventory_img_description');
-        //upload configuration
-        //$config['max_size']   = '100';
-        //$config['max_width']  = '1024';
-        //$config['max_height']  = '768';
-        $config['upload_path'] = FCPATH . 'assets/img/inventory_uploads/';
-        $config['allowed_types'] = '*';
-                $this->load->library('upload', $config);
-
-        $field_name = 'inventory_img';
-        $this->upload->initialize($config);
-        if ($this->upload->do_upload($field_name)) {
-            $data = $this->upload->data();
-                        //insert to logs
-            $insert_data= array(
-             'inventory_id' =>$inventory_id,
-             'image'        => $data['file_name'],
-             'description'  => $inventory_img_description 
-            ) ;
-            $this->inventory_model->add_log($insert_data);
-            
-                        //insert to inventory end
-            $this->session->set_flashdata('upload_success', 'Image Added Successfully');
-              redirect($this->agent->referrer());              
-        } else {
-            $error = array('error' => $this->upload->display_errors());
-              redirect($this->agent->referrer());              
-        }*/
-
         $id = $this->input->post('work_id');
         $img_description = $this->input->post('img_description');        
 
@@ -154,8 +124,14 @@ class Works extends MX_Controller {
                     'original_file_name' => $data['orig_name'],
                     'description'  => $img_description,
                     );
-            $this->works_model->add_file($insert);            
+            $this->works_model->add_file($insert);
         }
         redirect('works');
+    }
+
+    public function get_work_files(){
+        $id = $this->input->post('work_id');
+        $data['files'] = $this->works_model->get_work_files($id);
+        $this->load->view('view_work_files',$data);
     }
 }

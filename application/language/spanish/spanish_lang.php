@@ -310,7 +310,7 @@ $lang['subtype'] = 'Sub-tipo';
 $lang['clasification'] = 'Clasificación';
 $lang['work_description'] = 'Descripción de la Obra';
 $lang['description'] = 'Descripción';
-$lang['description'] = 'Descripción';
+$lang['works_details_title'] = 'Detalle de registros de obras';
 
 $lang['confirm_delete_work'] = '¿Está seguro que desea eliminar esta Obra?';
 
