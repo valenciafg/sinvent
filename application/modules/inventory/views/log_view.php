@@ -41,7 +41,7 @@ Todos los derechos reservados 2015
                                                  <?php echo date('d-m-Y g:i A',strtotime($log['date_uploaded']));?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo base_url().'assets/img/inventory_uploads/'.$log['image'];?>" download="<?php echo $log['image'];?>" title="<?php echo $log['image'];?>"><?php echo $this->lang->line('download');?></a>
+                                                    <a href="<?php echo base_url().'assets/img/inventory_uploads/'.$log['image'];?>" title="<?php echo $log['image'];?> " target="_blank"><?php echo $this->lang->line('download');?></a>
                                                 <a class="log_delete" data-id="<?php echo $log['id']; ?>" href="#">
                                                  <?php echo $this->lang->line("table_delete"); ?>
                                                         </a>
